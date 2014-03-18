@@ -1,0 +1,5 @@
+vhdl work "stop_watch.vhd"
+vhdl work "mux.vhd"
+vhdl work "clock.vhd"
+vhdl work "encoder_decoder.vhd"
+vhdl work "topmodule.vhf"

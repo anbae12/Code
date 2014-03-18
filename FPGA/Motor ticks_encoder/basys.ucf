@@ -1,0 +1,69 @@
+# Pin assignment for LEDs
+NET "ld<7>" LOC = "p2" ; 
+NET "ld<6>" LOC = "p3" ; 
+NET "ld<5>" LOC = "p4" ; 
+NET "ld<4>" LOC = "p5" ; 
+NET "ld<3>" LOC = "p7" ; 
+NET "ld<2>" LOC = "p8" ; 
+NET "ld<1>" LOC = "p14" ; 
+NET "ld<0>" LOC = "p15" ; 
+
+# Pin assignment for slide switches
+#NET "sw<7>" LOC = "p6"; 
+#NET "sw<6>" LOC = "p10"; 
+#NET "sw<5>" LOC = "p12"; 
+#NET "sw<4>" LOC = "p18"; 
+#NET "sw<3>" LOC = "p24"; 
+#NET "sw<2>" LOC = "p29"; 
+NET "reset" LOC = "p36"; 
+NET "enable" LOC = "p38"; 
+
+# Pin assignment for pushbutton switches
+#NET "Db" LOC = "p41"; 
+#NET "Cb" LOC = "p47"; 
+#NET "Bb" LOC = "p48"; 
+#NET "Ab" LOC = "p69"; 
+
+# Pin assignment for 7-segment displays
+NET "a_to_g<6>"  LOC = "p25"  ;
+NET "a_to_g<5>"  LOC = "p16"  ;
+NET "a_to_g<4>"  LOC = "p23"  ;
+NET "a_to_g<3>"  LOC = "P21"  ;
+NET "a_to_g<2>"  LOC = "p20"  ;
+NET "a_to_g<1>"  LOC = "p17"  ;
+NET "a_to_g<0>"  LOC = "p83"  ;
+#NET "dp"  LOC = "p22"  ;
+
+NET "an<3>" LOC = "p26"; 
+NET "an<2>" LOC = "p32"; 
+NET "an<1>" LOC = "p33"; 
+NET "an<0>" LOC = "p34"; 
+
+# Pin assignment for clock
+NET "clk" LOC = "p54"; 
+
+# Pin assignment for port JA
+#NET "JA<4>" LOC = "p92";			# JA4
+#NET "JA<3>" LOC = "p82";			# JA3
+NET "QuadB" LOC = "p91";			# JA2
+NET "QuadA" LOC = "p81";			# JA1
+
+# Pin assignment for port JB
+#NET "JB<4>" LOC = "p94";
+#NET "JB<3>" LOC = "p88";
+#NET "JB<2>" LOC = "p93";
+#NET "JB<1>" LOC = "p87"; 
+
+# Pin assignment for port JC
+#NET "JC<4>" LOC = "p85";
+#NET "JC<3>" LOC = "p76";
+#NET "JC<2>" LOC = "p86";
+#NET "JC<1>" LOC = "p77";
+ 
+# Pin assignment for port JD
+#NET "JD<4>" LOC = "p58";
+#NET "JD<3>" LOC = "p74";
+#NET "JD<2>" LOC = "p59";
+#NET "JD<1>" LOC = "p75"; 
+
+

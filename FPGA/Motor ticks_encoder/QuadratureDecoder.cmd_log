@@ -1,0 +1,143 @@
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -i -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+xst -intstyle ise -ifn "C:/Xilinx_program/encoder/QuadratureDecoder.xst" -ofn "C:/Xilinx_program/encoder/QuadratureDecoder.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc basys.ucf -p xc3s100e-tq144-5 QuadratureDecoder.ngc QuadratureDecoder.ngd  
+map -intstyle ise -p xc3s100e-tq144-5 -cm area -ir off -pr off -c 100 -o QuadratureDecoder_map.ncd QuadratureDecoder.ngd QuadratureDecoder.pcf 
+par -w -intstyle ise -ol high -t 1 QuadratureDecoder_map.ncd QuadratureDecoder.ncd QuadratureDecoder.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml QuadratureDecoder.twx QuadratureDecoder.ncd -o QuadratureDecoder.twr QuadratureDecoder.pcf -ucf basys.ucf 
+bitgen -intstyle ise -f QuadratureDecoder.ut QuadratureDecoder.ncd 

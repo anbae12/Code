@@ -1,0 +1,12 @@
+EN clock NULL C:/Xilinx_program/encoder/clock.vhd sub00/vhpl08 1395138048
+AR mux behavioral C:/Xilinx_program/encoder/mux.vhd sub00/vhpl07 1395138047
+AR stop_watch behavioral C:/Xilinx_program/encoder/stop_watch.vhd sub00/vhpl11 1395138051
+AR topmodule behavioral C:/Xilinx_program/encoder/topmodule.vhf sub00/vhpl05 1395138053
+AR clock behavioral C:/Xilinx_program/encoder/clock.vhd sub00/vhpl09 1395138049
+EN encoder_decoder NULL C:/Xilinx_program/encoder/encoder_decoder.vhd sub00/vhpl00 1394616948
+AR encoder_decoder behavioral C:/Xilinx_program/encoder/encoder_decoder.vhd sub00/vhpl01 1394615345
+EN topmodule NULL C:/Xilinx_program/encoder/topmodule.vhf sub00/vhpl04 1395138052
+EN mux NULL C:/Xilinx_program/encoder/mux.vhd sub00/vhpl06 1395138046
+EN quadraturedecoder NULL C:/Xilinx_program/encoder/encoder_decoder.vhd sub00/vhpl02 1395138054
+EN stop_watch NULL C:/Xilinx_program/encoder/stop_watch.vhd sub00/vhpl10 1395138050
+AR quadraturedecoder behavioral C:/Xilinx_program/encoder/encoder_decoder.vhd sub00/vhpl03 1395138055

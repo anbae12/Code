@@ -1,0 +1,5 @@
+set -tmpdir "C:/Xilinx_program/encoder/xst/projnav.tmp"
+set -xsthdpdir "C:/Xilinx_program/encoder/xst"
+elaborate
+-ifn stop_watch.prj
+-ifmt mixed

@@ -1,0 +1,5 @@
+vhdl work "C:\Xilinx_program\encoder\stop_watch.vhd"
+vhdl work "C:\Xilinx_program\encoder\mux.vhd"
+vhdl work "C:\Xilinx_program\encoder\clock.vhd"
+vhdl work "C:\Xilinx_program\encoder\encoder_decoder.vhd"
+vhdl work "C:\Xilinx_program\encoder\topmodule.vhf"
