@@ -1,0 +1,353 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+buffer              0x90              ..\obj\fifo.o
+
+Discarded input sections
+
+ .text          0x00000000        0x0 ..\obj\spi.o
+ .data          0x00000000        0x0 ..\obj\spi.o
+ .bss           0x00000000        0x0 ..\obj\spi.o
+ .text          0x00000000        0x0 ..\obj\main.o
+ .data          0x00000000        0x0 ..\obj\main.o
+ .bss           0x00000000        0x0 ..\obj\main.o
+ .text          0x00000000        0x0 ..\obj\keypad.o
+ .data          0x00000000        0x0 ..\obj\keypad.o
+ .text          0x00000000        0x0 ..\obj\startup_lm3s.o
+ .data          0x00000000        0x0 ..\obj\startup_lm3s.o
+ .bss           0x00000000        0x0 ..\obj\startup_lm3s.o
+ .text          0x00000000        0x0 ..\obj\fifo.o
+ .data          0x00000000        0x0 ..\obj\fifo.o
+ .bss           0x00000000        0x0 ..\obj\fifo.o
+ .text.buffer_empty
+                0x00000000       0x48 ..\obj\fifo.o
+ .text.buffer_pop
+                0x00000000       0xb4 ..\obj\fifo.o
+ .text.buffer_push
+                0x00000000       0x90 ..\obj\fifo.o
+ .text.buffer_read
+                0x00000000       0x40 ..\obj\fifo.o
+ .text.init_buffer
+                0x00000000       0x6c ..\obj\fifo.o
+ .debug_info    0x00000000      0x1ea ..\obj\fifo.o
+ .debug_abbrev  0x00000000       0xf1 ..\obj\fifo.o
+ .debug_aranges
+                0x00000000       0x40 ..\obj\fifo.o
+ .debug_ranges  0x00000000       0x30 ..\obj\fifo.o
+ .debug_line    0x00000000      0x123 ..\obj\fifo.o
+ .debug_str     0x00000000      0x1d6 ..\obj\fifo.o
+ .comment       0x00000000       0x71 ..\obj\fifo.o
+ .ARM.attributes
+                0x00000000       0x33 ..\obj\fifo.o
+ .debug_frame   0x00000000       0x9c ..\obj\fifo.o
+ COMMON         0x00000000       0x90 ..\obj\fifo.o
+ .text          0x00000000        0x0 ..\obj\systick.o
+ .data          0x00000000        0x0 ..\obj\systick.o
+ .text.init_status_led
+                0x00000000       0x58 ..\obj\systick.o
+ .text.disable_global_int
+                0x00000000       0x10 ..\obj\systick.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x00000000         0x00040000         xr
+ram              0x20000000         0x00010000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x20010000                _eram = 0x20010000
+
+.text           0x00000000      0x610
+ *(.isr_vector)
+ .isr_vector    0x00000000      0x100 ..\obj\startup_lm3s.o
+                0x00000000                g_pfnVectors
+ *(.text*)
+ .text.spi_init
+                0x00000100       0xe0 ..\obj\spi.o
+                0x00000100                spi_init
+ .text.spi_buffer_push
+                0x000001e0       0x2c ..\obj\spi.o
+                0x000001e0                spi_buffer_push
+ .text.main     0x0000020c       0x5c ..\obj\main.o
+                0x0000020c                main
+ .text.pin_enable
+                0x00000268       0x68 ..\obj\keypad.o
+                0x00000268                pin_enable
+ .text.pin_disable
+                0x000002d0       0x1c ..\obj\keypad.o
+                0x000002d0                pin_disable
+ .text.keypad_task
+                0x000002ec      0x114 ..\obj\keypad.o
+                0x000002ec                keypad_task
+ .text.Default_Reset_Handler
+                0x00000400       0x5c ..\obj\startup_lm3s.o
+                0x00000400                Default_Reset_Handler
+                0x00000400                Reset_Handler
+ .text.Default_Handler
+                0x0000045c        0x8 ..\obj\startup_lm3s.o
+                0x0000045c                DebugMon_Handler
+                0x0000045c                FlashCtrl_IRQHandler
+                0x0000045c                Timer0B_IRQHandler
+                0x0000045c                I2C0_IRQHandler
+                0x0000045c                HardFault_Handler
+                0x0000045c                PendSV_Handler
+                0x0000045c                NMI_Handler
+                0x0000045c                I2C1_IRQHandler
+                0x0000045c                PWMGen0_IRQHandler
+                0x0000045c                UART1_IRQHandler
+                0x0000045c                CAN1_IRQHandler
+                0x0000045c                Timer1B_IRQHandler
+                0x0000045c                Watchdog_IRQHandler
+                0x0000045c                UART0_IRQHandler
+                0x0000045c                SSI0_IRQHandler
+                0x0000045c                UsageFault_Handler
+                0x0000045c                ADCSeq1_IRQHandler
+                0x0000045c                PWMFault_IRQHandler
+                0x0000045c                PWMGen1_IRQHandler
+                0x0000045c                SSI1_IRQHandler
+                0x0000045c                uDMA_IRQHandler
+                0x0000045c                GPIOPortC_IRQHandler
+                0x0000045c                ADCSeq2_IRQHandler
+                0x0000045c                PWMGen2_IRQHandler
+                0x0000045c                UART2_IRQHandler
+                0x0000045c                uDMAErr_IRQHandler
+                0x0000045c                QEI1_IRQHandler
+                0x0000045c                QEI0_IRQHandler
+                0x0000045c                PWMGen3_IRQHandler
+                0x0000045c                GPIOPortD_IRQHandler
+                0x0000045c                USB0_IRQHandler
+                0x0000045c                MemManage_Handler
+                0x0000045c                Ethernet_IRQHandler
+                0x0000045c                SVC_Handler
+                0x0000045c                Timer3B_IRQHandler
+                0x0000045c                Timer3A_IRQHandler
+                0x0000045c                GPIOPortA_IRQHandler
+                0x0000045c                Timer0A_IRQHandler
+                0x0000045c                ADCSeq0_IRQHandler
+                0x0000045c                Timer1A_IRQHandler
+                0x0000045c                GPIOPortG_IRQHandler
+                0x0000045c                ADCSeq3_IRQHandler
+                0x0000045c                GPIOPortE_IRQHandler
+                0x0000045c                CAN0_IRQHandler
+                0x0000045c                Comp0_IRQHandler
+                0x0000045c                Comp1_IRQHandler
+                0x0000045c                Comp2_IRQHandler
+                0x0000045c                GPIOPortF_IRQHandler
+                0x0000045c                GPIOPortB_IRQHandler
+                0x0000045c                CAN2_IRQHandler
+                0x0000045c                GPIOPortH_IRQHandler
+                0x0000045c                BusFault_Handler
+                0x0000045c                Timer2A_IRQHandler
+                0x0000045c                Timer2B_IRQHandler
+                0x0000045c                SysCtrl_IRQHandler
+                0x0000045c                Hibernate_IRQHandler
+ .text.init_clk_system
+                0x00000464       0xe4 ..\obj\systick.o
+                0x00000464                init_clk_system
+ .text.systick_init
+                0x00000548       0x84 ..\obj\systick.o
+                0x00000548                systick_init
+ .text.SysTick_Handler
+                0x000005cc       0x20 ..\obj\systick.o
+                0x000005cc                SysTick_Handler
+ .text.enable_global_int
+                0x000005ec       0x10 ..\obj\systick.o
+                0x000005ec                enable_global_int
+ *(.init)
+ *(.fini)
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+ *(.rodata*)
+ .rodata        0x000005fc       0x14 ..\obj\keypad.o
+ *(.eh_fram e*)
+
+.glue_7         0x00000610        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x00000610        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x00000610        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x00000610        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x00000610        0x0
+ .iplt          0x00000000        0x0 ..\obj\spi.o
+
+.rel.dyn        0x00000610        0x0
+ .rel.iplt      0x00000000        0x0 ..\obj\spi.o
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x00000610                __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x00000610                __exidx_end = .
+                0x00000610                __etext = .
+                0x00000610                _sidata = __etext
+
+.data           0x20000000        0x0 load address 0x00000610
+                0x20000000                __data_start__ = .
+                0x20000000                _sdata = __data_start__
+ *(vtable)
+ *(.data*)
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x20000000                PROVIDE (__preinit_array_end, .)
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x20000000                PROVIDE (__init_array_end, .)
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                PROVIDE (__fini_array_start, .)
+ *(SORT(.fini_array.*))
+ *(.fini_array)
+                0x20000000                PROVIDE (__fini_array_end, .)
+ *(.jcr*)
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                __data_end__ = .
+                0x20000000                _edata = __data_end__
+
+.igot.plt       0x20000000        0x0
+ .igot.plt      0x00000000        0x0 ..\obj\spi.o
+
+.bss            0x20000000       0x14
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                __bss_start__ = .
+                0x20000000                _sbss = __bss_start__
+ *(.bss*)
+ .bss           0x20000000       0x10 ..\obj\keypad.o
+                0x20000000                timer_var
+ .bss           0x20000010        0x2 ..\obj\systick.o
+                0x20000010                ticks
+ *(COMMON)
+                0x20000014                . = ALIGN (0x4)
+ *fill*         0x20000012        0x2 
+                0x20000014                __bss_end__ = .
+                0x20000014                _ebss = __bss_end__
+
+.heap           0x20000014        0x0
+                0x20000014                __end__ = .
+                0x20000014                _end = __end__
+                0x20000014                end = __end__
+ *(.heap*)
+                0x20000014                __HeapLimit = .
+
+.co_stack       0x20000014      0x404
+                0x20000018                . = ALIGN (0x8)
+ *fill*         0x20000014        0x4 
+ *(.co_stack .co_stack.*)
+ .co_stack      0x20000018      0x400 ..\obj\startup_lm3s.o
+                0x20000018                pulStack
+                0x20010000                __StackTop = (ORIGIN (ram) + 0x10000)
+                0x2000fbfc                __StackLimit = (__StackTop - SIZEOF (.co_stack))
+                0x20010000                PROVIDE (__stack, __StackTop)
+                0x00000001                ASSERT ((__StackLimit >= __HeapLimit), region ram  overflowed with stack)
+LOAD ..\obj\spi.o
+LOAD ..\obj\main.o
+LOAD ..\obj\keypad.o
+LOAD ..\obj\startup_lm3s.o
+LOAD ..\obj\fifo.o
+LOAD ..\obj\systick.o
+START GROUP
+LOAD c:/program files (x86)/coocox/gnu tools arm embedded/4.8 2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/armv7-m\libgcc.a
+LOAD c:/program files (x86)/coocox/gnu tools arm embedded/4.8 2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libg.a
+LOAD c:/program files (x86)/coocox/gnu tools arm embedded/4.8 2013q4/bin/../lib/gcc/arm-none-eabi/4.8.3/../../../../arm-none-eabi/lib/armv7-m\libc.a
+END GROUP
+OUTPUT(SPI-test.elf elf32-littlearm)
+
+.debug_info     0x00000000      0x50d
+ .debug_info    0x00000000       0xd0 ..\obj\spi.o
+ .debug_info    0x000000d0       0x9f ..\obj\main.o
+ .debug_info    0x0000016f      0x18a ..\obj\keypad.o
+ .debug_info    0x000002f9       0xe9 ..\obj\startup_lm3s.o
+ .debug_info    0x000003e2      0x12b ..\obj\systick.o
+
+.debug_abbrev   0x00000000      0x2d4
+ .debug_abbrev  0x00000000       0x7a ..\obj\spi.o
+ .debug_abbrev  0x0000007a       0x67 ..\obj\main.o
+ .debug_abbrev  0x000000e1       0x9b ..\obj\keypad.o
+ .debug_abbrev  0x0000017c       0xa7 ..\obj\startup_lm3s.o
+ .debug_abbrev  0x00000223       0xb1 ..\obj\systick.o
+
+.debug_aranges  0x00000000       0xe8
+ .debug_aranges
+                0x00000000       0x28 ..\obj\spi.o
+ .debug_aranges
+                0x00000028       0x20 ..\obj\main.o
+ .debug_aranges
+                0x00000048       0x30 ..\obj\keypad.o
+ .debug_aranges
+                0x00000078       0x28 ..\obj\startup_lm3s.o
+ .debug_aranges
+                0x000000a0       0x48 ..\obj\systick.o
+
+.debug_ranges   0x00000000       0x98
+ .debug_ranges  0x00000000       0x18 ..\obj\spi.o
+ .debug_ranges  0x00000018       0x10 ..\obj\main.o
+ .debug_ranges  0x00000028       0x20 ..\obj\keypad.o
+ .debug_ranges  0x00000048       0x18 ..\obj\startup_lm3s.o
+ .debug_ranges  0x00000060       0x38 ..\obj\systick.o
+
+.debug_line     0x00000000      0x4f6
+ .debug_line    0x00000000       0xe7 ..\obj\spi.o
+ .debug_line    0x000000e7      0x110 ..\obj\main.o
+ .debug_line    0x000001f7      0x10f ..\obj\keypad.o
+ .debug_line    0x00000306       0x9c ..\obj\startup_lm3s.o
+ .debug_line    0x000003a2      0x154 ..\obj\systick.o
+
+.debug_str      0x00000000      0x3a3
+ .debug_str     0x00000000      0x149 ..\obj\spi.o
+                                0x175 (size before relaxing)
+ .debug_str     0x00000149       0x4c ..\obj\main.o
+                                0x14c (size before relaxing)
+ .debug_str     0x00000195       0xb0 ..\obj\keypad.o
+                                0x1bd (size before relaxing)
+ .debug_str     0x00000245       0xab ..\obj\startup_lm3s.o
+                                0x142 (size before relaxing)
+ .debug_str     0x000002f0       0xb3 ..\obj\systick.o
+                                0x1c7 (size before relaxing)
+
+.comment        0x00000000       0x70
+ .comment       0x00000000       0x70 ..\obj\spi.o
+                                 0x71 (size before relaxing)
+ .comment       0x00000000       0x71 ..\obj\main.o
+ .comment       0x00000000       0x71 ..\obj\keypad.o
+ .comment       0x00000000       0x71 ..\obj\startup_lm3s.o
+ .comment       0x00000000       0x71 ..\obj\systick.o
+
+.ARM.attributes
+                0x00000000       0x33
+ .ARM.attributes
+                0x00000000       0x33 ..\obj\spi.o
+ .ARM.attributes
+                0x00000033       0x33 ..\obj\main.o
+ .ARM.attributes
+                0x00000066       0x33 ..\obj\keypad.o
+ .ARM.attributes
+                0x00000099       0x33 ..\obj\startup_lm3s.o
+ .ARM.attributes
+                0x000000cc       0x33 ..\obj\systick.o
+
+.debug_frame    0x00000000      0x1c4
+ .debug_frame   0x00000000       0x48 ..\obj\spi.o
+ .debug_frame   0x00000048       0x2c ..\obj\main.o
+ .debug_frame   0x00000074       0x60 ..\obj\keypad.o
+ .debug_frame   0x000000d4       0x48 ..\obj\startup_lm3s.o
+ .debug_frame   0x0000011c       0xa8 ..\obj\systick.o
