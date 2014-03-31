@@ -23,23 +23,20 @@
 </info>
 </editorArea>
 <editor id="org.coocox.welcome.ui.WelcomePage" name="" partName="welcome" title="welcome" tooltip="" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">
-<org.coocox.welcome.ui.WelcomePage/>
+<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">&#x0A;<org.coocox.welcome.ui.WelcomePage/>
 </input>
 </editor>
 <editor id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" partName="Repository" title="Repository" tooltip="Repository" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory">
-<subPage horizontalPosition="0" selectedItemId="200" subPageIndex="0" verticalPosition="0"/>
+<input factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory">&#x0A;<subPage horizontalPosition="0" selectedItemId="0" subPageIndex="0" verticalPosition="0"/>
 </input>
 </editor>
 <editor id="org.coocox.builder.ui.editors.ConfigEditor" name="" partName="Configuration" title="Configuration" tooltip="" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="1" verticalPosition="0"/>
+<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">&#x0A;<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="0" verticalPosition="0"/>
 </input>
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/michael/Documents/GitHub/Code/µC/SPI-test/main.c" title="main.c" tooltip="C:/Users/michael/Documents/GitHub/Code/µC/SPI-test/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SPI-test/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="406" selectionTopPixel="204"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="194" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="spi.c" partName="spi.c" path="C:/Users/michael/Documents/GitHub/Code/µC/SPI-test/SPI/spi.c" title="spi.c" tooltip="C:/Users/michael/Documents/GitHub/Code/µC/SPI-test/SPI/spi.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/SPI-test/spi/spi.c"/>
@@ -60,7 +57,7 @@
 </editors>
 <views>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="2">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="7">
 <expanded>
 <element path="/SPI-test"/>
 <element path="/SPI-test/fifo"/>
@@ -128,29 +125,23 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.coocox.component.ui.ComponentView"/>
+<view id="org.coocox.builder.ui.views.ProjectView"/>
 <fastViewBars>
 <fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@5a6d04" orientation="512" selectedTabId="org.coocox.component.ui.Help" style="0">
 <fastViews>
 <view id="org.coocox.component.ui.Help" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
-<fastViewBar fastViewLocation="16384" id="org.eclipse.ui.internal.ViewStack@15e01c2" orientation="256" selectedTabId="org.coocox.component.ui.ComponentView" style="0">
-<fastViews>
-<view id="org.coocox.component.ui.ComponentView" ratio="0.3"/>
-</fastViews>
-</fastViewBar>
-<fastViewBar fastViewLocation="16384" id="org.eclipse.ui.internal.ViewStack@c57076" orientation="512" selectedTabId="org.coocox.builder.ui.views.ProjectView" style="0">
-<fastViews>
-<view id="org.coocox.builder.ui.views.ProjectView" ratio="0.3"/>
-</fastViews>
-</fastViewBar>
 </fastViewBars>
 <layout>
 <mainWindow>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@15e01c2">
-<folder appearance="2" expanded="0">
-<page content="org.coocox.component.ui.ComponentView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<folder activePageID="org.coocox.component.ui.ComponentView" appearance="2" expanded="2">
+<page content="org.coocox.component.ui.ComponentView" label="Components"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
 </folder>
 </info>
 <info folder="true" part="stickyFolderRight" ratio="0.7496318" ratioLeft="1018" ratioRight="340" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15e01c2">
@@ -185,9 +176,11 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.4499205" ratioLeft="283" ratioRight="346" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1171cd1"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@c57076" ratio="0.3688394" ratioLeft="232" ratioRight="397" relationship="4" relative="org.eclipse.ui.internal.ViewStack@15e01c2">
-<folder appearance="2" expanded="0">
-<page content="org.coocox.builder.ui.views.ProjectView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
+<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
 </folder>
 </info>
 </mainWindow>
@@ -295,7 +288,6 @@
 </editor>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SPI-test/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SPI-test/spi/spi.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SPI-test/spi/spi.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SPI-test/fifo/fifo.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SPI-test/spi/spi.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SPI-test/fifo/fifo.h"/>
@@ -320,23 +312,21 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SPI-test/startup/startup_lm3s.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SPI-test/spi/spi.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SPI-test/spi/spi.h"/>
+<editor factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser">
+<subPage horizontalPosition="0" selectedItemId="0" subPageIndex="0" verticalPosition="0"/>
+</editor>
+<editor factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser">
+<subPage horizontalPosition="0" selectedItemId="0" subPageIndex="0" verticalPosition="0"/>
+</editor>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage">
+<org.coocox.welcome.ui.WelcomePage/>
+</editor>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="0" verticalPosition="0"/>
+</editor>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/SPI-test/main.c"/>
 </editors>
-<item historyLabel="spi.c" index="2">
-<position info="not_deleted" x="1481" y="0"/>
-</item>
-<item historyLabel="spi.h" index="3">
-<position info="not_deleted" x="398" y="0"/>
-</item>
-<item historyLabel="spi.c" index="2">
-<position info="not_deleted" x="878" y="0"/>
-</item>
-<item historyLabel="fifo.h" index="4">
-<position info="not_deleted" x="555" y="0"/>
-</item>
-<item historyLabel="spi.c" index="2">
-<position info="not_deleted" x="878" y="0"/>
-</item>
-<item historyLabel="fifo.h" index="4">
+<item historyLabel="fifo.h" index="3">
 <position info="not_deleted" x="1799" y="0"/>
 </item>
 <item historyLabel="Configuration" index="0"/>
@@ -352,100 +342,107 @@
 <item historyLabel="spi.c" index="2">
 <position info="not_deleted" x="606" y="4"/>
 </item>
-<item historyLabel="spi.h" index="5">
+<item historyLabel="spi.h" index="4">
 <position info="not_deleted" x="623" y="0"/>
 </item>
 <item historyLabel="spi.c" index="2">
 <position info="not_deleted" x="881" y="0"/>
 </item>
-<item historyLabel="spi.h" index="5">
+<item historyLabel="spi.h" index="4">
 <position info="not_deleted" x="623" y="0"/>
 </item>
-<item historyLabel="fifo.h" index="6">
+<item historyLabel="fifo.h" index="5">
 <position info="not_deleted" x="1799" y="0"/>
 </item>
-<item historyLabel="main.c" index="7">
+<item historyLabel="main.c" index="6">
 <position info="not_deleted" x="279" y="0"/>
 </item>
 <item historyLabel="spi.c" index="2">
 <position info="not_deleted" x="883" y="0"/>
 </item>
-<item historyLabel="main.c" index="7">
+<item historyLabel="main.c" index="6">
 <position info="not_deleted" x="274" y="0"/>
 </item>
-<item historyLabel="keypad.c" index="8">
+<item historyLabel="keypad.c" index="7">
 <position info="not_deleted" x="828" y="0"/>
 </item>
-<item historyLabel="keypad.c" index="8">
+<item historyLabel="keypad.c" index="7">
 <position info="not_deleted" x="3470" y="2"/>
 </item>
 <item historyLabel="spi.c" index="2">
 <position info="not_deleted" x="883" y="0"/>
 </item>
-<item historyLabel="spi.h" index="5">
+<item historyLabel="spi.h" index="4">
 <position info="not_deleted" x="623" y="0"/>
 </item>
-<item historyLabel="main.c" index="7">
+<item historyLabel="main.c" index="6">
 <position info="not_deleted" x="274" y="0"/>
 </item>
-<item historyLabel="main.c" index="7">
+<item historyLabel="main.c" index="6">
 <position info="not_deleted" x="265" y="0"/>
 </item>
-<item historyLabel="Configuration" index="9"/>
+<item historyLabel="Configuration" index="8"/>
+<item historyLabel="Repository" index="9"/>
 <item historyLabel="Repository" index="10"/>
-<item historyLabel="Repository" index="11"/>
-<item historyLabel="Configuration" index="12"/>
-<item historyLabel="main.c" index="13">
+<item historyLabel="Configuration" index="11"/>
+<item historyLabel="main.c" index="12">
 <position info="not_deleted" x="349" y="0"/>
 </item>
-<item historyLabel="Configuration" index="12"/>
-<item historyLabel="welcome" index="14"/>
-<item historyLabel="Repository" index="11"/>
-<item historyLabel="Configuration" index="12"/>
-<item historyLabel="startup_lm3s.c" index="15">
+<item historyLabel="Configuration" index="11"/>
+<item historyLabel="welcome" index="13"/>
+<item historyLabel="Repository" index="10"/>
+<item historyLabel="Configuration" index="11"/>
+<item historyLabel="startup_lm3s.c" index="14">
 <position info="not_deleted" x="1235" y="0"/>
 </item>
-<item historyLabel="Configuration" index="12"/>
-<item historyLabel="main.c" index="13">
+<item historyLabel="Configuration" index="11"/>
+<item historyLabel="main.c" index="12">
 <position info="not_deleted" x="349" y="0"/>
 </item>
-<item historyLabel="spi.c" index="16">
+<item historyLabel="spi.c" index="15">
 <position/>
 </item>
-<item historyLabel="spi.c" index="16">
+<item historyLabel="spi.c" index="15">
 <position/>
 </item>
-<item historyLabel="spi.h" index="17">
+<item historyLabel="spi.h" index="16">
 <position info="not_deleted" x="623" y="0"/>
 </item>
-<item historyLabel="main.c" index="13">
+<item historyLabel="main.c" index="12">
 <position info="not_deleted" x="104" y="0"/>
 </item>
-<item historyLabel="Configuration" index="12"/>
-<item historyLabel="main.c" index="13">
+<item historyLabel="Configuration" index="11"/>
+<item historyLabel="main.c" index="12">
 <position info="not_deleted" x="194" y="0"/>
 </item>
-<item historyLabel="Configuration" index="12"/>
-<item historyLabel="main.c" index="13">
+<item historyLabel="Configuration" index="11"/>
+<item historyLabel="main.c" index="12">
 <position info="not_deleted" x="335" y="0"/>
 </item>
-<item historyLabel="spi.c" index="16">
+<item historyLabel="spi.c" index="15">
 <position info="not_deleted" x="1776" y="0"/>
 </item>
-<item historyLabel="spi.c" index="16">
+<item historyLabel="spi.c" index="15">
 <position/>
 </item>
-<item historyLabel="spi.h" index="17">
+<item historyLabel="spi.h" index="16">
 <position info="not_deleted" x="623" y="0"/>
 </item>
-<item historyLabel="spi.c" index="16">
+<item historyLabel="spi.c" index="15">
 <position info="not_deleted" x="2401" y="0"/>
 </item>
-<item historyLabel="spi.c" index="16">
+<item historyLabel="spi.c" index="15">
 <position info="not_deleted" x="2701" y="0"/>
 </item>
-<item active="true" historyLabel="main.c" index="13">
+<item historyLabel="main.c" index="12">
 <position info="not_deleted" x="335" y="0"/>
+</item>
+<item historyLabel="Repository" index="17"/>
+<item historyLabel="Repository" index="18"/>
+<item historyLabel="welcome" index="19"/>
+<item historyLabel="Configuration" index="20"/>
+<item active="true" historyLabel="main.c" index="21">
+<position info="not_deleted" x="208" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -454,6 +451,22 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="FreeRTOSConfig.h" tooltip="lab8/FreeRTOSConfig.h">
+<persistable path="/lab8/FreeRTOSConfig.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="readme.txt" tooltip="lab8/FRT_Library/FreeRTOS/Source/portable/readme.txt">
+<persistable path="/lab8/FRT_Library/FreeRTOS/Source/portable/readme.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="readme.txt" tooltip="lab8/FRT_Library/FreeRTOS/Source/readme.txt">
+<persistable path="/lab8/FRT_Library/FreeRTOS/Source/readme.txt"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="lab8/main.c">
+<persistable path="/lab8/main.c"/>
+</file>
+<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
+<persistable>&#x0A;<subPage/>
+</persistable>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_lm3s.c" tooltip="SPI-test/startup/startup_lm3s.c">
 <persistable path="/SPI-test/startup/startup_lm3s.c"/>
 </file>
@@ -472,30 +485,14 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="SPI-test/main.c">
 <persistable path="/SPI-test/main.c"/>
 </file>
-<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>&#x0A;<subPage/>
-</persistable>
-</file>
 <file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="rtcs.h" tooltip="C:\Users\michael\Dropbox\EMP\EMP Gruppe 2\Run_to_complete_scheduler\RTCS\rtcs.h">
 <persistable path="C:\Users\michael\Dropbox\EMP\EMP Gruppe 2\Run_to_complete_scheduler\RTCS\rtcs.h" project="rtcs_lab"/>
 </file>
-<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="rtcs_lab.coproj" tooltip="C:\Users\michael\Dropbox\EMP\EMP Gruppe 2\Run_to_complete_scheduler\rtcs_lab.coproj">
-<persistable uri="file:/C:/Users/michael/Dropbox/EMP/EMP%20Gruppe%202/Run_to_complete_scheduler/rtcs_lab.coproj"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="fifo.c" tooltip="Assignment4 - final/startup/fifo.c">
+<persistable path="/Assignment4 - final/startup/fifo.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="lcd_api.h" tooltip="Assignment4 - final/startup/lcd_api.h">
-<persistable path="/Assignment4 - final/startup/lcd_api.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="systick.h" tooltip="Assignment4 - final/startup/systick.h">
-<persistable path="/Assignment4 - final/startup/systick.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="timecontrol.h" tooltip="Assignment4 - final/startup/timecontrol.h">
-<persistable path="/Assignment4 - final/startup/timecontrol.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_lm3s.c" tooltip="Assignment4 - final/startup/startup_lm3s.c">
-<persistable path="/Assignment4 - final/startup/startup_lm3s.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="lcd_api.c" tooltip="Assignment4 - final/startup/lcd_api.c">
-<persistable path="/Assignment4 - final/startup/lcd_api.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="FreeRTOSConfig.h" tooltip="lab8/FreeRTOSConfig.h">
+<persistable path="/lab8/FreeRTOSConfig.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="fifo.c" tooltip="Assignment4 - final/startup/fifo.c">
 <persistable path="/Assignment4 - final/startup/fifo.c"/>
