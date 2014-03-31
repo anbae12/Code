@@ -1,0 +1,8 @@
+*.bin
+*.elf
+*.o
+uC/freeRTOS_test/freeRTOS_test/Debug/bin/history.xml
+uC/freeRTOS_test/freeRTOS_test/Debug/obj/history.xml
+uC/freeRTOS_test/freeRTOS_test/freeRTOS_test.elf.xcodeproj/project.pbxproj
+uC/freeRTOS_test/freeRTOS_test/Debug/bin/freeRTOS_test.map
+uC/freeRTOS_test/freeRTOS_test/Debug/bin/freeRTOS_test.hex
