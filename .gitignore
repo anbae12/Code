@@ -16,3 +16,4 @@ uC/SPI-test/SPI-test/Debug/bin/SPI-test.bin
 uC/SPI-test/SPI-test/Debug/bin/SPI-test.elf
 uC/SPI-test/SPI-test/Debug/bin/history.xml
 uC/SPI-test/SPI-test/Debug/bin/history.xml
+*.o
