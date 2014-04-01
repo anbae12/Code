@@ -26,7 +26,7 @@
 /*****************************    Defines    *******************************/
 #define FCPU					5000000 
 
-#define SYSTICK_RELOAD_VALUE 250000 // 5 mS
+#define SYSTICK_RELOAD_VALUE 25000 // 0.5 mS
 
 // Missing definitions in lm3s6965.h file
 #define NVIC_INT_CTRL_PEND_SYST  	0x04000000  // Pend a systick int

@@ -24,7 +24,7 @@ int main(void)
 
     	while (! ticks );
     	ticks--;
-    	//spi_buffer_push(0b10101010);
+    	spi_buffer_push(0b10101010);
 
     	keypad_task();
     }

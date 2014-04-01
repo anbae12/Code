@@ -27,7 +27,10 @@
 #include "emp_type.h"
 #include "spi.h"
 
-
+#include "FreeRTOS.h"
+//#include "task.h"
+#include "queue.h"
+#include "queue_ini.h"
 
 /*****************************    Defines    *******************************/
 
@@ -96,10 +99,59 @@ void spi_init(void)
 
 }
 
-void spi_buffer_push( INT8U data ) 
+void spi_buffer_push( INT16U data )
 {
   // Convert data to 32bit (why am i doing this?)
   INT32U data32 = 0x0;
   data32 |= data;
   SSI0_DR_R = data32;
 }
+
+void spi_test_task( void *pvParameters)
+{
+	vTaskDelay(3000 / portTICK_RATE_MS);
+	while(1)
+	{
+		spi_buffer_push(0xF0F0);
+		vTaskDelay(1000 / portTICK_RATE_MS);
+		spi_buffer_push(0x0F0F);
+		vTaskDelay(1000 / portTICK_RATE_MS);
+
+	}
+}
+
+void spi_receive_task( void *pvParameters)
+{
+	INT32U data_from_buffer;
+	INT16U motor_position;
+	INT8U motor_id; // May not be necessary
+	// Init spi:
+	spi_init();
+	//write_data(0);
+	while (1)
+	{
+		// Reads the incoming buffer to see if any data is received
+		// The received data is added to the LIFO buffer
+
+		// Check if data is available
+		// By reading "Receive not empty" in the status register (p. 491)
+		if (SSI0_SR_R & SSI_SR_RNE)
+		{
+			data_from_buffer = SSI0_DR_R;
+			motor_id = ((data_from_buffer & SPI_MOTOR_SEL_MASK) >> 15);
+			motor_position = (data_from_buffer & SPI_MOTOR_POS_MASK);
+
+			//add_to_enc_queue(0, motor_position);
+			if ( enc_queue[motor_id] != 0 )
+				{
+					if (xQueueSendToFront(enc_queue[motor_id], &motor_position, 100))
+					{
+						// ERROR!
+					}
+				}
+
+		}
+	}
+
+}
+

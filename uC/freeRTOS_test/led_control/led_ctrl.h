@@ -50,5 +50,5 @@ extern void status_led_alive(void *pvParameters);
 
 extern void toggle_yellow(void *pvParameters);
 extern void toggle_green(void *pvParameters);
-
+extern void buffer_full_debug_task(void *pvParameters);
 /****************************** End Of Module *****************************/

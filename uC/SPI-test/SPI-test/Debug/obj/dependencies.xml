@@ -1,76 +1,36 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dependencies>
-   <includePath signature="/I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\SPI /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\fifo /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\includes /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\keypad /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\systick /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test">
-      <source file="..\..\..\includes\emp_type.h" lastModified="144648a34d8">
+   <includePath signature="/I..\..\..\..\..\Users\michael\Documents\GitHub\Code\uC\SPI-test /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\uC\SPI-test\systick /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\uC /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\uC\SPI-test\includes /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\uC\SPI-test\keypad /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\uC\SPI-test\SPI /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\uC\SPI-test\fifo">
+      <source file="..\..\..\includes\emp_type.h" lastModified="144e4e9241c">
       </source>
-      <source file="..\..\..\fifo\fifo.h" lastModified="144d567d652">
+      <source file="..\..\..\fifo\fifo.h" lastModified="144e4e92416">
          <include file="..\..\..\includes\emp_type.h"/>
       </source>
-      <source file="..\..\..\systick\systick.h" lastModified="144e3fccd3e">
+      <source file="..\..\..\systick\systick.h" lastModified="144e4e92447">
          <include file="..\..\..\includes\lm3s6965.h"/>
          <include file="..\..\..\includes\emp_type.h"/>
       </source>
-      <source file="..\..\..\fifo\fifo.c" lastModified="144b6fc2a05">
+      <source file="..\..\..\fifo\fifo.c" lastModified="144e4e92410">
          <include file="..\..\..\includes\emp_type.h"/>
          <include file="..\..\..\fifo\fifo.h"/>
       </source>
-      <source file="..\..\..\systick\systick.c" lastModified="144e3f5fbdd">
-         <include file="..\..\..\includes\lm3s6965.h"/>
-         <include file="..\..\..\includes\emp_type.h"/>
-         <include file="..\..\..\systick\systick.h"/>
-      </source>
-      <source file="..\..\..\SPI\spi.h" lastModified="144e4568a35">
+      <source file="..\..\..\SPI\spi.h" lastModified="1451c25a0db">
          <include file="..\..\..\includes\emp_type.h"/>
       </source>
       <source file="..\..\..\startup\startup_lm3s.c" lastModified="144d4779d89">
       </source>
-      <source file="..\..\..\keypad\keypad.h" lastModified="1449ce92c7a">
+      <source file="..\..\..\keypad\keypad.h" lastModified="144e4e92436">
          <include file="..\..\..\includes\lm3s6965.h"/>
          <include file="..\..\..\includes\emp_type.h"/>
       </source>
-      <source file="..\..\..\SPI\spi.c" lastModified="144e48e1226">
+      <source file="..\..\..\SPI\spi.c" lastModified="1451c263d71">
          <include file="..\..\..\includes\lm3s6965.h"/>
          <include file="..\..\..\includes\emp_type.h"/>
          <include file="..\..\..\SPI\spi.h"/>
       </source>
-      <source file="..\..\..\includes\lm3s6965.h" lastModified="139dc7a82a0">
+      <source file="..\..\..\includes\lm3s6965.h" lastModified="144e4e92428">
       </source>
-      <source file="..\..\..\keypad\keypad.c" lastModified="144e4150d19">
-         <include file="..\..\..\includes\lm3s6965.h"/>
-         <include file="..\..\..\includes\emp_type.h"/>
-         <include file="..\..\..\keypad\keypad.h"/>
-         <include file="..\..\..\SPI\spi.h"/>
-         <include file="..\..\..\fifo\fifo.h"/>
-      </source>
-   </includePath>
-   <includePath signature="/I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\fifo /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\includes /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\SPI /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\keypad /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\systick /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test">
-      <source file="..\..\..\includes\emp_type.h" lastModified="144648a34d8">
-      </source>
-      <source file="..\..\..\fifo\fifo.h" lastModified="144d567d652">
-         <include file="..\..\..\includes\emp_type.h"/>
-      </source>
-      <source file="..\..\..\systick\systick.h" lastModified="144e3fccd3e">
-         <include file="..\..\..\includes\lm3s6965.h"/>
-         <include file="..\..\..\includes\emp_type.h"/>
-      </source>
-      <source file="..\..\..\fifo\fifo.c" lastModified="144b6fc2a05">
-         <include file="..\..\..\includes\emp_type.h"/>
-         <include file="..\..\..\fifo\fifo.h"/>
-      </source>
-      <source file="..\..\..\systick\systick.c" lastModified="144e3f5fbdd">
-         <include file="..\..\..\includes\lm3s6965.h"/>
-         <include file="..\..\..\includes\emp_type.h"/>
-         <include file="..\..\..\systick\systick.h"/>
-      </source>
-      <source file="..\..\..\startup\startup_lm3s.c" lastModified="144d4779d89">
-      </source>
-      <source file="..\..\..\keypad\keypad.h" lastModified="1449ce92c7a">
-         <include file="..\..\..\includes\lm3s6965.h"/>
-         <include file="..\..\..\includes\emp_type.h"/>
-      </source>
-      <source file="..\..\..\includes\lm3s6965.h" lastModified="139dc7a82a0">
-      </source>
-      <source file="..\..\..\keypad\keypad.c" lastModified="144e4150d19">
+      <source file="..\..\..\keypad\keypad.c" lastModified="144e4e92430">
          <include file="..\..\..\includes\lm3s6965.h"/>
          <include file="..\..\..\includes\emp_type.h"/>
          <include file="..\..\..\keypad\keypad.h"/>
@@ -79,18 +39,15 @@
       </source>
    </includePath>
    <includePath signature="/I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\fifo /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\includes /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\SPI /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test">
-      <source file="..\..\..\includes\emp_type.h" lastModified="144648a34d8">
-      </source>
-      <source file="..\..\..\fifo\fifo.h" lastModified="144d567d652">
-         <include file="..\..\..\includes\emp_type.h"/>
-      </source>
-      <source file="..\..\..\fifo\fifo.c" lastModified="144b6fc2a05">
-         <include file="..\..\..\includes\emp_type.h"/>
-         <include file="..\..\..\fifo\fifo.h"/>
-      </source>
       <source file="..\..\..\startup\startup_lm3s.c" lastModified="144d4779d89">
       </source>
-      <source file="..\..\..\includes\lm3s6965.h" lastModified="139dc7a82a0">
+   </includePath>
+   <includePath signature="/I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\fifo /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\includes /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\SPI /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\keypad /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\systick /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test">
+      <source file="..\..\..\startup\startup_lm3s.c" lastModified="144d4779d89">
+      </source>
+   </includePath>
+   <includePath signature="/I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\SPI /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\fifo /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\includes /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\keypad /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test\systick /I..\..\..\..\..\Users\michael\Documents\GitHub\Code\µC\SPI-test">
+      <source file="..\..\..\startup\startup_lm3s.c" lastModified="144d4779d89">
       </source>
    </includePath>
 </dependencies>

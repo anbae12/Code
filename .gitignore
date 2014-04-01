@@ -6,14 +6,6 @@ uC/freeRTOS_test/freeRTOS_test/Debug/obj/history.xml
 uC/freeRTOS_test/freeRTOS_test/freeRTOS_test.elf.xcodeproj/project.pbxproj
 uC/freeRTOS_test/freeRTOS_test/Debug/bin/freeRTOS_test.map
 uC/freeRTOS_test/freeRTOS_test/Debug/bin/freeRTOS_test.hex
-*.o
-uC/SPI-test/SPI-test/Debug/bin/SPI-test.bin
-uC/SPI-test/SPI-test/Debug/bin/SPI-test.bin
-*.o
-uC/SPI-test/SPI-test/Debug/obj/keypad.o
-*.o
-uC/SPI-test/SPI-test/Debug/bin/SPI-test.bin
-uC/SPI-test/SPI-test/Debug/bin/SPI-test.elf
-uC/SPI-test/SPI-test/Debug/bin/history.xml
-uC/SPI-test/SPI-test/Debug/bin/history.xml
-*.o
+
+
+uC/SPI-test/

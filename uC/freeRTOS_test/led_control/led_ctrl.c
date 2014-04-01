@@ -28,6 +28,10 @@ Special freeRTOS edition.
 #include "led_ctrl.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "spi.h"
+
+#include "queue.h"
+#include "queue_ini.h"
 
 /*****************************    Defines    *******************************/
 
@@ -94,16 +98,34 @@ void toggle_yellow(void *pvParameters)
   while(1)
   {
     GPIO_PORTG_DATA_R ^= PIN_LED_YELLOW;
-    vTaskDelay(2000 / portTICK_RATE_MS); // wait 2000 ms.
+    vTaskDelay(200 / portTICK_RATE_MS); // wait 2000 ms.
   }
 }
+
+void buffer_full_debug_task(void *pvParameters)
+{
+	//Used to check if buffer is full or not, using yellow led
+	GPIO_PORTG_DATA_R |= PIN_LED_YELLOW;
+	while(1)
+	{
+		if (uxQueueMessagesWaiting(enc_queue[0]))
+		{
+			GPIO_PORTG_DATA_R &= ~(PIN_LED_YELLOW);
+		}
+		else
+		{
+			GPIO_PORTG_DATA_R |= PIN_LED_YELLOW;
+		}
+	}
+}
+
 void toggle_green(void *pvParameters)
 {
   //gpio_ini();
   while(1)
   {
   GPIO_PORTG_DATA_R ^= PIN_LED_GREEN;
-  vTaskDelay(3000 / portTICK_RATE_MS); // wait 3000 ms.
+  vTaskDelay(300 / portTICK_RATE_MS); // wait 3000 ms.
   }
 }
 /****************************** End Of Module *****************************/
