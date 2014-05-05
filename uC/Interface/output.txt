@@ -1,0 +1,13 @@
+mkdir Libraries/
+for dir in libs/inc libs/FRT_Library libs/Uart libs/configs libs/interface libs/uart; do \
+	cd $dir; \
+	arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -c *.c -I../; \
+	mv *.o ../../Libraries; \
+	cd -; \
+done
+/home/niko/dokumenter/gits/Code/uC/Interface
+/home/niko/dokumenter/gits/Code/uC/Interface
+/home/niko/dokumenter/gits/Code/uC/Interface
+/home/niko/dokumenter/gits/Code/uC/Interface
+/home/niko/dokumenter/gits/Code/uC/Interface
+/home/niko/dokumenter/gits/Code/uC/Interface
