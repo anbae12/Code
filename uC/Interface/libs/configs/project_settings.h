@@ -5,10 +5,10 @@
  ****************************************************************************/
 #pragma once
 /****************************** Include files *******************************/
-#include "FreeRTOS.h"
-#include "FreeRTOSConfig.h"
-#include "semphr.h"
-#include "queue.h"
+#include "FRT_Library/FreeRTOS/Source/include/FreeRTOS.h"
+#include "FRT_Library/FreeRTOS/Source/include/semphr.h"
+#include "FRT_Library/FreeRTOS/Source/include/queue.h"
+#include "configs/FreeRTOSConfig.h"
 #include "uart/uartprintf.h" //For PRINTF helper macro define.
 
 /********************************* Defines **********************************/
