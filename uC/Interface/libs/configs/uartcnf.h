@@ -17,17 +17,16 @@
 *
 *****************************************************************************/
 
-#ifndef _UARTCNF_H
-  #define _UARTCNF_H
+#ifndef _UART_H
+  #define _UART_H
 
 /***************************** Include files *******************************/
-#include "inc/cpu.h"
+#include "cpu.h"
 
 /*****************************    Defines    *******************************/
 // FCPU are defined in cpu.h
-#define BAUD_RATE   						9600	  // This is the default on PuTTY and I am a lazy man
-//#define BAUD_RATE   						115200	  // Baud rate [bits/s]
-#define UARTSYSCLK							FCPU			// 
+#define BAUD_RATE   						9600	  // Baud rate [bits/s]
+#define UARTSYSCLK						FCPU			//
 
 #if	defined(BAUD_RATE) && defined(UARTSYSCLK)
 

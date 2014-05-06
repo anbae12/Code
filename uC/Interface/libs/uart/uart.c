@@ -5,27 +5,36 @@
  ****************************************************************************/
 
 /***************************** Include files *******************************/
-#include "string.h"
-#include "FRT_Library/FreeRTOS/Source/include/FreeRTOS.h"
-#include "FRT_Library/FreeRTOS/Source/include/queue.h"
 #include "inc/lm3s6965.h"
-#include "inc/emp_type.h"
 #include "inc/glob_def.h"
 #include "inc/binary.h"
-#include "configs/uartcnf.h"
+#include "uartcnf.h"
 #include "uart.h"
-#include "configs/tmodel.h"
 #include "configs/project_settings.h"
 
 /*****************************    Defines    *******************************/
+//---------------- Mutexes ----------------
+//>>>>>>>'''''''''' Modules '''''''''''''''
+#define UART_OUTGOING_MUTEX             uart_outgoing_mutex
+#define UART_INCOMING_MUTEX             uart_incoming_mutex
+
+//---------------- Queues -----------------
+//>>>>>>>'''''''''' Modules '''''''''''''''
+#define UART_SEND_QUEUE         uart_send_queue
+#define UART_RECEIVE_QUEUE      uart_receive_queue
 
 /*****************************   Constants   *******************************/
 
 /*****************************   Variables   *******************************/
+//---------------- Mutexes ----------------
+xSemaphoreHandle uart_outgoing_mutex;
+xSemaphoreHandle uart_incoming_mutex;
+
+//---------------- Queues -----------------
+xQueueHandle     uart_send_queue;
+xQueueHandle     uart_receive_queue;
 
 /*****************************   Functions   *******************************/
-
-
 void uart0_init(void)
 /*****************************************************************************
  *   Function : See module specification (.h-file).
@@ -156,6 +165,9 @@ INT8S uart_char_get_non_blocking(void)
 }
 
 INT8S uart_char_get_blocking()
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
 {
   INT8S retval=-1;
   while(retval==-1)
@@ -169,22 +181,42 @@ INT8S uart_char_get_blocking()
 
 
 void uart_send_task(void *pvParameters)
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
 {
 
   INT8S send_char;
 
   while(1)
   {
-    while(xQueueReceive(uart_send_queue,&send_char,portMAX_DELAY)==pdTRUE)
+    //while(xQueueReceive(uart_send_queue,&send_char,portMAX_DELAY)==pdTRUE)
+    while(_QUEUE_TAKE_LONGWAIT(UART_SEND_QUEUE,&send_char))
     {
       uart_char_put_blocking(send_char);
     }
 
-    _wait(MILLI_SEC(5));
+    _wait(MILLI_SEC(UART_SEND_TASK_DELAY_MS));
   }
 }
 
+void init_uart_send_task()
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
+{
+
+  //Create mutexes:
+  uart_outgoing_mutex = xSemaphoreCreateMutex();
+
+  //Create queues:
+  uart_send_queue = xQueueCreate(UART_QUEUE_LEN,1);
+}
+
 void uart_receive_task(void *pvParameters)
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
 {
 
   INT8S received_char;
@@ -194,68 +226,60 @@ void uart_receive_task(void *pvParameters)
     while(uart_char_avail())
     {
       received_char=uart_char_get_blocking();
-      while(xQueueSend(uart_receive_queue,&received_char,portMAX_DELAY)!=pdTRUE);
+      //while(xQueueSend(uart_receive_queue,&received_char,portMAX_DELAY)!=pdTRUE);
+      _QUEUE_PUT_BLOCKING(UART_RECEIVE_QUEUE,received_char);
     }
 
-    _wait(MILLI_SEC(5));
+    _wait(MILLI_SEC(UART_RECEIVE_TASK_DELAY_MS));
   }
 }
 
-void uart_push_string(char *string_to_push)
+void init_uart_receive_task()
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
 {
-  INT8U i;
-  INT8U ch;
-  //Enqueue the string.
-  while(xSemaphoreTake(uart_outgoing_mutex,portMAX_DELAY)!=pdTRUE);
-  for(i = 0; i < strlen(string_to_push)/sizeof(string_to_push[0]); i++)
-  {
-    if( !(string_to_push[i] == '\0') )
-    {
-      ch = string_to_push[i];
-      while(xQueueSend(uart_send_queue,&ch,portMAX_DELAY)!=pdTRUE);
 
-      switch(ch)
-      {
-      case '\r':
-        ch='\n';
-        while(xQueueSend(uart_send_queue,&ch,portMAX_DELAY)!=pdTRUE);
-        break;
-      case '\n':
-        ch='\r';
-        while(xQueueSend(uart_send_queue,&ch,portMAX_DELAY)!=pdTRUE);
-        break;
-      default:
-        break;
-      }
+  //Create mutexes:
+  uart_incoming_mutex = xSemaphoreCreateMutex();
 
-    }
-    else break;
-  }
-  xSemaphoreGive(uart_outgoing_mutex);
+  //Create queues:
+  uart_receive_queue = xQueueCreate(UART_QUEUE_LEN,1);
 }
 
 void uart_push_char(INT8U char_to_push)
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
 {
-  while(xSemaphoreTake(uart_outgoing_mutex,portMAX_DELAY)!=pdTRUE);
+  //while(xSemaphoreTake(uart_outgoing_mutex,portMAX_DELAY)!=pdTRUE);
+  _MTX_TAKE_BLOCKING(UART_OUTGOING_MUTEX);
   uart_direct_push_char(char_to_push);
-  xSemaphoreGive(uart_outgoing_mutex);
+  //xSemaphoreGive(uart_outgoing_mutex);
+  _MTX_GIVE(UART_OUTGOING_MUTEX);
 }
 
 void uart_direct_push_char(INT8U char_to_push)
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
 {
-  while(xQueueSend(uart_send_queue,&char_to_push,portMAX_DELAY)!=pdTRUE);
+  //while(xQueueSend(uart_send_queue,&char_to_push,portMAX_DELAY)!=pdTRUE);
+  _QUEUE_PUT_BLOCKING(UART_SEND_QUEUE,char_to_push);
 }
 
 BOOLEAN uart_pop_string_echo(char *string, INT8U string_length, BOOLEAN echo)
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
 {
   BOOLEAN got_string = FALSE;
   BOOLEAN zero_pad = FALSE;
   INT8U i;
   INT8U ch;
 
-  while(xSemaphoreTake(uart_incoming_mutex,portMAX_DELAY)!=pdTRUE);
-
-
+  //while(xSemaphoreTake(uart_incoming_mutex,portMAX_DELAY)!=pdTRUE);
+  _MTX_TAKE_BLOCKING(UART_INCOMING_MUTEX);
 
   if(uxQueueMessagesWaiting(uart_receive_queue) > 0)
   {
@@ -264,15 +288,12 @@ BOOLEAN uart_pop_string_echo(char *string, INT8U string_length, BOOLEAN echo)
     {
       if(!zero_pad)
       {
-        while(xQueueReceive(uart_receive_queue,&ch,portMAX_DELAY)!=pdTRUE);
+        //while(xQueueReceive(uart_receive_queue,&ch,portMAX_DELAY)!=pdTRUE);
+        _QUEUE_TAKE_BLOCKING(UART_RECEIVE_QUEUE,&ch);
 
-        if(char_valid(ch))
-        {
-          if(echo)
-            uart_push_char(ch);
-
-          string[i] = ch;
-        }
+        if(echo)
+          uart_push_char(ch);
+        string[i] = ch;
         if(ch=='\r')
         {
           if(echo)
@@ -297,26 +318,34 @@ BOOLEAN uart_pop_string_echo(char *string, INT8U string_length, BOOLEAN echo)
     }
     string[string_length-1]='\0'; // No matter what.
   }
-  xSemaphoreGive(uart_incoming_mutex);
+  //xSemaphoreGive(uart_incoming_mutex);
+  _MTX_GIVE(UART_INCOMING_MUTEX);
 
   return got_string;
 }
 
 BOOLEAN uart_pop_string(char *string, INT8U string_max_length)
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
 {
   return uart_pop_string_echo(string,string_max_length,FALSE);
 }
 
+void take_uart_output_permission()
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
+{
+  _MTX_TAKE_BLOCKING(UART_OUTGOING_MUTEX);
+}
+
+void give_uart_output_permission()
+/*****************************************************************************
+ * Function:    See header file.
+ ****************************************************************************/
+{
+  _MTX_GIVE(UART_OUTGOING_MUTEX);
+}
+
 /***************************** End Of Module *******************************/
-
-
-
-
-
-
-
-
-
-
-
-
