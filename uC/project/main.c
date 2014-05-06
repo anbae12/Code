@@ -30,6 +30,7 @@
 #include "uart/uart.h"
 #include "interface/interface.h"
 #include "SPI/spi.h"
+// #include "ctrl/ctrl_task.h" Still pseudo code...
 
 /*****************************    Defines    *******************************/
 
@@ -70,8 +71,9 @@ int main(void)
   xTaskCreate( uart_receive_task, "uart receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
   xTaskCreate( interface_task, "interface", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
 
-  xTaskCreate( spi_receive_task, "Spi_receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-  xTaskCreate( spi_test_task, "SPI_test", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+//  xTaskCreate( spi_receive_task, "Spi_receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+//  xTaskCreate( spi_test_task, "SPI_test", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+//  xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
 
 
   vTaskStartScheduler();

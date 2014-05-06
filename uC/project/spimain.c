@@ -70,8 +70,8 @@ int main(void)
 
   // Create toggle yellow task:
 
-  xTaskCreate( spi_receive_task, "Spi_receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-  xTaskCreate( spi_test_task, "SPI_test", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+    xTaskCreate( spi_receive_task, "Spi_receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+    xTaskCreate( spi_test_task, "SPI_test", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
 
   xTaskCreate( toggle_green, "Green_led", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
   xTaskCreate( buffer_full_debug_task, "Yellow_led", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );

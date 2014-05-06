@@ -105,7 +105,7 @@ void spi_buffer_push( INT16U data )
   SSI0_DR_R = data32;
 }
 
-INT16U spi_receive( void )
+void spi_receive( void )
 {
   // Reads the incoming buffer to see if any data is received
   // The received data is added to the LIFO buffer
@@ -126,9 +126,6 @@ INT16U spi_receive( void )
     {
       //error
     }
-
-
-
   }
 }
 
@@ -139,7 +136,6 @@ void spi_test_task( void *pvParameters)
   while(1)
   {
     spi_buffer_push(0xF0F0);
-    vTaskDelay(1000 / portTICK_RATE_MS);
     spi_buffer_push(0x0F0F);
     vTaskDelay(1000 / portTICK_RATE_MS);
   }
