@@ -1,5 +1,5 @@
 /*****************************************************************************
-* Odense University College of Enginerring
+* Odense University College of Engineering
 * Embedded C Programming (ECP)
 *
 * MODULENAME.: queue_ini.c
@@ -29,7 +29,7 @@
 extern xQueueHandle enc_queue[2];
 
 /*****************************   Variables   *******************************/
-extern void init_queue_task( void );
+extern void init_spi_queue( void );
 extern void add_to_enc_queue(INT8U queue_id, INT16U data);
 /*****************************   Functions   *******************************/
 

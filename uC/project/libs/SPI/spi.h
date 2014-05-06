@@ -7,8 +7,8 @@
 * PROJECT....: Pan and tilt project
 *
 * DESCRIPTION: Implements hardware SPI/SSI on the LM3S6965. 
-               Uses the TI SSI Frame Format (p. 476, datasheet)
-               All page references is from the datasheet.
+               Uses the TI SSI Frame Format (p. 476, data sheet)
+               All page references is from the data sheet.
 *
 * Change Log: See the .c file
 *****************************************************************************
@@ -35,15 +35,17 @@
 
 #define SPI_MOTOR_SEL_MASK             0x00008000  // Bit mask for reading the motor bit
 #define SPI_MOTOR_POS_MASK             0x000007FF  // Bit mask for reading motor position
+
+#define SPI_MOTOR_SEL_BIT_POS          15
 /*****************************   Constants   *******************************/
 
 /*****************************   Variables   *******************************/
 
 /*****************************   Functions   *******************************/
 
-// extern void ();
 extern void spi_init(); 
 extern void spi_buffer_push( INT16U );
+extern void spi_receive( void );
 extern void spi_receive_task( void *pvParameters);
 extern void spi_test_task( void *pvParameters);
 /****************************** End Of Module *******************************/

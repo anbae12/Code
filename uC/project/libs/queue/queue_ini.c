@@ -37,7 +37,7 @@
 xQueueHandle enc_queue[2];
 
 /*****************************   Variables   *******************************/
-void init_queue( void )
+void init_spi_queue( void )
 {
 
 	enc_queue[0] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );

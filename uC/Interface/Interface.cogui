@@ -43,7 +43,7 @@
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="interface.c" partName="interface.c" path="C:/Users/niko/Documents/GitHub/Code/uC/Interface/libs/interface/interface.c" title="interface.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/Interface/libs/interface/interface.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Interface/libs/interface/interface.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2418" selectionTopPixel="867"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2418" selectionTopPixel="465"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="uartprintf.c" partName="uartprintf.c" path="C:/Users/niko/Documents/GitHub/Code/uC/Interface/libs/uart/uartprintf.c" title="uartprintf.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/Interface/libs/uart/uartprintf.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Interface/libs/uart/uartprintf.c"/>
@@ -115,19 +115,14 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
 <fastViewBars>
-<fastViewBar fastViewLocation="16384" id="org.eclipse.ui.internal.ViewStack@1d95609" orientation="256" selectedTabId="org.coocox.component.ui.ComponentView" style="1">
-<fastViews>
-<view id="org.coocox.component.ui.ComponentView" ratio="0.3"/>
-</fastViews>
-</fastViewBar>
 <fastViewBar fastViewLocation="16384" id="org.eclipse.ui.internal.ViewStack@19f6ce5" orientation="256" selectedTabId="org.coocox.builder.ui.views.ProjectView" style="1">
 <fastViews>
 <view id="org.coocox.builder.ui.views.ProjectView" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
-<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@1a65633" orientation="512" selectedTabId="org.coocox.component.ui.Help" style="1">
+<fastViewBar fastViewLocation="16384" id="org.eclipse.ui.internal.ViewStack@1d95609" orientation="256" selectedTabId="org.coocox.component.ui.ComponentView" style="1">
 <fastViews>
-<view id="org.coocox.component.ui.Help" ratio="0.3"/>
+<view id="org.coocox.component.ui.ComponentView" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
 <fastViewBar fastViewLocation="1024" id="org.eclipse.ui.internal.ViewStack@1ab05a3" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="1">
@@ -135,11 +130,16 @@
 <view id="org.eclipse.ui.console.ConsoleView" ratio="0.4125"/>
 </fastViews>
 </fastViewBar>
+<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@1a65633" orientation="512" selectedTabId="org.coocox.component.ui.Help" style="1">
+<fastViews>
+<view id="org.coocox.component.ui.Help" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
 </fastViewBars>
 <layout>
 <mainWindow>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@1d95609">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.coocox.component.ui.ComponentView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
@@ -151,14 +151,14 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@1ab05a3" ratio="0.5714286" ratioLeft="364" ratioRight="273" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1d95609">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info part="org.coocox.builder.ui.exampleView" ratio="0.21938393" ratioLeft="292" ratioRight="1039" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1d95609"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@1a65633" ratio="0.719923" ratioLeft="748" ratioRight="291" relationship="2" relative="org.coocox.builder.ui.exampleView">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.coocox.component.ui.Help" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
@@ -169,7 +169,7 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.45" ratioLeft="288" ratioRight="352" relationship="4" relative="org.coocox.builder.ui.exampleView"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@19f6ce5" ratio="0.36875" ratioLeft="236" ratioRight="404" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1d95609">
-<folder appearance="2" expanded="0">
+<folder appearance="2" expanded="2">
 <page content="org.coocox.builder.ui.views.ProjectView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
