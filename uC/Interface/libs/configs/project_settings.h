@@ -23,10 +23,12 @@
 
 /***************************** Include files *******************************/
 #include "semaphore_project.h"
+#include "tmodel.h"
 /*****************************    Defines    *******************************/
 
 #define INTERFACE_TASK_DELAY_MS 10
 #define UART_QUEUE_LEN 10
+#define QUEUE_LEN 10
 #define COORDINATE_LEN 11 //eg 3*3 + 2 = 11
 
 #define MAX_INPUT_CHAR 20

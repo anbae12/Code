@@ -63,14 +63,17 @@ void interface_task(void *pvParameters)
 		{
 			//set pos_ctrl
 			//set ctrl_bit
+          UARTprintf("set pos ctrl");
 		}
         else if(!strcmp(UI_CMD_STOP,mirror_string))
 		{
 			//set ctrl_bit
+          UARTprintf("set ctrl bit");
 		}
         else if (!strcmp(UI_CMD_READ,mirror_string))
 		{
 			//print log
+          UARTprintf("print log");
 		}
         else if(!strcmp(UI_CMD_RESET,mirror_string))
 		{

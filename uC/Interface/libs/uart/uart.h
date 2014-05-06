@@ -1,29 +1,14 @@
 /*****************************************************************************
-* Odense University College of Enginerring
-* Embedded Programming (EMP)
-*
-* MODULENAME.: uart.h
-*
-* PROJECT....: EMP
-*
-* DESCRIPTION:
-*
-* Change Log:
-******************************************************************************
-* Date    Id    Change
-* YYMMDD
-* --------------------
-* 140401  NI    added uart_string_put which sends a string
-*
-*****************************************************************************/
+ * Mikkel, Åse & Mikael
+ * MODULENAME:  uart
+ * DESCRIPTION:
+ ****************************************************************************/
 
-#ifndef _UART_H
-  #define _UART_H
+#pragma once
 
 /***************************** Include files *******************************/
 
 #include "inc/emp_type.h"
-#include "configs/uartcnf.h"
 
 /*****************************    Defines    *******************************/
 
@@ -77,21 +62,77 @@ extern INT8S uart_char_get_non_blocking(void);
 * attempting to call this function.
 *****************************************************************************/
 
-extern void uart_string_put(INT8U* input);
-extern void uart_number(INT16U input);
+
+
+INT8S uart_char_get_blocking();
 /*****************************************************************************
-* Receives a character array from as input
-*
-* It sends each character to uart_char_put_non_blocking. 
-* No return because why the fuck would I care???
-*****************************************************************************/
+ * Input:       -
+ * Output:      A char from UART.
+ * Function:    Blocks until a char is received.
+ ****************************************************************************/
+
+void uart_send_task(void *pvParameters);
+/*****************************************************************************
+ * Input:       pvParameters:   Unused.
+ * Output:      -
+ * Function:    Empties uart_send_queue and sends the characters through
+ *              UART.
+ ****************************************************************************/
+
+void uart_receive_task(void *pvParameters);
+/*****************************************************************************
+ * Input:       pvParameters:   Unused.
+ * Output:      -
+ * Function:    Takes characters from UART and places them in
+ *              uart_receive_queue.
+ ****************************************************************************/
+
+void uart_push_string(char *string_to_push);
+/*****************************************************************************
+ * Input:       string_to_push: A string to send, null-terminated.
+ * Output:      -
+ * Function:    Places the string in the uart_send_queue.
+ *              Uses the uart_outgoing_mutex to protect the string.
+ ****************************************************************************/
+
+void uart_push_char(INT8U char_to_push);
+/*****************************************************************************
+ * Input:       char_to_push: A char to send.
+ * Output:      -
+ * Function:    Places the char in the uart_send_queue.
+ *              Uses the uart_outgoing_mutex, so the char doesn't get sent
+ *              while a string is in the process of being sent.
+ ****************************************************************************/
+
+void uart_direct_push_char(INT8U char_to_push);
+/*****************************************************************************
+ * Input:       char_to_push: A char to send.
+ * Output:      -
+ * Function:    Places the char in the uart_send_queue,
+ *              regardless of uart_outgoing_mutex status.
+ ****************************************************************************/
+
+BOOLEAN uart_pop_string_echo(char *string, INT8U string_length, BOOLEAN echo);
+/*****************************************************************************
+ * Input:       string:                 string to write popped string to.
+ *              string_length:  Maximal length of popped string
+ *                                      (length of first argument 'string').
+ *              echo:   Boolean indicating whether or not each char received
+ *                      through UART should be echoed back ASAP.
+ * Output:      FALSE if nothing is in the receive queue - no string is being
+ *              entered.
+ *              TRUE if a string was succesfully popped.
+ * Function:    If there's something in the receive queue, a string is placed
+ *              in 'string'. The reception stops when a carriage return is
+ *              encountered or when string_max_length has been reached.
+ *              Blocks while waiting for chars.
+ ****************************************************************************/
+
+BOOLEAN uart_pop_string(char *string, INT8U string_max_length);
+/*****************************************************************************
+ * Function:    See uart_pop_string_echo().
+ *              Without echoing back through UART, pops a string.
+ ****************************************************************************/
 
 
 /****************************** End Of Module *******************************/
-#endif
-
-
-
-
-
-

@@ -27,8 +27,9 @@
 #include "inc/glob_def.h"
 #include "inc/binary.h"
 #include "inc/cpu.h"
-#include "uart/uart.h"
-#include "uart/uartprintf.h"
+#include "Uart/uart.h"
+#include "Uart/uartprintf.h"
+#include "interface/manager_interface.h"
 // #include "strQ/string_queue.h"
 /*****************************    Defines    *******************************/
 #define USERTASK_STACK_SIZE configMINIMAL_STACK_SIZE
@@ -70,5 +71,28 @@ int main(void)
   vTaskStartScheduler();
 
   return 1;
+
+  //BS from westermann's code
+
+  //Create mutexes:
+  common_pins_mutex = xSemaphoreCreateMutex();
+  lcd_image_mutex = xSemaphoreCreateMutex();
+  pwm_duty_cycle_mutex = xSemaphoreCreateMutex();
+  fan_ticks_mutex = xSemaphoreCreateMutex();
+  uart_outgoing_mutex = xSemaphoreCreateMutex();
+  uart_incoming_mutex = xSemaphoreCreateMutex();
+  money_mutex = xSemaphoreCreateMutex();
+  gas_type_mutex = xSemaphoreCreateMutex();
+  current_price_pr_litre_mutex = xSemaphoreCreateMutex();
+  quantity_mutex = xSemaphoreCreateMutex();
+  gas_prices_mutex = xSemaphoreCreateMutex();
+  log_mutex = xSemaphoreCreateMutex();
+  total_running_time_mutex = xSemaphoreCreateMutex();
+
+  //Create queues:
+  user_input_queue = xQueueCreate(QUEUE_LEN,1);
+  uart_send_queue = xQueueCreate(UART_QUEUE_LEN,1);
+  uart_receive_queue = xQueueCreate(UART_QUEUE_LEN,1);
+  control_input_queue = xQueueCreate(QUEUE_LEN,1);
 
 }
