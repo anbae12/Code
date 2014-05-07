@@ -6,6 +6,11 @@
 
 /***************************** Include files *******************************/
 #include <stdarg.h>
+#include "inc/lm3s6965.h"
+#include "inc/emp_type.h"
+#include "inc/glob_def.h"
+#include "inc/binary.h"
+#include "configs/uartcnf.h"
 #include "uartprintf.h"
 #include "uart.h"
 #include "configs/project_settings.h"
@@ -13,6 +18,8 @@
 /*****************************    Defines    *******************************/
 
 /*****************************   Constants   *******************************/
+
+
 // A mapping from an integer between 0 and 15 to its ASCII character
 // equivalent.
 static const char * const g_pcHex = "0123456789abcdef";
@@ -21,12 +28,14 @@ static const char * const g_pcHex = "0123456789abcdef";
 
 /*****************************   Functions   *******************************/
 
+
+
 void UARTCharPut(unsigned long ulBase, unsigned char ucData)
 /*****************************************************************************
  * Function:    See header file.
  ****************************************************************************/
 {
-  PUTCHAR(ucData);
+  uart_direct_push_char(ucData);
 }
 
 int UARTwrite(const char *pcBuf, unsigned long ulLen)
@@ -92,9 +101,9 @@ void UARTprintf(char *pcString, ...)
   //
   va_start(vaArgP, pcString);
 
-  //while(xSemaphoreTake(uart_outgoing_mutex,portMAX_DELAY)!=pdTRUE);
-  //_MTX_TAKE_BLOCKING(UART_OUTGOING_MUTEX);
-  take_uart_output_permission();
+
+
+  while(xSemaphoreTake(uart_outgoing_mutex,portMAX_DELAY)!=pdTRUE);
 
   //
   // Loop while there are more characters in the string.
@@ -109,10 +118,14 @@ void UARTprintf(char *pcString, ...)
     {
     }
 
+
+
     //
     // Write this portion of the string.
     //
     UARTwrite(pcString, ulIdx);
+
+
 
     //
     // Skip the portion of the string that was written.
@@ -474,9 +487,9 @@ void UARTprintf(char *pcString, ...)
     }
   }
 
-  //xSemaphoreGive(uart_outgoing_mutex);
-  //_MTX_GIVE(UART_OUTGOING_MUTEX);
-  give_uart_output_permission();
+
+
+  xSemaphoreGive(uart_outgoing_mutex);
 
   //
   // End the varargs processing.

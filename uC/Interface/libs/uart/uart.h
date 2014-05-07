@@ -9,20 +9,10 @@
 /***************************** Include files *******************************/
 
 #include "inc/emp_type.h"
-#include "FRT_Library/FreeRTOS/Source/include/FreeRTOS.h"
-#include "FRT_Library/FreeRTOS/Source/include/queue.h"
-#include "FRT_Library/FreeRTOS/Source/include/semphr.h"
-#include "FRT_Library/FreeRTOS/Source/include/task.h"
 
 /*****************************    Defines    *******************************/
-#define UART_QUEUE_LEN  50
 
 /*****************************   Constants   *******************************/
-
-/******************************** Variables *********************************/
-//---------------- Tasks ------------------
-extern xTaskHandle      uart_send_task_handle;          //Create elsewhere.
-extern xTaskHandle      uart_receive_task_handle;       //Create elsewhere.
 
 /*****************************   Functions   *******************************/
 
@@ -97,14 +87,6 @@ void uart_receive_task(void *pvParameters);
  *              uart_receive_queue.
  ****************************************************************************/
 
-void uart_push_string(char *string_to_push);
-/*****************************************************************************
- * Input:       string_to_push: A string to send, null-terminated.
- * Output:      -
- * Function:    Places the string in the uart_send_queue.
- *              Uses the uart_outgoing_mutex to protect the string.
- ****************************************************************************/
-
 void uart_push_char(INT8U char_to_push);
 /*****************************************************************************
  * Input:       char_to_push: A char to send.
@@ -143,35 +125,6 @@ BOOLEAN uart_pop_string(char *string, INT8U string_max_length);
  * Function:    See uart_pop_string_echo().
  *              Without echoing back through UART, pops a string.
  ****************************************************************************/
-
-void take_uart_output_permission();
-/*****************************************************************************
- * Input:       -
- * Output:      -
- * Function:    Takes the UART outgoing mutex.
- ****************************************************************************/
-
-void give_uart_output_permission();
-/*****************************************************************************
- * Input:       -
- * Output:      -
- * Function:    Gives the UART outgoing mutex.
- ****************************************************************************/
-
-void init_uart_receive_task();
-/*****************************************************************************
- * Input:       -
- * Output:      -
- * Function:
- ****************************************************************************/
-
-void init_uart_send_task();
-/*****************************************************************************
- * Input:       -
- * Output:      -
- * Function:
- ****************************************************************************/
-
 
 
 /****************************** End Of Module *******************************/
