@@ -9,3 +9,8 @@ uC/freeRTOS_test/freeRTOS_test/Debug/bin/freeRTOS_test.hex
 
 
 uC/SPI-test/
+uC/project/semester_project/Debug/bin/history.xml
+uC/project/semester_project/Debug/bin/semester_project.hex
+uC/project/semester_project/Debug/bin/semester_project.map
+uC/project/semester_project/Debug/obj/history.xml
+uC/project/semester_project/semester_project.elf.xcodeproj/project.pbxproj
