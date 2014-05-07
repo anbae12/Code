@@ -94,13 +94,13 @@
     <File name="cpu/cpu.c" path="cpu/cpu.c" type="1"/>
     <File name="FRT_Library/FreeRTOS/Source/include/queue.h" path="FRT_Library/FreeRTOS/Source/include/queue.h" type="1"/>
     <File name="startup_frt.c" path="startup_frt.c" type="1"/>
-    <File name="FRT_Library/FreeRTOS/Source/include/semphr.h" path="FRT_Library/FreeRTOS/Source/include/semphr.h" type="1"/>
     <File name="FRT_Library/FreeRTOS/Source/portable/readme.txt" path="FRT_Library/FreeRTOS/Source/portable/readme.txt" type="1"/>
+    <File name="FRT_Library/FreeRTOS/Source/include/semphr.h" path="FRT_Library/FreeRTOS/Source/include/semphr.h" type="1"/>
     <File name="FRT_Library/FreeRTOS/Source/include/projdefs.h" path="FRT_Library/FreeRTOS/Source/include/projdefs.h" type="1"/>
     <File name="FRT_Library/FreeRTOS/Source" path="" type="2"/>
     <File name="FRT_Library/FreeRTOS/Source/tasks.c" path="FRT_Library/FreeRTOS/Source/tasks.c" type="1"/>
-    <File name="FRT_Library/FreeRTOS/Source/include/task.h" path="FRT_Library/FreeRTOS/Source/include/task.h" type="1"/>
     <File name="FRT_Library/FreeRTOS/Source/croutine.c" path="FRT_Library/FreeRTOS/Source/croutine.c" type="1"/>
+    <File name="FRT_Library/FreeRTOS/Source/include/task.h" path="FRT_Library/FreeRTOS/Source/include/task.h" type="1"/>
     <File name="queue_ini.c" path="queue_ini.c" type="1"/>
     <File name="SPI" path="" type="2"/>
     <File name="FRT_Library/FreeRTOS/Source/portable/MemMang" path="" type="2"/>
