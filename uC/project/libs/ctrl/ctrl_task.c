@@ -17,6 +17,7 @@
 
 /***************************** Include files *******************************/
 #include "inc/lm3s6965.h"
+#include "inc/emp_type.h"
 #include "configs/project_settings.h"
 #include "FRT_Library/FreeRTOS/Source/include/FreeRTOS.h"
 #include "FRT_Library/FreeRTOS/Source/include/semphr.h"
@@ -24,10 +25,11 @@
 #include "FRT_Library/FreeRTOS/Source/include/task.h"
 #include "configs/project_settings.h"
 #include "SPI/spi.h"
+#include "queue/queue_ini.h"
 
 /*****************************    Defines    *******************************/
 
-static void init_hardware(void)
+void ctrl_task(void *pvParameters)
 /*****************************************************************************
  *   Input    :  -
  *   Output   :  -

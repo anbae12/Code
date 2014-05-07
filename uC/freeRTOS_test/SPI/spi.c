@@ -6,7 +6,7 @@
 *
 * PROJECT....: Pan and tilt project
 *
-* DESCRIPTION: Implements hardware SPI/SSI on the LM3S6965. 
+* DESCRIPTION: Implements hardware SPI/giSSI on the LM3S6965.
                Uses the TI SSI Frame Format (p. 476, datasheet)
 *
 * Change Log:
@@ -112,9 +112,9 @@ void spi_test_task( void *pvParameters)
 	vTaskDelay(3000 / portTICK_RATE_MS);
 	while(1)
 	{
-		spi_buffer_push(0xF0F0);
+		spi_buffer_push(0x0200);
 		vTaskDelay(1000 / portTICK_RATE_MS);
-		spi_buffer_push(0x0F0F);
+		spi_buffer_push(0x0000);
 		vTaskDelay(1000 / portTICK_RATE_MS);
 
 	}

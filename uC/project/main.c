@@ -30,7 +30,7 @@
 #include "uart/uart.h"
 #include "interface/interface.h"
 #include "SPI/spi.h"
-// #include "ctrl/ctrl_task.h" Still pseudo code...
+#include "ctrl/ctrl_task.h" //Still pseudo code...
 
 /*****************************    Defines    *******************************/
 

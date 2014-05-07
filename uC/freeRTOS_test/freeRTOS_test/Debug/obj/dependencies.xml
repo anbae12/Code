@@ -12,6 +12,14 @@
          <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\task.h"/>
       </source>
+      <source file="..\..\..\SPI\spi.c" lastModified="1455043f15f">
+         <include file="..\..\..\emp_includes\lm3s6965.h"/>
+         <include file="..\..\..\emp_includes\emp_type.h"/>
+         <include file="..\..\..\SPI\spi.h"/>
+         <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\FreeRTOS.h"/>
+         <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\queue.h"/>
+         <include file="..\..\..\queue_ini.h"/>
+      </source>
       <source file="..\..\..\FRT_Library\FreeRTOS\Source\include\portable.h" lastModified="145088c4501">
          <include file="..\..\..\FRT_Library\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h"/>
          <include file="..\..\..\FRT_Library\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h"/>
@@ -111,6 +119,8 @@
          <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\task.h"/>
       </source>
+      <source file="..\..\..\emp_includes\lm3s6965.h" lastModified="139dc7a82a0">
+      </source>
       <source file="..\..\..\main.c" lastModified="1451d6ab09c">
          <include file="..\..\..\emp_includes\lm3s6965.h"/>
          <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\FreeRTOS.h"/>
@@ -123,24 +133,22 @@
          <include file="..\..\..\lifo\lifo.h"/>
          <include file="..\..\..\queue_ini.h"/>
       </source>
-      <source file="..\..\..\emp_includes\lm3s6965.h" lastModified="139dc7a82a0">
-      </source>
       <source file="..\..\..\FreeRTOSConfig.h" lastModified="145087521ec">
       </source>
       <source file="..\..\..\emp_includes\binary.h" lastModified="144b0faa460">
          <include file="..\..\..\emp_includes\emp_type.h"/>
       </source>
-      <source file="..\..\..\FRT_Library\FreeRTOS\Source\include\semphr.h" lastModified="145088b81c3">
-         <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\queue.h"/>
+      <source file="..\..\..\FRT_Library\FreeRTOS\Source\include\StackMacros.h" lastModified="145088b81c8">
       </source>
       <source file="..\..\..\FRT_Library\FreeRTOS\Source\croutine.c" lastModified="145088b8197">
          <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\task.h"/>
          <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\croutine.h"/>
       </source>
-      <source file="..\..\..\FRT_Library\FreeRTOS\Source\include\StackMacros.h" lastModified="145088b81c8">
+      <source file="..\..\..\FRT_Library\FreeRTOS\Source\include\semphr.h" lastModified="145088b81c3">
+         <include file="..\..\..\FRT_Library\FreeRTOS\Source\include\queue.h"/>
       </source>
-      <source file="..\..\..\SPI\spi.h" lastModified="1451d15d492">
+      <source file="..\..\..\SPI\spi.h" lastModified="1451e09566f">
          <include file="..\..\..\emp_includes\emp_type.h"/>
       </source>
       <source file="..\..\..\FRT_Library\FreeRTOS\Source\include\queue.h" lastModified="145088b81bd">
