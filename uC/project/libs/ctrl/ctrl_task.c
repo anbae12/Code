@@ -41,19 +41,13 @@ void ctrl_task(void *pvParameters)
   
   INT16U motor_pwm_A;
   INT16U motor_pwm_B;
-  
+  //position_type current_pos;
   while(1)
   {
-    if(xQueueMessagesWaiting(enc_queue[0]) == 1 && xQueueMessagesWaiting(enc_queue[1]) == 1)
-    {
-      xQueueReceive(enc_queue[0], &motor_position_A, 1);
-      xQueueReceive(enc_queue[1], &motor_position_B, 1);
-    }
-    else
-    {
-      spi_receive();
-      spi_receive();
-    }
+    //if( uxQueueMessagesWaiting(target_position_something_queue)  )
+    //current_pos = spi_receive();
+    //next_pwm = control_loop(current_pos);
+    //spi_send(next_pwm);
     
     // Read target position. 
     // Read current position. (SPI)
