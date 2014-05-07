@@ -40,16 +40,13 @@
 /*****************************   Constants   *******************************/
 
 /*****************************   Variables   *******************************/
-typedef struct motor_pos {
-  INT16U positionA;
-  INT16U positionB;
-} motor_pos;
+typedef struct motor_pos motor_pos;
 
 /*****************************   Functions   *******************************/
-
+extern motor_pos read_encoders();
 extern void spi_init(); 
 extern void spi_buffer_push( INT16U );
-extern void spi_receive( void );
+extern INT16U spi_receive( void );
 extern void spi_receive_task( void *pvParameters );
 extern void spi_test_task( void *pvParameters );
 /****************************** End Of Module *******************************/

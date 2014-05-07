@@ -36,6 +36,10 @@
 /*****************************   Constants   *******************************/
 
 /*****************************   Variables   *******************************/
+typedef struct motor_pos {
+  INT16U positionA;
+  INT16U positionB;
+} motor_pos;
 
 /*****************************   Functions   *******************************/
 
@@ -113,8 +117,6 @@ INT16U spi_receive( void )
 
   
   INT16U return_value = 0xFFFF;
-  INT16U motor_position;
-  INT8U motor_id; // May not be necessary
   
   // Check if data is available
   // By reading "Receive not empty" in the status register (p. 491)
@@ -153,6 +155,7 @@ motor_pos read_encoders()
       }
     }
   }
+  return return_value;
 }
 
 

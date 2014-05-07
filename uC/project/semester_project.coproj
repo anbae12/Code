@@ -67,25 +67,25 @@
   </Target>
   <Components path="./"/>
   <Files>
-    <File name="libs/ctrl" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source" path="" type="2"/>
-    <File name="libs/uart/uartprintf.c" path="libs/uart/uartprintf.c" type="1"/>
+    <File name="libs/ctrl" path="" type="2"/>
     <File name="libs/configs/FreeRTOSConfig.h" path="libs/configs/FreeRTOSConfig.h" type="1"/>
+    <File name="libs/uart/uartprintf.c" path="libs/uart/uartprintf.c" type="1"/>
     <File name="libs/configs/semaphore_project.c" path="libs/configs/semaphore_project.c" type="1"/>
     <File name="libs/inc/emp_type.h" path="libs/inc/emp_type.h" type="1"/>
     <File name="libs/uart/uart.c" path="libs/uart/uart.c" type="1"/>
     <File name="libs/configs/uartcnf.h" path="libs/configs/uartcnf.h" type="1"/>
-    <File name="libs/FRT_Library/FreeRTOS/Source/tasks.c" path="libs/FRT_Library/FreeRTOS/Source/tasks.c" type="1"/>
-    <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" path="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" type="1"/>
+    <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3" path="" type="2"/>
+    <File name="libs/FRT_Library/FreeRTOS/Source/tasks.c" path="libs/FRT_Library/FreeRTOS/Source/tasks.c" type="1"/>
     <File name="libs/inc/cpu.c" path="libs/inc/cpu.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/common.c" path="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/common.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/semphr.h" path="libs/FRT_Library/FreeRTOS/Source/include/semphr.h" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/list.c" path="libs/FRT_Library/FreeRTOS/Source/list.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/readme.txt" path="libs/FRT_Library/FreeRTOS/Source/readme.txt" type="1"/>
     <File name="libs/configs/project_settings.h" path="libs/configs/project_settings.h" type="1"/>
-    <File name="libs/FRT_Library/FreeRTOS/Source/portable/readme.txt" path="libs/FRT_Library/FreeRTOS/Source/portable/readme.txt" type="1"/>
     <File name="libs/FRT_Library" path="" type="2"/>
+    <File name="libs/FRT_Library/FreeRTOS/Source/portable/readme.txt" path="libs/FRT_Library/FreeRTOS/Source/portable/readme.txt" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/list.h" path="libs/FRT_Library/FreeRTOS/Source/include/list.h" type="1"/>
     <File name="libs/queue" path="" type="2"/>
@@ -96,10 +96,10 @@
     <File name="libs/FRT_Library/FreeRTOS/Source/include/StackMacros.h" path="libs/FRT_Library/FreeRTOS/Source/include/StackMacros.h" type="1"/>
     <File name="libs/uart" path="" type="2"/>
     <File name="libs/inc/binary.h" path="libs/inc/binary.h" type="1"/>
-    <File name="libs/SPI" path="" type="2"/>
     <File name="libs/inc/cpu.h" path="libs/inc/cpu.h" type="1"/>
-    <File name="libs/interface/interface.h" path="libs/interface/interface.h" type="1"/>
+    <File name="libs/SPI" path="" type="2"/>
     <File name="libs/inc/gpio_ini.h" path="libs/inc/gpio_ini.h" type="1"/>
+    <File name="libs/interface/interface.h" path="libs/interface/interface.h" type="1"/>
     <File name="libs/configs" path="" type="2"/>
     <File name="libs/ctrl/ctrl_task.c" path="libs/ctrl/ctrl_task.c" type="1"/>
     <File name="libs/inc/glob_def.h" path="libs/inc/glob_def.h" type="1"/>
@@ -120,8 +120,8 @@
     <File name="libs/inc" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/FreeRTOS.h" path="libs/FRT_Library/FreeRTOS/Source/include/FreeRTOS.h" type="1"/>
     <File name="libs/ctrl/ctrl_task.h" path="libs/ctrl/ctrl_task.h" type="1"/>
-    <File name="libs" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC" path="" type="2"/>
+    <File name="libs" path="" type="2"/>
     <File name="libs/inc/gpio_ini.c" path="libs/inc/gpio_ini.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/task.h" path="libs/FRT_Library/FreeRTOS/Source/include/task.h" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/croutine.c" path="libs/FRT_Library/FreeRTOS/Source/croutine.c" type="1"/>
