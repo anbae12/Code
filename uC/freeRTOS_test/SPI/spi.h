@@ -26,12 +26,12 @@
 /*****************************    Defines    *******************************/
 
 #define SPI_MODE_MASTER                0x00000000
-#define SPI_PRESCALE_VALUE             0x0000001A  // = 10
+#define SPI_PRESCALE_VALUE             0x00000004  // = 10
 #define SPI_CLEAR_REGISTER             0x00000000
 
 #define SPI_PINS                       0b00111100  // Bit mask for SPI pins
 
-#define SPI_CLOCK_RATE                 0b00100101  // = 10
+#define SPI_CLOCK_RATE                 0b00000001  // = 10
 #define SPI_PROTOCOL_MODE              0b01        // TI SSI Frame format (p. 476)
 #define SPI_DATA_SIZE                  0b1111      // 16 bit data (p. 487)
 
