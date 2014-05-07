@@ -105,31 +105,60 @@ void spi_buffer_push( INT16U data )
   SSI0_DR_R = data32;
 }
 
-void spi_receive( void )
+INT16U spi_receive( void )
 {
   // Reads the incoming buffer to see if any data is received
-  // The received data is added to the LIFO buffer
+  // The received data is returned as INT16U
+  // If data is not available, 0xFFFF is returned. 
 
-  // Check if data is available
-  // By reading "Receive not empty" in the status register (p. 491)
-  INT32U data_from_buffer;
+  
+  INT16U return_value = 0xFFFF;
   INT16U motor_position;
   INT8U motor_id; // May not be necessary
-
+  
+  // Check if data is available
+  // By reading "Receive not empty" in the status register (p. 491)
   if (SSI0_SR_R & SSI_SR_RNE)
   {
-    data_from_buffer = SSI0_DR_R;
-    motor_id = ((data_from_buffer & SPI_MOTOR_SEL_MASK) >> SPI_MOTOR_SEL_BIT_POS);
-    motor_position = (data_from_buffer & SPI_MOTOR_POS_MASK);
+    return_value = (SSI0_DR_R & 0x0000FFFF); // Only 16 lowest bits is valie (p. 490)
+  }
+  return return_value;
+}
 
-    if (! xQueueSendToFront(enc_queue[motor_id], &motor_position, 100))
+motor_pos read_encoders()
+// This function reads the position of the PTS, 
+// and returns a motor_pos struct (defined in spi.h)
+{
+  motor_pos return_value;
+  INT16U data_in;
+
+  INT8U i;
+  INT32U count;
+// motorbit | retningsbit | pwmbit| 2 ignore | 11 pwm
+  
+  for(i = 0; i < 2; i++) 
+  {
+    spi_buffer_push(0x2000); // Send a pwm, with ignorebit set. 
+    for(count = 0; count < 8500; count++); // If baudrate = 100k
+    data_in = spi_receive();
+    if (data_in != 0xFFFF) // Check if data is valid
     {
-      //error
+      if( !(data_in & SPI_MOTOR_SEL_MASK) ) 
+      {
+        return_value.positionA = (data_in & SPI_MOTOR_POS_MASK);
+      }
+      else 
+      {
+        return_value.positionB = (data_in & SPI_MOTOR_POS_MASK);
+      }
     }
   }
 }
 
 
+//--------------------------------------------------------------
+// Deprecated tasks: 
+//--------------------------------------------------------------
 void spi_test_task( void *pvParameters)
 {
   vTaskDelay(3000 / portTICK_RATE_MS);
