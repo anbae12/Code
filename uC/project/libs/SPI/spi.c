@@ -123,7 +123,7 @@ INT16U spi_receive( void )
   return return_value;
 }
 
-motor_pos read_encoders()
+motor_pos spi_read_encoders()
 // This function reads the position of the PTS, 
 // and returns a motor_pos struct (defined in spi.h)
 {
@@ -143,11 +143,11 @@ motor_pos read_encoders()
     {
       if( !(data_in & SPI_MOTOR_SEL_MASK) ) 
       {
-        return_value.positionA = (data_in & SPI_MOTOR_POS_MASK);
+        return_value.positionA = (data_in & SPI_MOTOR_POS_MASK) / 3;
       }
       else 
       {
-        return_value.positionB = (data_in & SPI_MOTOR_POS_MASK);
+        return_value.positionB = (data_in & SPI_MOTOR_POS_MASK) / 3;
       }
     }
   }
