@@ -28,7 +28,7 @@
 #include "queue/queue_ini.h"
 #include "read_pos/read_pos.h"
 #include "ctrl_task.h"
-#include "math.h"
+#include <math.h>
 
 /*****************************    Defines    *******************************/
 #define PI 3.14159265359

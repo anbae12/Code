@@ -13,6 +13,10 @@
 #include "configs/project_settings.h"
 #include "uart/uart.h"
 #include "uart/uartprintf.h"
+#include "read_pos/read_pos.h"
+#include "queue/queue_ini.h"
+
+//#include "debug/ftoa.h"
 
 
 /********************************* Defines **********************************/
@@ -26,15 +30,29 @@
 #define UI_CMD_OPEN_LOOP "open"
 #define COORDINATE_LEN 11
 
-//States:
-#define ST_UI_CMD               0
-#define ST_UI_COORDINATE        1
+
 
 /******************************** Constants *********************************/
 
 /******************************** Variables *********************************/
 
 /******************************** Functions *********************************/
+
+coordinate_type input_coordinate( INT8U coord[11])
+{
+  coordinate_type coordinate;
+  INT16U temp;
+
+  temp = (coord[0] *100 )+ (coord[1] *10) + coord[2];
+  coordinate.x = (FP32) temp;
+  temp = (coord[4] *100 )+ (coord[5] *10) + coord[6];
+  coordinate.y = (FP32) temp;
+  temp = (coord[8] *100 )+ (coord[9] *10) + coord[10];
+  coordinate.z = (FP32) temp;
+
+  return coordinate;
+}
+
 
 void interface_task(void *pvParameters)
 /*****************************************************************************
@@ -45,10 +63,9 @@ void interface_task(void *pvParameters)
 
   char tempstring[UART_QUEUE_LEN] = {0};
 
-  INT8U state=ST_UI_CMD;
-  
   INT8U coord[COORDINATE_LEN] = {0};
-  
+  coordinate_type coordinate;
+
   UARTprintf("Program started.\n");
   interface_display_commands();
 
@@ -56,70 +73,59 @@ void interface_task(void *pvParameters)
   {
     if(uart_pop_string_echo(mirror_string,UART_QUEUE_LEN,TRUE))
     {
-      switch(state)
+      if(!strcmp(UI_CMD_START,mirror_string))
       {
-      case ST_UI_CMD:
-        if(!strcmp(UI_CMD_START,mirror_string))
-		{
-			//set pos_ctrl
-			//set ctrl_bit
-          UARTprintf("set pos ctrl\n");
-		}
-        else if(!strcmp(UI_CMD_STOP,mirror_string))
-		{
-			//set ctrl_bit
-          UARTprintf("set ctrl bit\n");
-		}
-        else if (!strcmp(UI_CMD_READ,mirror_string))
-		{
-			//print log
-          UARTprintf("print log\n");
-		}
-        else if (!strcmp(UI_CMD_OPEN_LOOP,mirror_string))
-                        {
-                                //test open loop
-                  UARTprintf("Ramp speed up\n");
-                  UARTprintf("Ramp speed down\n");
-                        }
-        else if(!strcmp(UI_CMD_RESET,mirror_string))
-		{
-			INT8U index;
-			for(index = 0; index < COORDINATE_LEN; index++)
-			{
-				coord[index] = 0;
-			}
-			PRINTF("Setting coordinate ( %u%u%u , %u%u%u , %u%u%u )\n",coord[0],coord[1],coord[2],coord[4],coord[5],coord[6],coord[8],coord[9],coord[10]);
-			//state = ST_UI_COORDINATE;
-		}
-        
-		else if(mirror_string[0] == 'C' && mirror_string[5] == '.' && mirror_string[9] == '.')
-        { 
-			INT8U index;
-			for(index = 0; index < COORDINATE_LEN; index++)
-			{
-				coord[index] = mirror_string[index + 2] - 0x30;
-			}
-			PRINTF("Setting coordinate ( %u%u%u , %u%u%u , %u%u%u )\n",coord[0],coord[1],coord[2],coord[4],coord[5],coord[6],coord[8],coord[9],coord[10]);
-			//state = ST_UI_COORDINATE;
-        }
-        else
-		{
-          UARTprintf("Invalid command entered.\n");
-          interface_display_commands();
-		}
-        break;
-      case ST_UI_COORDINATE:
-        //if( set_coord )
-		// you should have it in coord now
-        if( TRUE )
+        //set pos_ctrl
+        //set ctrl_bit
+        UARTprintf("set pos ctrl\n");
+      }
+      else if(!strcmp(UI_CMD_STOP,mirror_string))
+      {
+        //set ctrl_bit
+        UARTprintf("set ctrl bit\n");
+      }
+      else if (!strcmp(UI_CMD_READ,mirror_string))
+      {
+        //print log
+        UARTprintf("print log\n");
+      }
+      else if (!strcmp(UI_CMD_OPEN_LOOP,mirror_string))
+      {
+        //test open loop
+        UARTprintf("Ramp speed up\n");
+        UARTprintf("Ramp speed down\n");
+      }
+      else if(!strcmp(UI_CMD_RESET,mirror_string))
+      {
+        INT8U index;
+        for(index = 0; index < COORDINATE_LEN; index++)
         {
-          PRINTF("Setting coordinate ( %u%u%u , %u%u%u , %u%u%u )\n",coord[0],coord[1],coord[2],coord[4],coord[5],coord[6],coord[8],coord[9],coord[10]);
-          state=ST_UI_CMD;
+          coord[index] = 0;
         }
-        break;
+        coordinate = input_coordinate(coord);
+        xQueueSend(pos_ctrl_queue,&coordinate,100);
+        PRINTF("Setting coordinate\n");
+        //state = ST_UI_COORDINATE;
+      }
+
+      else if(mirror_string[0] == 'C' && mirror_string[5] == '.' && mirror_string[9] == '.')
+      {
+        INT8U index;
+        for(index = 0; index < COORDINATE_LEN; index++)
+        {
+          coord[index] = mirror_string[index + 2] - 0x30;
+        }
+        coordinate = input_coordinate(coord);
+
+        xQueueSend(pos_ctrl_queue,&coordinate,100);
+
+      }
+      else
+      {
+        UARTprintf("Invalid command entered.\n");
+        interface_display_commands();
       }
     }
-
     _wait(MILLI_SEC(10));
   }
 }
@@ -130,19 +136,19 @@ void interface_display_commands()
  ****************************************************************************/
 {
   UARTprintf(
-		"Enter <%s> to get a readable list\n"
-		"Enter <%s> to start following the predefined parable\n"
-		"Enter <%s> for emergency stop\n"
-                "Enter <%s> to test open loop"
-		"Enter <%s> to move to reset position\n"
-		"Enter <%s> to go to a specific coordinate\n",
-		UI_CMD_READ,
-		UI_CMD_START,
-		UI_CMD_STOP,
-		UI_CMD_OPEN_LOOP,
-		UI_CMD_RESET,
-		UI_CMD_COORDINATE
-		);
+      "Enter <%s> to get a readable list\n"
+      "Enter <%s> to start following the predefined parabola\n"
+      "Enter <%s> for emergency stop\n"
+      "Enter <%s> to test open loop\n"
+      "Enter <%s> to move to reset position\n"
+      "Enter <%s> to go to a specific coordinate\n",
+      UI_CMD_READ,
+      UI_CMD_START,
+      UI_CMD_STOP,
+      UI_CMD_OPEN_LOOP,
+      UI_CMD_RESET,
+      UI_CMD_COORDINATE
+  );
 }
 
 

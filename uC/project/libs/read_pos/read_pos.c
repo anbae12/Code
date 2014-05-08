@@ -14,11 +14,12 @@
  * 140408  NI   Module created.
  *
  *****************************************************************************/
-
+#define READ_POS_DEBUG 1
 /***************************** Include files *******************************/
 
 #include "read_pos.h"
 #include "queue/queue_ini.h"
+#include "configs/project_settings.h"
 
 /*****************************   Functions   *******************************/
 void read_pos_task(void *pvParameters)
@@ -33,12 +34,24 @@ void read_pos_task(void *pvParameters)
     if( uxQueueMessagesWaiting(pos_ctrl_queue) > 0 ) // if someone gives an coordinate it takes priority
     {
       xQueueReceive(pos_ctrl_queue, &coordinate , 0 );
-      while( !xQueueSend(target_pos_queue, &coordinate , MILISEC(1000) ) );
+
+      if( READ_POS_DEBUG )
+      {
+        INT8U conv;
+        conv = (INT8U) coordinate.x;
+        PRINTF("Coordinate x: %d\n",conv);
+        conv = (INT8U) coordinate.y;
+        PRINTF("Coordinate y: %d\n",conv);
+        conv = (INT8U) coordinate.z;
+        PRINTF("Coordinate z: %d\n",conv);
+      }
+
+      while( !xQueueSend(target_pos_queue, &coordinate , MILLI_SEC(1000) ) );
     }
     else
     {
       coordinate = list[index];
-      if ( xQueueSend(target_pos_queue, &coordinate, MILISEC(15000) ) )
+      if ( xQueueSend(target_pos_queue, &coordinate, MILLI_SEC(100) ) )
       {
         if( index++ == LIST_SIZE )
         {
