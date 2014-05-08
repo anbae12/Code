@@ -39,5 +39,5 @@ extern void ctrl_task();
  *              Receives position from SPI
  *              Put position into status
  ****************************************************************************/
-extern motor_pos get_target_position(xQueueHandle queue_name);
+extern motor_pos get_target_position();
 /****************************** End Of Module *******************************/

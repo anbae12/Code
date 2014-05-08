@@ -36,6 +36,7 @@
 
 /******************************** Variables *********************************/
 
+
 /******************************** Functions *********************************/
 
 coordinate_type input_coordinate( INT8U coord[11])
@@ -64,7 +65,6 @@ void interface_task(void *pvParameters)
   char tempstring[UART_QUEUE_LEN] = {0};
 
   INT8U coord[COORDINATE_LEN] = {0};
-  coordinate_type coordinate;
 
   UARTprintf("Program started.\n");
   interface_display_commands();
@@ -75,12 +75,20 @@ void interface_task(void *pvParameters)
     {
       if(!strcmp(UI_CMD_START,mirror_string))
       {
-        //set pos_ctrl
-        //set ctrl_bit
+
+        if( xSemaphoreTake(position_ctrl_sem, portMAX_DELAY) )
+        {
+          interface_coordinate = invalid_coordinate;
+          xSemaphoreGive(position_ctrl_sem);
+        }
+
+
+
         UARTprintf("set pos ctrl\n");
       }
       else if(!strcmp(UI_CMD_STOP,mirror_string))
       {
+
         //set ctrl_bit
         UARTprintf("set ctrl bit\n");
       }
@@ -102,10 +110,11 @@ void interface_task(void *pvParameters)
         {
           coord[index] = 0;
         }
-        coordinate = input_coordinate(coord);
-        xQueueSend(pos_ctrl_queue,&coordinate,100);
-        PRINTF("Setting coordinate\n");
-        //state = ST_UI_COORDINATE;
+        if( xSemaphoreTake(position_ctrl_sem, portMAX_DELAY) )
+        {
+          interface_coordinate = input_coordinate(coord);
+          xSemaphoreGive(position_ctrl_sem);
+        }
       }
 
       else if(mirror_string[0] == 'C' && mirror_string[5] == '.' && mirror_string[9] == '.')
@@ -113,12 +122,13 @@ void interface_task(void *pvParameters)
         INT8U index;
         for(index = 0; index < COORDINATE_LEN; index++)
         {
-          coord[index] = mirror_string[index + 2] - 0x30;
+          coord[index] = mirror_string[index + 2] - '0';
         }
-        coordinate = input_coordinate(coord);
-
-        xQueueSend(pos_ctrl_queue,&coordinate,100);
-
+        if( xSemaphoreTake(position_ctrl_sem, portMAX_DELAY) )
+        {
+          interface_coordinate = input_coordinate(coord);
+          xSemaphoreGive(position_ctrl_sem);
+        }
       }
       else
       {

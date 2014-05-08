@@ -19,7 +19,7 @@
 *****************************************************************************/
 
 /***************************** Include files *******************************/
-
+#include "FRT_Library/FreeRTOS/Source/include/semphr.h"
 /*****************************    Defines    *******************************/
 
 #define ENC_QUEUE_LENGTH                   8
@@ -28,7 +28,10 @@
 
 extern xQueueHandle enc_queue[2];
 extern xQueueHandle pos_ctrl_queue;
-extern xQueueHandle target_pos_queue;
+
+extern xSemaphoreHandle position_ctrl_sem;
+extern xSemaphoreHandle target_var_sem;
+
 
 /*****************************   Variables   *******************************/
 extern void init_spi_queue( void );

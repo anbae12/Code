@@ -33,6 +33,7 @@
 /*****************************    Defines    *******************************/
 #define PI 3.14159265359
 #define TICKS_PER_DEGREE 1080/360 //I know this is 3 but this is more descriptive
+#define CTRL_DEBUG 0
 void ctrl_task(void *pvParameters)
 /*****************************************************************************
  *   Input    :  -
@@ -57,33 +58,43 @@ void ctrl_task(void *pvParameters)
   while(1)
   {
     
-    target_pos = get_target_position(target_pos_queue);
+    target_pos = get_target_position();
     current_pos = spi_read_encoders();
     //motor_pwm_A = pan_controller(target_pos);
     //motor_pwm_B = tilt_controller(current_pos);
     //next_pwm = control_loop(current_pos , target_pos);
     //spi_send(next_pwm);
-
+    vTaskDelay(MILLI_SEC(200));
   }
 }
 
-motor_pos get_target_position(xQueueHandle queue_name)
+motor_pos get_target_position()
 {
   static motor_pos target;
   coordinate_type coord;
-  FP32 phi;
-  FP32 theta;
 
-  if( uxQueueMessagesWaiting(queue_name) > 0 )
-      {
-        xQueueReceive(queue_name, &coord , 0 );
+  if( xSemaphoreTake(target_var_sem, 1) )
+  {
+    coord = target_var;
+    xSemaphoreGive(target_var_sem);
+  }
 
-        phi = atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI;
-        theta = atan(coord.y/coord.x) * 180/PI;
+  target.positionA = atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI; //phi
+  target.positionB = atan(coord.y/coord.x) * 180/PI; //theta
 
-        target.positionA = phi * TICKS_PER_DEGREE;
-        target.positionB = theta * TICKS_PER_DEGREE;
-      }
+  if ( CTRL_DEBUG )
+  {
+    static motor_pos compare;
+    if(compare.positionA != target.positionA && compare.positionB != target.positionB )
+    {
+      compare = target;
+      INT8U conv;
+      conv = (INT8U) target.positionA;
+      PRINTF("target phi: %d\n",conv);
+      conv = (INT8U) target.positionB;
+      PRINTF("target theta: %d\n",conv);
+    }
+  }
   return target;
 }
 

@@ -76,12 +76,17 @@ int main(void)
 
 //  xTaskCreate( spi_receive_task, "Spi_receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
 //  xTaskCreate( spi_test_task, "SPI_test", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-//  xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+  xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
   xTaskCreate( read_pos_task, "read position", USERTASK_STACK_SIZE*8, NULL, HIGH_PRIO, NULL);
-
 
   vTaskStartScheduler();
 
   return 1;
 
+}
+
+char putChar(char input)//in case of stack overflow
+{
+  uart_char_put_blocking(input);
+  return 1;
 }

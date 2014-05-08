@@ -16,16 +16,19 @@
 
 /*****************************    Defines    *******************************/
 #define LIST_SIZE 100
-#define MATLAB_LIST_SIZE 1 //3 times LIST_SIZE
+#define MATLAB_LIST_SIZE 15 //3 times LIST_SIZE
 
 typedef struct coordinate_type {
   FP32 x;
   FP32 y;
   FP32 z;
 } coordinate_type;
-/*****************************   Constants   *******************************/
 
+/*****************************   Constants   *******************************/
+static coordinate_type invalid_coordinate = {.y = 1000, .x = 1000, .z = 1000};
 /******************************** Variables *********************************/
+extern coordinate_type interface_coordinate;
+extern coordinate_type target_var;
 
 /*****************************   Functions   *******************************/
 

@@ -40,7 +40,9 @@
 
 xQueueHandle enc_queue[2];
 xQueueHandle pos_ctrl_queue;
-xQueueHandle target_pos_queue;
+
+xSemaphoreHandle position_ctrl_sem;
+xSemaphoreHandle target_var_sem;
 
 /*****************************   Variables   *******************************/
 void init_spi_queue( void )
@@ -48,10 +50,13 @@ void init_spi_queue( void )
 
 	enc_queue[0] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );
 	enc_queue[1] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );
-	target_pos_queue = xQueueCreate( 3, sizeof(coordinate_type) );
+
 	pos_ctrl_queue = xQueueCreate( 3, sizeof(coordinate_type) );
 
-	//while(1);
+	/***** This should be renamed ****/
+	//Mutexes
+	position_ctrl_sem = xSemaphoreCreateMutex();
+	target_var_sem = xSemaphoreCreateMutex();
 
 }
 void add_to_enc_queue(INT8U queue_id, INT16U data)

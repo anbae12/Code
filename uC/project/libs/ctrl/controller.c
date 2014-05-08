@@ -23,7 +23,7 @@
 /***************************** Include files *******************************/
 #include "inc/lm3s6965.h"
 #include "inc/emp_type.h"
-#include "spi.h"  //Needed for position struct
+#include "SPI/spi.h"  //Needed for position struct
 #include "controller.h"
 
 
