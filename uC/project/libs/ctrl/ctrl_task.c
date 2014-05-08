@@ -40,8 +40,8 @@ void ctrl_task(void *pvParameters)
  *   Function :
  *****************************************************************************/
 {
-  INT16U motor_position_A;
-  INT16U motor_position_B;
+  FP32 motor_position_A;
+  FP32 motor_position_B;
   
   INT16U motor_pwm_A;
   INT16U motor_pwm_B;
@@ -58,10 +58,12 @@ void ctrl_task(void *pvParameters)
   {
     
     target_pos = get_target_position(target_pos_queue);
-/*    current_pos = spi_get_position();
-    next_pwm = control_loop(current_pos , target_pos);
-    spi_send(next_pwm);
-    */
+    current_pos = spi_read_encoders();
+    //motor_pwm_A = pan_controller(target_pos);
+    //motor_pwm_B = tilt_controller(current_pos);
+    //next_pwm = control_loop(current_pos , target_pos);
+    //spi_send(next_pwm);
+
   }
 }
 

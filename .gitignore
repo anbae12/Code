@@ -14,3 +14,13 @@ uC/project/semester_project/Debug/bin/semester_project.hex
 uC/project/semester_project/Debug/bin/semester_project.map
 uC/project/semester_project/Debug/obj/history.xml
 uC/project/semester_project/semester_project.elf.xcodeproj/project.pbxproj
+uC/project/semester_project.cogui
+uC/project/semester_project/Debug/obj/dependencies.xml
+*.cogui
+uC/project/realmain.c
+uC/Interface/Interface/Interface.elf.xcodeproj/project.pbxproj
+uC/Interface/Interface/Debug/bin/Interface.hex
+uC/Interface/Interface/Debug/bin/Interface.map
+uC/Interface/Interface/Debug/bin/history.xml
+uC/Interface/Interface/Debug/obj/dependencies.xml
+uC/Interface/Interface/Debug/obj/history.xml

@@ -31,6 +31,7 @@
 #include "interface/interface.h"
 #include "SPI/spi.h"
 #include "ctrl/ctrl_task.h"
+#include "ctrl/controller.h"
 #include "read_pos/read_pos.h"
 
 /*****************************    Defines    *******************************/

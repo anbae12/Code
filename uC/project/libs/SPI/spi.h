@@ -41,12 +41,12 @@
 
 /*****************************   Variables   *******************************/
 typedef struct motor_pos {
-  INT16U positionA;
-  INT16U positionB;
+  FP32 positionA;
+  FP32 positionB;
 } motor_pos;
 
 /*****************************   Functions   *******************************/
-extern motor_pos read_encoders();
+extern motor_pos spi_read_encoders();
 extern void spi_init(); 
 extern void spi_buffer_push( INT16U );
 extern INT16U spi_receive( void );
