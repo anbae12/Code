@@ -30,7 +30,8 @@
 #include "uart/uart.h"
 #include "interface/interface.h"
 #include "SPI/spi.h"
-#include "ctrl/ctrl_task.h" //Still pseudo code...
+#include "ctrl/ctrl_task.h"
+#include "read_pos/read_pos.h"
 
 /*****************************    Defines    *******************************/
 
@@ -59,6 +60,7 @@ static void init_tasks_presched()
 {
   init_uart_receive_task();
   init_uart_send_task();
+  init_spi_queue();
 }
 
 int main(void)
@@ -74,6 +76,7 @@ int main(void)
 //  xTaskCreate( spi_receive_task, "Spi_receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
 //  xTaskCreate( spi_test_task, "SPI_test", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
 //  xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+//  xTaskCreate( read_pos_task, "read position", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
 
 
   vTaskStartScheduler();

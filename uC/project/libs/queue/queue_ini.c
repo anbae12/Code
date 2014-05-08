@@ -25,16 +25,22 @@
 
 #include "FRT_Library/FreeRTOS/Source/include/FreeRTOS.h"
 #include "FRT_Library/FreeRTOS/Source/include/task.h"
-
 #include "FRT_Library/FreeRTOS/Source/include/queue.h"
 #include "FRT_Library/FreeRTOS/Source/include/semphr.h"
+
+#include "read_pos/read_pos.h"
+
 #include "queue_ini.h"
+
+
 
 /*****************************    Defines    *******************************/
 
 /*****************************   Constants   *******************************/
 
 xQueueHandle enc_queue[2];
+xQueueHandle pos_ctrl_queue;
+xQueueHandle target_pos_queue;
 
 /*****************************   Variables   *******************************/
 void init_spi_queue( void )
@@ -42,6 +48,8 @@ void init_spi_queue( void )
 
 	enc_queue[0] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );
 	enc_queue[1] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );
+	target_pos_queue = xQueueCreate( 1, sizeof(coordinate_type) );
+	pos_ctrl_queue = xQueueCreate( 1, sizeof(coordinate_type) );
 
 	//while(1);
 

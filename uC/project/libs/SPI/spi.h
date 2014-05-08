@@ -40,7 +40,10 @@
 /*****************************   Constants   *******************************/
 
 /*****************************   Variables   *******************************/
-typedef struct motor_pos motor_pos;
+typedef struct motor_pos {
+  INT16U positionA;
+  INT16U positionB;
+} motor_pos;
 
 /*****************************   Functions   *******************************/
 extern motor_pos read_encoders();

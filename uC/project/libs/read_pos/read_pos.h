@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Mikkel, Åse & Mikael
- * MODULENAME:  uart
+ * Nikolaj
+ * MODULENAME:  read_pos.h
  * DESCRIPTION:
  ****************************************************************************/
 
@@ -15,29 +15,34 @@
 #include "FRT_Library/FreeRTOS/Source/include/task.h"
 
 /*****************************    Defines    *******************************/
-#define UART_QUEUE_LEN  50
+#define LIST_SIZE 100
+#define MATLAB_LIST_SIZE 1 //3 times LIST_SIZE
 
+typedef struct coordinate_type {
+  FP32 x;
+  FP32 y;
+  FP32 z;
+} coordinate_type;
 /*****************************   Constants   *******************************/
 
 /******************************** Variables *********************************/
-//---------------- Tasks ------------------
-extern xTaskHandle      uart_send_task_handle;          //Create elsewhere.
-extern xTaskHandle      uart_receive_task_handle;       //Create elsewhere.
 
 /*****************************   Functions   *******************************/
 
-extern void ctrl_task();
+extern void read_pos_task(void *pvParameters);
 /*****************************************************************************
  * Input:       -
  * Output:      -
  * Function:    
- *              Reads ctrl bit and chose state
- *              Receive target position
- *              Convert target position
- *              Calculate PWM
- *              Send PWM to SPI
- *              Receives position from SPI
- *              Put position into status
+ *              Reads the pos_ctrl_queue for input
+ *              If there is none, it puts the next coordinate into target_pos_queue
+ *              If the queue is full it means that the control loop isn't taking coordinates. 
+ *              In that case it should just wait. 
+ *              If nothing has been taken in 15 seconds the list index is resat. 
  ****************************************************************************/
-extern motor_pos get_target_position(xQueueHandle queue_name);
+extern void init_list( coordinate_type final_list[LIST_SIZE] );
+/*****************************************************************************
+ * Initializes the list.
+ * The matlab generated list should written into this function.
+ ****************************************************************************/
 /****************************** End Of Module *******************************/

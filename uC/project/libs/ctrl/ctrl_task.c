@@ -26,9 +26,13 @@
 #include "configs/project_settings.h"
 #include "SPI/spi.h"
 #include "queue/queue_ini.h"
+#include "read_pos/read_pos.h"
+#include "ctrl_task.h"
+#include "math.h"
 
 /*****************************    Defines    *******************************/
-
+#define PI 3.14159265359
+#define TICKS_PER_DEGREE 1080/360 //I know this is 3 but this is more descriptive
 void ctrl_task(void *pvParameters)
 /*****************************************************************************
  *   Input    :  -
@@ -41,21 +45,43 @@ void ctrl_task(void *pvParameters)
   
   INT16U motor_pwm_A;
   INT16U motor_pwm_B;
-  //position_type current_pos;
+
+  INT16U target_pos_format_a;
+/*
+  position_type_struct current_pos_format_a;
+  pwm_type_struct next_pwm;
+*/
+  motor_pos current_pos;
+  motor_pos target_pos;
+
   while(1)
   {
-    //if( uxQueueMessagesWaiting(target_position_something_queue)  )
-    //current_pos = spi_receive();
-    //next_pwm = control_loop(current_pos);
-    //spi_send(next_pwm);
     
-    // Read target position. 
-    // Read current position. (SPI)
-    // Control loop. 
-    // Set_pwm.
-    // motor_pwm_A = PWM_MASK & calculated_speed_A 
-    // motor_pwm_B = PWM_MASK & calculated_speed_B 
-    // spi_buffer_push(motor_pwm_A);
-    // spi_buffer_push(motor_pwm_B);
+    target_pos = get_target_position(target_pos_queue);
+/*    current_pos = spi_get_position();
+    next_pwm = control_loop(current_pos , target_pos);
+    spi_send(next_pwm);
+    */
   }
 }
+
+motor_pos get_target_position(xQueueHandle queue_name)
+{
+  static motor_pos target;
+  coordinate_type coord;
+  FP32 phi;
+  FP32 theta;
+
+  if( uxQueueMessagesWaiting(queue_name) > 0 )
+      {
+        xQueueReceive(queue_name, &coord , 0 );
+
+        phi = atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI;
+        theta = atan(coord.y/coord.x) * 180/PI;
+
+        target.positionA = phi * TICKS_PER_DEGREE;
+        target.positionB = theta * TICKS_PER_DEGREE;
+      }
+  return target;
+}
+
