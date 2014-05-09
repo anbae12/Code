@@ -41,3 +41,6 @@
 /*****************************   Functions   *******************************/
 
 INT16S pan_controller(motor_pos target_pos, motor_pos current_pos);
+
+
+extern pwm_duty_cycle_type test_controller(motor_pos target_pos, motor_pos current_pos);

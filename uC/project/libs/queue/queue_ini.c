@@ -44,6 +44,8 @@ xQueueHandle pos_ctrl_queue;
 xSemaphoreHandle position_ctrl_sem;
 xSemaphoreHandle target_var_sem;
 
+xSemaphoreHandle force_pwm_sem;
+
 /*****************************   Variables   *******************************/
 void init_spi_queue( void )
 {
@@ -57,6 +59,8 @@ void init_spi_queue( void )
 	//Mutexes
 	position_ctrl_sem = xSemaphoreCreateMutex();
 	target_var_sem = xSemaphoreCreateMutex();
+
+	force_pwm_sem = xSemaphoreCreateMutex();
 
 }
 void add_to_enc_queue(INT8U queue_id, INT16U data)

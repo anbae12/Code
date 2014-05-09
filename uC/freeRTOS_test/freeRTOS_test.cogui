@@ -41,9 +41,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/freeRTOS_test/FreeRTOSConfig.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4772" selectionTopPixel="799"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/michael/Documents/GitHub/Code/uC/freeRTOS_test/main.c" title="main.c" tooltip="C:/Users/michael/Documents/GitHub/Code/uC/freeRTOS_test/main.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/niko/Documents/GitHub/Code/uC/freeRTOS_test/main.c" title="main.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/freeRTOS_test/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/freeRTOS_test/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2254" selectionTopPixel="527"/>
+<editorState selectionHorizontalPixel="0" selectionLength="13" selectionOffset="1993" selectionTopPixel="948"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="led_ctrl.c" partName="led_ctrl.c" path="C:/Users/michael/Documents/GitHub/Code/uC/freeRTOS_test/led_control/led_ctrl.c" title="led_ctrl.c" tooltip="C:/Users/michael/Documents/GitHub/Code/uC/freeRTOS_test/led_control/led_ctrl.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/freeRTOS_test/led_ctrl/led_ctrl.c"/>
@@ -61,9 +61,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/freeRTOS_test/emp_includes/binary.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8974" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="spi.c" partName="spi.c" path="C:/Users/michael/Documents/GitHub/Code/uC/freeRTOS_test/SPI/spi.c" title="spi.c" tooltip="C:/Users/michael/Documents/GitHub/Code/uC/freeRTOS_test/SPI/spi.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="spi.c" partName="spi.c" path="C:/Users/niko/Documents/GitHub/Code/uC/freeRTOS_test/SPI/spi.c" title="spi.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/freeRTOS_test/SPI/spi.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/freeRTOS_test/SPI/spi.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2841" selectionTopPixel="306"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2962" selectionTopPixel="1458"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="spi.h" partName="spi.h" path="C:/Users/michael/Documents/GitHub/Code/uC/freeRTOS_test/SPI/spi.h" title="spi.h" tooltip="C:/Users/michael/Documents/GitHub/Code/uC/freeRTOS_test/SPI/spi.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/freeRTOS_test/SPI/spi.h"/>
@@ -95,7 +95,7 @@
 <viewState/>
 </view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="6">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
 <expanded>
 <element path="/freeRTOS_test"/>
 <element path="/freeRTOS_test/led_ctrl"/>
@@ -342,13 +342,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/freeRTOS_test/startup_frt.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/freeRTOS_test/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/freeRTOS_test/SPI/spi.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/freeRTOS_test/main.c"/>
 </editors>
-<item historyLabel="queue_ini.c" index="1">
-<position info="not_deleted" x="1296" y="50"/>
-</item>
-<item historyLabel="queue_ini.h" index="4">
-<position info="not_deleted" x="1221" y="0"/>
-</item>
 <item historyLabel="queue_ini.c" index="1">
 <position info="not_deleted" x="1289" y="0"/>
 </item>
@@ -486,8 +481,14 @@
 <item historyLabel="main.c" index="21">
 <position info="not_deleted" x="1511" y="0"/>
 </item>
-<item active="true" historyLabel="spi.c" index="22">
+<item historyLabel="spi.c" index="22">
 <position info="not_deleted" x="993" y="0"/>
+</item>
+<item historyLabel="main.c" index="23">
+<position info="not_deleted" x="1993" y="13"/>
+</item>
+<item active="true" historyLabel="spi.c" index="22">
+<position info="not_deleted" x="2841" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -496,6 +497,36 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="read_pos.h" tooltip="semester_project/libs/read_pos/read_pos.h">
+<persistable path="/semester_project/libs/read_pos/read_pos.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tasks.c" tooltip="semester_project/libs/FRT_Library/FreeRTOS/Source/tasks.c">
+<persistable path="/semester_project/libs/FRT_Library/FreeRTOS/Source/tasks.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="queue_ini.h" tooltip="semester_project/libs/queue/queue_ini.h">
+<persistable path="/semester_project/libs/queue/queue_ini.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="queue_ini.c" tooltip="semester_project/libs/queue/queue_ini.c">
+<persistable path="/semester_project/libs/queue/queue_ini.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="uart.c" tooltip="semester_project/libs/uart/uart.c">
+<persistable path="/semester_project/libs/uart/uart.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="common.c" tooltip="semester_project/libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/common.c">
+<persistable path="/semester_project/libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/common.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ctrl_task.c" tooltip="semester_project/libs/ctrl/ctrl_task.c">
+<persistable path="/semester_project/libs/ctrl/ctrl_task.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="FreeRTOSConfig.h" tooltip="semester_project/libs/configs/FreeRTOSConfig.h">
+<persistable path="/semester_project/libs/configs/FreeRTOSConfig.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="project_settings.h" tooltip="semester_project/libs/configs/project_settings.h">
+<persistable path="/semester_project/libs/configs/project_settings.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ftoa.h" tooltip="semester_project/libs/debug/ftoa.h">
+<persistable path="/semester_project/libs/debug/ftoa.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pump_ctrl.c" tooltip="emp_port2/libs/pump_ctrl/pump_ctrl.c">
 <persistable path="/emp_port2/libs/pump_ctrl/pump_ctrl.c"/>
 </file>
@@ -507,36 +538,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="admin_task.c" tooltip="emp_port2/libs/admin/admin_task.c">
 <persistable path="/emp_port2/libs/admin/admin_task.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="project_settings.h" tooltip="emp_port2/libs/configs/project_settings.h">
-<persistable path="/emp_port2/libs/configs/project_settings.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="semaphore_port2.c" tooltip="emp_port2/libs/configs/semaphore_port2.c">
-<persistable path="/emp_port2/libs/configs/semaphore_port2.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="conversion.c" tooltip="emp_port2/libs/conversion/conversion.c">
-<persistable path="/emp_port2/libs/conversion/conversion.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="FreeRTOSConfig.h" tooltip="emp_port2/libs/configs/FreeRTOSConfig.h">
-<persistable path="/emp_port2/libs/configs/FreeRTOSConfig.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="conversion.h" tooltip="emp_port2/libs/conversion/conversion.h">
-<persistable path="/emp_port2/libs/conversion/conversion.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="lcd_task.h" tooltip="emp_port2/libs/lcd/lcd_task.h">
-<persistable path="/emp_port2/libs/lcd/lcd_task.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="RTC_time.h" tooltip="emp_port2/libs/RTC/RTC_time.h">
-<persistable path="/emp_port2/libs/RTC/RTC_time.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="RTC_time.c" tooltip="emp_port2/libs/RTC/RTC_time.c">
-<persistable path="/emp_port2/libs/RTC/RTC_time.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="lcd_task.c" tooltip="emp_port2/libs/lcd/lcd_task.c">
-<persistable path="/emp_port2/libs/lcd/lcd_task.c"/>
-</file>
-<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log.c" tooltip="C:\Users\michael\Dropbox\EMP\EMP Gruppe 2\emp_port2\libs\log\log.c">
-<persistable uri="file:/C:/Users/michael/Dropbox/EMP/EMP%20Gruppe%202/emp_port2/libs/log/log.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="interface/main.c">
 <persistable path="/interface/main.c"/>

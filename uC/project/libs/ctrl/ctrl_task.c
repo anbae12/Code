@@ -29,11 +29,25 @@
 #include "read_pos/read_pos.h"
 #include "ctrl_task.h"
 #include <math.h>
-
+#include "controller.h"
 /*****************************    Defines    *******************************/
 #define PI 3.14159265359
 #define TICKS_PER_DEGREE 1080/360 //I know this is 3 but this is more descriptive
-#define CTRL_DEBUG 0
+#define CTRL_DEBUG 1
+#define CTRL_TASK_FREQUENCY 200
+
+void ctrl_debug(motor_pos target)
+{
+  if ( CTRL_DEBUG )
+  {
+    INT16U conv;
+    conv = (INT16U) target.positionA;
+    PRINTF("target phi: %d\n",conv);
+    conv = (INT16U) target.positionB;
+    PRINTF("target theta: %d\n",conv);
+  }
+}
+
 void ctrl_task(void *pvParameters)
 /*****************************************************************************
  *   Input    :  -
@@ -48,23 +62,37 @@ void ctrl_task(void *pvParameters)
   INT16U motor_pwm_B;
 
   INT16U target_pos_format_a;
-/*
-  position_type_struct current_pos_format_a;
-  pwm_type_struct next_pwm;
-*/
+
+  pwm_duty_cycle_type next_pwm;
+
   motor_pos current_pos;
   motor_pos target_pos;
+
+  //for timing
+  portTickType last_wake_time;
+  last_wake_time = xTaskGetTickCount();
 
   while(1)
   {
     
     target_pos = get_target_position();
     current_pos = spi_read_encoders();
+#if 0
+    INT16U temp;
+    temp = (INT16U) current_pos.positionA;
+    PRINTF("Position A %u\n",temp); //tilt
+    temp = (INT16U) current_pos.positionB;
+    PRINTF("Position B %u\n",temp);
+#endif
     //motor_pwm_A = pan_controller(target_pos);
     //motor_pwm_B = tilt_controller(current_pos);
     //next_pwm = control_loop(current_pos , target_pos);
-    //spi_send(next_pwm);
-    vTaskDelay(MILLI_SEC(200));
+
+    next_pwm = test_controller(target_pos, current_pos);
+
+    spi_send_pwm(next_pwm);
+
+    vTaskDelayUntil(&last_wake_time, MILLI_SEC(CTRL_TASK_FREQUENCY));
   }
 }
 
@@ -82,19 +110,8 @@ motor_pos get_target_position()
   target.positionA = atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI; //phi
   target.positionB = atan(coord.y/coord.x) * 180/PI; //theta
 
-  if ( CTRL_DEBUG )
-  {
-    static motor_pos compare;
-    if(compare.positionA != target.positionA && compare.positionB != target.positionB )
-    {
-      compare = target;
-      INT8U conv;
-      conv = (INT8U) target.positionA;
-      PRINTF("target phi: %d\n",conv);
-      conv = (INT8U) target.positionB;
-      PRINTF("target theta: %d\n",conv);
-    }
-  }
+  ctrl_debug(target);
+
   return target;
 }
 

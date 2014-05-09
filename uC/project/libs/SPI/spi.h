@@ -23,6 +23,15 @@
 
 /*****************************    Defines    *******************************/
 
+// motorbit | retningsbit | pwmbit| 2 ignore | 11 pwm
+#define SPI_MOTOR_BIT_POS     15
+#define SPI_DIRECTION_BIT_POS 14
+#define SPI_PWM_BIT_POS       13
+#define SPI_PWM_MASK          0x07FF
+
+
+
+
 #define SPI_MODE_MASTER                0x00000000
 #define SPI_PRESCALE_VALUE             0x0000000A  // = 10
 #define SPI_CLEAR_REGISTER             0x00000000
@@ -44,6 +53,13 @@ typedef struct motor_pos {
   FP32 positionA;
   FP32 positionB;
 } motor_pos;
+
+typedef struct pwm_duty_cycle_type {
+  INT16U motorA;
+  INT16U motorB;
+  BOOLEAN directionA;
+  BOOLEAN directionB;
+} pwm_duty_cycle_type;
 
 /*****************************   Functions   *******************************/
 extern motor_pos spi_read_encoders();

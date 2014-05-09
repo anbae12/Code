@@ -32,6 +32,8 @@ extern xQueueHandle pos_ctrl_queue;
 extern xSemaphoreHandle position_ctrl_sem;
 extern xSemaphoreHandle target_var_sem;
 
+//set pwm
+extern xSemaphoreHandle force_pwm_sem;
 
 /*****************************   Variables   *******************************/
 extern void init_spi_queue( void );

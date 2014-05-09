@@ -31,6 +31,8 @@
 
 #include "queue/queue_ini.h"
 
+#include "configs/project_settings.h"
+
 /*****************************    Defines    *******************************/
 
 /*****************************   Constants   *******************************/
@@ -134,25 +136,59 @@ motor_pos spi_read_encoders()
   INT32U count;
 // motorbit | retningsbit | pwmbit| 2 ignore | 11 pwm
   
-  for(i = 0; i < 2; i++) 
+  for(i = 0; i < 3; i++)
   {
-    spi_buffer_push(0x2000); // Send a pwm, with ignorebit set. 
+    spi_buffer_push(0); // Send a pwm, with ignorebit set.
     for(count = 0; count < 8500; count++); // If baudrate = 100k
     data_in = spi_receive();
     if (data_in != 0xFFFF) // Check if data is valid
     {
       if( !(data_in & SPI_MOTOR_SEL_MASK) ) 
       {
-        return_value.positionA = (data_in & SPI_MOTOR_POS_MASK) / 3;
+        return_value.positionA = (FP32)(data_in & SPI_MOTOR_POS_MASK) / 3;
       }
       else 
       {
-        return_value.positionB = (data_in & SPI_MOTOR_POS_MASK) / 3;
+        return_value.positionB = (FP32)(data_in & SPI_MOTOR_POS_MASK) / 3;
       }
     }
   }
   return return_value;
 }
+
+void spi_send_pwm(pwm_duty_cycle_type pwm)
+{
+  INT16U data_in;
+  INT16U count;
+  //create message
+
+  INT16U messageA = 0;
+  INT16U messageB = 0;
+  // motorbit | retningsbit | pwmbit| 2 ignore | 11 pwm
+
+  messageA = (pwm.directionA & 1) << SPI_DIRECTION_BIT_POS;
+  messageA |= pwm.motorA & SPI_PWM_MASK;
+  messageA |= 1 << SPI_PWM_BIT_POS;
+  messageA |= 1 << SPI_MOTOR_BIT_POS;
+
+  messageB = (pwm.directionB & 1) << SPI_DIRECTION_BIT_POS;
+  messageB |= pwm.motorB & SPI_PWM_MASK;
+  messageB |= 1 << SPI_PWM_BIT_POS;
+  messageB &= ~(0 << SPI_MOTOR_BIT_POS);
+
+
+  //PRINTF("MESSAGEA = 0x%x\n",messageA);
+  //PRINTF("MESSAGEB = 0x%x\n",messageB);
+
+  spi_buffer_push(messageA);
+  for(count = 0; count < 8500; count++); // If baudrate = 100k
+  data_in = spi_receive(); // unused
+
+  spi_buffer_push(messageB);
+  data_in = spi_receive(); // unused
+}
+
+
 
 
 //--------------------------------------------------------------

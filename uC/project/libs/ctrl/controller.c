@@ -75,3 +75,50 @@ INT16S pan_controller(motor_pos target_pos, motor_pos current_pos)
   
   return (int) output[0];
 }
+
+
+#define PWM_PERCENT (2048/100)
+#define TEST_OFFSET_A 10
+#define TEST_OFFSET_B 30
+#define TEST_OFFSET_C 70
+
+pwm_duty_cycle_type test_controller(motor_pos target_pos, motor_pos current_pos)
+/*****************************************************************************
+ *   Input    : positions
+ *   Output   : pwm
+ *   Function : Test function to see if basic stuff works.
+ ******************************************************************************/
+{
+  pwm_duty_cycle_type next_pwm;
+
+  next_pwm.directionA = 1;
+  next_pwm.directionB = 1;
+
+  if(target_pos.positionA >= current_pos.positionA )
+  {
+    next_pwm.motorA = 20 * PWM_PERCENT;
+  }
+  else if(target_pos.positionA < current_pos.positionA)
+  {
+    next_pwm.motorA = 30 * PWM_PERCENT;
+  }
+
+/*
+  if(target_pos.positionB <= current_pos.positionB + TEST_OFFSET_C)
+  {
+    next_pwm.motorB = 60 * PWM_PERCENT;
+  }
+  else if(target_pos.positionB <= current_pos.positionB + TEST_OFFSET_B)
+  {
+    next_pwm.motorB = 50 * PWM_PERCENT;
+  }
+  else if(target_pos.positionB <= current_pos.positionB + TEST_OFFSET_A)
+  {
+    next_pwm.motorB = 30 * PWM_PERCENT;
+  }
+  else
+  */
+  next_pwm.motorB = 0 * PWM_PERCENT;
+
+  return next_pwm;
+}

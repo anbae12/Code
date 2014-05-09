@@ -14,7 +14,7 @@
  * 140408  NI   Module created.
  *
  *****************************************************************************/
-#define READ_POS_DEBUG 1
+#define READ_POS_DEBUG 0
 #define READ_POS_TASK_FREQUENCY 6000
 
 /***************************** Include files *******************************/
