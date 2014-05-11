@@ -46,6 +46,16 @@
 
 #define STACK_OVERFLOW_GCC_HANDLER      putChar
 
+//Based on our SPI communication
+#define PWM_PERCENT (2048/100)
+
+
+//debugging
+#define READ_PWM_DEBUG 1     //prints the PWM sent over SPI
+#define READ_POS_DEBUG 0     //prints x y z coordinates
+#define CTRL_DEBUG 0         //prints the converted theta and phi coordinate
+#define UART_MSG_OUT_DEBUG 0 //prints the ticks
+
 /******************************** Constants *********************************/
 
 

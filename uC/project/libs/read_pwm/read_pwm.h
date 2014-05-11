@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Mikkel, Åse & Mikael
- * MODULENAME:  uart
+ * Nikolaj
+ * MODULENAME:  read_pos.h
  * DESCRIPTION:
  ****************************************************************************/
 
@@ -13,43 +13,34 @@
 #include "FRT_Library/FreeRTOS/Source/include/queue.h"
 #include "FRT_Library/FreeRTOS/Source/include/semphr.h"
 #include "FRT_Library/FreeRTOS/Source/include/task.h"
+#include "spi/spi.h"
 
 /*****************************    Defines    *******************************/
-#define UART_QUEUE_LEN  50
+#define PWM_LIST_SIZE 5
+#define MATLAB_PWM_LIST_SIZE 15 //3 times LIST_SIZE
 
-
-//interface_to_control_byte
-#define stop_bit_location 7
-#define pos_bit_location  6
-#define pwm_bit_location  5
-
-//control_states
-#define CTRL_STOP_MODE    1
-#define CTRL_POS_MODE     2
-#define CTRL_PWM_MODE     3
 /*****************************   Constants   *******************************/
-
+static pwm_duty_cycle_type invalid_pwm = {.motorA = 1981, .motorB = 1981};
 /******************************** Variables *********************************/
-//---------------- Tasks ------------------
-extern xTaskHandle      uart_send_task_handle;          //Create elsewhere.
-extern xTaskHandle      uart_receive_task_handle;       //Create elsewhere.
-extern INT8U interface_to_control_byte;
+extern pwm_duty_cycle_type interface_pwm;
+extern pwm_duty_cycle_type target_pwm;
 
 /*****************************   Functions   *******************************/
 
-extern void ctrl_task();
+extern void read_pwm_task(void *pvParameters);
 /*****************************************************************************
  * Input:       -
  * Output:      -
  * Function:    
- *              Reads ctrl bit and chose state
- *              Receive target position
- *              Convert target position
- *              Calculate PWM
- *              Send PWM to SPI
- *              Receives position from SPI
- *              Put position into status
+ *              Reads the pos_ctrl_queue for input
+ *              If there is none, it puts the next coordinate into target_pos_queue
+ *              If the queue is full it means that the control loop isn't taking coordinates. 
+ *              In that case it should just wait. 
+ *              If nothing has been taken in 15 seconds the list index is resat. 
  ****************************************************************************/
-extern motor_pos get_target_position();
-extern pwm_duty_cycle_type get_target_pwm();
+extern void init_pwm_list( pwm_duty_cycle_type final_list[PWM_LIST_SIZE] );
+/*****************************************************************************
+ * Initializes the list.
+ * The matlab generated list should written into this function.
+ ****************************************************************************/
 /****************************** End Of Module *******************************/

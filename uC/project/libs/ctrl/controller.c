@@ -26,9 +26,9 @@
 #include "SPI/spi.h"  //Needed for position struct
 #include "controller.h"
 
-
 #include "FRT_Library/FreeRTOS/Source/include/FreeRTOS.h"
 #include "FRT_Library/FreeRTOS/Source/include/queue.h"
+#include "configs/project_settings.h"
 
 
 /*****************************    Defines    *******************************/
@@ -77,11 +77,6 @@ INT16S pan_controller(motor_pos target_pos, motor_pos current_pos)
 }
 
 
-#define PWM_PERCENT (2048/100)
-#define TEST_OFFSET_A 10
-#define TEST_OFFSET_B 30
-#define TEST_OFFSET_C 70
-
 pwm_duty_cycle_type test_controller(motor_pos target_pos, motor_pos current_pos)
 /*****************************************************************************
  *   Input    : positions
@@ -91,8 +86,6 @@ pwm_duty_cycle_type test_controller(motor_pos target_pos, motor_pos current_pos)
 {
   pwm_duty_cycle_type next_pwm;
 
-  next_pwm.directionA = 1;
-  next_pwm.directionB = 1;
 
   if(target_pos.positionA >= current_pos.positionA )
   {

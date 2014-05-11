@@ -55,10 +55,8 @@ typedef struct motor_pos {
 } motor_pos;
 
 typedef struct pwm_duty_cycle_type {
-  INT16U motorA;
-  INT16U motorB;
-  BOOLEAN directionA;
-  BOOLEAN directionB;
+  INT16S motorA;
+  INT16S motorB;
 } pwm_duty_cycle_type;
 
 /*****************************   Functions   *******************************/

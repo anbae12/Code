@@ -165,26 +165,43 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
   INT16U messageA = 0;
   INT16U messageB = 0;
   // motorbit | retningsbit | pwmbit| 2 ignore | 11 pwm
+  BOOLEAN motorA_direction = 0;
+  BOOLEAN motorB_direction = 0;
 
-  messageA = (pwm.directionA & 1) << SPI_DIRECTION_BIT_POS;
+  if(pwm.motorA < 0)
+  {
+    motorA_direction = 0;
+    pwm.motorA = pwm.motorA * (- 1);
+  }
+  if(pwm.motorB < 0)
+  {
+    motorA_direction = 0;
+    pwm.motorB = pwm.motorB * (- 1);
+  }
+
+
+  messageA = (motorA_direction & 1) << SPI_DIRECTION_BIT_POS;
   messageA |= pwm.motorA & SPI_PWM_MASK;
   messageA |= 1 << SPI_PWM_BIT_POS;
   messageA |= 1 << SPI_MOTOR_BIT_POS;
 
-  messageB = (pwm.directionB & 1) << SPI_DIRECTION_BIT_POS;
+  messageB = (motorB_direction & 1) << SPI_DIRECTION_BIT_POS;
   messageB |= pwm.motorB & SPI_PWM_MASK;
   messageB |= 1 << SPI_PWM_BIT_POS;
   messageB &= ~(0 << SPI_MOTOR_BIT_POS);
 
-
-  //PRINTF("MESSAGEA = 0x%x\n",messageA);
-  //PRINTF("MESSAGEB = 0x%x\n",messageB);
-
+  if( UART_MSG_OUT_DEBUG )
+  {
+    PRINTF("MESSAGEA = 0x%x\n",messageA);
+    PRINTF("MESSAGEB = 0x%x\n",messageB);
+  }
+  
   spi_buffer_push(messageA);
   for(count = 0; count < 8500; count++); // If baudrate = 100k
   data_in = spi_receive(); // unused
 
   spi_buffer_push(messageB);
+  for(count = 0; count < 8500; count++); // If baudrate = 100k //it would be better to empty the queue before we read
   data_in = spi_receive(); // unused
 }
 

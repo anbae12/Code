@@ -33,6 +33,7 @@
 #include "ctrl/ctrl_task.h"
 #include "ctrl/controller.h"
 #include "read_pos/read_pos.h"
+#include "read_pwm/read_pwm.h"
 
 /*****************************    Defines    *******************************/
 
@@ -78,6 +79,7 @@ int main(void)
 //  xTaskCreate( spi_test_task, "SPI_test", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
   xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
   xTaskCreate( read_pos_task, "read position", USERTASK_STACK_SIZE*8, NULL, HIGH_PRIO, NULL);
+  xTaskCreate( read_pwm_task, "read pwm", USERTASK_STACK_SIZE, NULL, HIGH_PRIO, NULL);
 
   vTaskStartScheduler();
 

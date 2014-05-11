@@ -14,7 +14,6 @@
  * 140408  NI   Module created.
  *
  *****************************************************************************/
-#define READ_POS_DEBUG 0
 #define READ_POS_TASK_FREQUENCY 6000
 
 /***************************** Include files *******************************/
@@ -78,20 +77,7 @@ void read_pos_task(void *pvParameters)
       xSemaphoreGive(target_var_sem);
     }
 
-    //read_pos_debug(coordinate);
-
-    if( READ_POS_DEBUG )
-      {
-        INT16U conv;
-        conv = (INT16U) coordinate.x;
-        PRINTF("Coordinate x: %d\t",conv);
-        conv = (INT16U) coordinate.y;
-        PRINTF("Coordinate y: %d\t",conv);
-        conv = (INT16U) coordinate.z;
-        PRINTF("Coordinate z: %d\n",conv);
-      }
-
-
+    read_pos_debug(coordinate);
 
     vTaskDelayUntil(&last_wake_time, MILLI_SEC(READ_POS_TASK_FREQUENCY));
 
@@ -109,15 +95,15 @@ void init_list( coordinate_type final_list[LIST_SIZE] )
   //if we find that we need another data type we should correct this in the struct definition as well..
       12.3,14,15,
       12.3,03.6,10.0,
-      12.3,03.6,10.0,
-      12.3,03.6,10.0,
-      12.3,03.6,10.0
+      12.3,04.6,10.0,
+      12.3,05.6,10.0,
+      12.3,06.6,10.0
   };
   
   for( i = 0; i < MATLAB_LIST_SIZE; i++) //TODO this list is not correct...
   {
     if( ( i % 3 ) == 0 ) final_list[j].x = matlab_liste[i];
-    if( ( i % 3 ) == 1 ) final_list[j].x = matlab_liste[i];
-    if( ( i % 3 ) == 2 ) final_list[j++].x = matlab_liste[i];
+    if( ( i % 3 ) == 1 ) final_list[j].y = matlab_liste[i];
+    if( ( i % 3 ) == 2 ) final_list[j++].z = matlab_liste[i];
   }
 }

@@ -33,7 +33,12 @@ extern xSemaphoreHandle position_ctrl_sem;
 extern xSemaphoreHandle target_var_sem;
 
 //set pwm
-extern xSemaphoreHandle force_pwm_sem;
+extern xSemaphoreHandle interface_pwm_sem;
+extern xSemaphoreHandle target_pwm_sem;
+
+//control the control_task
+extern xSemaphoreHandle interface_to_control_sem;
+extern xSemaphoreHandle interface_pwm_sem;
 
 /*****************************   Variables   *******************************/
 extern void init_spi_queue( void );
