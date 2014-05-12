@@ -165,8 +165,8 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
   INT16U messageA = 0;
   INT16U messageB = 0;
   // motorbit | retningsbit | pwmbit| 2 ignore | 11 pwm
-  BOOLEAN motorA_direction = 0;
-  BOOLEAN motorB_direction = 0;
+  BOOLEAN motorA_direction = 1;
+  BOOLEAN motorB_direction = 1;
 
   if(pwm.motorA < 0)
   {
@@ -175,8 +175,17 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
   }
   if(pwm.motorB < 0)
   {
-    motorA_direction = 0;
+    motorB_direction = 0;
     pwm.motorB = pwm.motorB * (- 1);
+  }
+
+  if(pwm.motorA > 2047)
+  {
+    pwm.motorA = 2047;
+  }
+  if(pwm.motorB > 2047)
+  {
+    pwm.motorB = 2047;
   }
 
 

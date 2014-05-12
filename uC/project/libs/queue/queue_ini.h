@@ -40,6 +40,10 @@ extern xSemaphoreHandle target_pwm_sem;
 extern xSemaphoreHandle interface_to_control_sem;
 extern xSemaphoreHandle interface_pwm_sem;
 
+//log task
+extern xSemaphoreHandle interface_log_sem;
+extern xQueueHandle log_status_queue;
+
 /*****************************   Variables   *******************************/
 extern void init_spi_queue( void );
 extern void add_to_enc_queue(INT8U queue_id, INT16U data);

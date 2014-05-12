@@ -39,16 +39,18 @@ void read_pwm_task(void *pvParameters)
   //for timing
   portTickType last_wake_time;
 
+  last_wake_time = xTaskGetTickCount();
+
   while(1)
   {
-    last_wake_time = xTaskGetTickCount();
-    pwm = list[index++];
-    
-    if( index == PWM_LIST_SIZE )
+    if( index < PWM_LIST_SIZE - 1 )
+    {
+      pwm = list[index++];
+    }
+    else
     {
       pwm.motorA = 0;
       pwm.motorB = 0;
-      index--;              //convoluted, but in case we have reached the end of the list we should just stay here. I am not sure if this needs to be rewritten.
     }
 
     if( xSemaphoreTake(interface_pwm_sem, portMAX_DELAY) )

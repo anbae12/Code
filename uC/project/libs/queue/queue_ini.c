@@ -29,6 +29,7 @@
 #include "FRT_Library/FreeRTOS/Source/include/semphr.h"
 
 #include "read_pos/read_pos.h"
+#include "log/log_task.h"
 
 #include "queue_ini.h"
 
@@ -38,8 +39,8 @@
 
 /*****************************   Constants   *******************************/
 
-xQueueHandle enc_queue[2];
-xQueueHandle pos_ctrl_queue;
+//xQueueHandle enc_queue[2];
+//xQueueHandle pos_ctrl_queue;
 
 xSemaphoreHandle position_ctrl_sem;
 xSemaphoreHandle target_var_sem;
@@ -50,13 +51,17 @@ xSemaphoreHandle target_pwm_sem;
 xSemaphoreHandle interface_to_control_sem;
 xSemaphoreHandle interface_pwm_sem;
 
+xSemaphoreHandle interface_log_sem;
+xQueueHandle log_status_queue;
+
+
 /*****************************   Variables   *******************************/
 void init_spi_queue( void )
 {
-	enc_queue[0] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );
-	enc_queue[1] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );
+//	enc_queue[0] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );
+//	enc_queue[1] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );
 
-	pos_ctrl_queue = xQueueCreate( 3, sizeof(coordinate_type) );
+//	pos_ctrl_queue = xQueueCreate( 3, sizeof(coordinate_type) );
 
 	/***** This should be renamed ****/
 	//Mutexes
@@ -68,6 +73,10 @@ void init_spi_queue( void )
   
   interface_to_control_sem = xSemaphoreCreateMutex();
   interface_pwm_sem = xSemaphoreCreateMutex();
+
+  interface_log_sem = xSemaphoreCreateMutex();
+  log_status_queue = xQueueCreate(100, sizeof(log_file_type) );
+
 }
 void add_to_enc_queue(INT8U queue_id, INT16U data)
 {

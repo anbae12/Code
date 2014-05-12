@@ -31,17 +31,30 @@
 #include "ctrl_task.h"
 #include <math.h>
 #include "controller.h"
+#include "log/log_task.h"
 /*****************************    Defines    *******************************/
 #define PI 3.14159265359
 #define TICKS_PER_DEGREE 1080/360 //I know this is 3 but this is more descriptive
 #define CTRL_TASK_FREQUENCY 6000
 
 /******************************** Variables *********************************/
-INT8U interface_to_control_byte;
+INT8U interface_to_control_byte = 0b10000000;
 
-void ctrl_debug(motor_pos target)
+void current_pos_debug(motor_pos target)
 {
-  if ( CTRL_DEBUG )
+  if ( CTRL_CURRENT_DEBUG )
+  {
+    INT16U conv;
+    conv = (INT16U) target.positionA * TICKS_PER_DEGREE;
+    PRINTF("current ticks: %d\t",conv);
+    conv = (INT16U) target.positionB * TICKS_PER_DEGREE;
+    PRINTF("current ticks: %d\n",conv);
+  }
+}
+
+void target_pos_debug(motor_pos target)
+{
+  if ( CTRL_TARGET_DEBUG )
   {
     INT16U conv;
     conv = (INT16U) target.positionA;
@@ -94,14 +107,6 @@ void ctrl_task(void *pvParameters)
  *   Function :
  *****************************************************************************/
 {
-  FP32 motor_position_A;
-  FP32 motor_position_B;
-  
-  INT16U motor_pwm_A;
-  INT16U motor_pwm_B;
-
-  INT16U target_pos_format_a;
-
   pwm_duty_cycle_type next_pwm;
 
   motor_pos current_pos;
@@ -137,11 +142,15 @@ void ctrl_task(void *pvParameters)
       break;
     }
 
-    spi_send_pwm(next_pwm);
-
+    current_pos_debug(current_pos);
     pwm_spi_debug(next_pwm);
 
-    vTaskDelayUntil(&last_wake_time, MILLI_SEC(CTRL_TASK_FREQUENCY));
+    spi_send_pwm(next_pwm);
+
+    set_status_log(next_pwm, current_pos, target_pos);
+
+    _wait(MILLI_SEC(CTRL_TASK_FREQUENCY));
+    //vTaskDelayUntil(&last_wake_time, MILLI_SEC(CTRL_TASK_FREQUENCY));
   }
 }
 
@@ -159,7 +168,7 @@ motor_pos get_target_position()
   target.positionA = atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI; //phi
   target.positionB = atan(coord.y/coord.x) * 180/PI; //theta
 
-  ctrl_debug(target);
+  target_pos_debug(target);
 
   return target;
 }
@@ -173,4 +182,18 @@ pwm_duty_cycle_type get_target_pwm()
     xSemaphoreGive(target_pwm_sem);
   }
   return target;
+}
+
+void set_status_log(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target)
+{
+  static log_file_type hans;
+
+  hans.current_pos_A = (INT16U) current.positionB * TICKS_PER_DEGREE;
+  hans.current_pos_B = (INT16U) current.positionB * TICKS_PER_DEGREE;
+  hans.target_pos_A = (INT16U) target.positionA * TICKS_PER_DEGREE;
+  hans.target_pos_B = (INT16U) target.positionB * TICKS_PER_DEGREE;
+  hans.pwm_motor_A = (INT16S) pwm.motorA;
+  hans.pwm_motor_B = (INT16S) pwm.motorB;
+
+  xQueueSend(log_status_queue,&hans,portMAX_DELAY);
 }

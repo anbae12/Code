@@ -57,7 +57,16 @@ void read_pos_task(void *pvParameters)
 
   while(1)
   {
-    coordinate = list[index++];
+    if( index < LIST_SIZE - 2 )
+    {
+      coordinate = list[index++];
+    }
+    else
+    {
+      coordinate.x = 0;
+      coordinate.y = 0;
+      coordinate.z = 0;
+    }
 
     if( xSemaphoreTake(position_ctrl_sem, portMAX_DELAY) )
     {
@@ -74,6 +83,7 @@ void read_pos_task(void *pvParameters)
     if( xSemaphoreTake(target_var_sem, portMAX_DELAY) )
     {
       target_var = coordinate;
+      PRINTF("I AM ALIVE");
       xSemaphoreGive(target_var_sem);
     }
 

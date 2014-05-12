@@ -67,19 +67,20 @@
   </Target>
   <Components path="./"/>
   <Files>
-    <File name="libs/ctrl" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source" path="" type="2"/>
-    <File name="libs/uart/uartprintf.c" path="libs/uart/uartprintf.c" type="1"/>
+    <File name="libs/ctrl" path="" type="2"/>
+    <File name="libs/log/log_task.c" path="libs/log/log_task.c" type="1"/>
     <File name="libs/configs/FreeRTOSConfig.h" path="libs/configs/FreeRTOSConfig.h" type="1"/>
+    <File name="libs/uart/uartprintf.c" path="libs/uart/uartprintf.c" type="1"/>
     <File name="libs/inc/emp_type.h" path="libs/inc/emp_type.h" type="1"/>
     <File name="libs/configs/semaphore_project.c" path="libs/configs/semaphore_project.c" type="1"/>
     <File name="libs/ctrl/controller.h" path="libs/ctrl/controller.h" type="1"/>
     <File name="libs/uart/uart.c" path="libs/uart/uart.c" type="1"/>
     <File name="libs/debug/ftoa.c" path="libs/debug/ftoa.c" type="1"/>
     <File name="libs/configs/uartcnf.h" path="libs/configs/uartcnf.h" type="1"/>
-    <File name="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" path="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" type="1"/>
-    <File name="libs/FRT_Library/FreeRTOS/Source/tasks.c" path="libs/FRT_Library/FreeRTOS/Source/tasks.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3" path="" type="2"/>
+    <File name="libs/FRT_Library/FreeRTOS/Source/tasks.c" path="libs/FRT_Library/FreeRTOS/Source/tasks.c" type="1"/>
+    <File name="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" path="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" type="1"/>
     <File name="libs/inc/cpu.c" path="libs/inc/cpu.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/common.c" path="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/common.c" type="1"/>
     <File name="libs/startup/startup_frt.c" path="libs/startup/startup_frt.c" type="1"/>
@@ -94,31 +95,32 @@
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/readme.txt" path="libs/FRT_Library/FreeRTOS/Source/portable/readme.txt" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/list.h" path="libs/FRT_Library/FreeRTOS/Source/include/list.h" type="1"/>
-    <File name="libs/read_pos" path="" type="2"/>
     <File name="libs/queue" path="" type="2"/>
+    <File name="libs/read_pos" path="" type="2"/>
     <File name="libs/interface/interface.c" path="libs/interface/interface.c" type="1"/>
     <File name="libs/queue/queue_ini.h" path="libs/queue/queue_ini.h" type="1"/>
     <File name="libs/interface" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/queue.h" path="libs/FRT_Library/FreeRTOS/Source/include/queue.h" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/StackMacros.h" path="libs/FRT_Library/FreeRTOS/Source/include/StackMacros.h" type="1"/>
+    <File name="libs/log" path="" type="2"/>
     <File name="libs/uart" path="" type="2"/>
     <File name="libs/inc/binary.h" path="libs/inc/binary.h" type="1"/>
-    <File name="libs/inc/cpu.h" path="libs/inc/cpu.h" type="1"/>
     <File name="libs/SPI" path="" type="2"/>
-    <File name="libs/inc/gpio_ini.h" path="libs/inc/gpio_ini.h" type="1"/>
+    <File name="libs/inc/cpu.h" path="libs/inc/cpu.h" type="1"/>
     <File name="libs/interface/interface.h" path="libs/interface/interface.h" type="1"/>
-    <File name="libs/read_pwm/read_pwm.h" path="libs/read_pwm/read_pwm.h" type="1"/>
+    <File name="libs/inc/gpio_ini.h" path="libs/inc/gpio_ini.h" type="1"/>
     <File name="libs/ctrl/ctrl_task.c" path="libs/ctrl/ctrl_task.c" type="1"/>
     <File name="libs/configs" path="" type="2"/>
+    <File name="libs/read_pwm/read_pwm.h" path="libs/read_pwm/read_pwm.h" type="1"/>
     <File name="libs/inc/glob_def.h" path="libs/inc/glob_def.h" type="1"/>
     <File name="libs/SPI/spi.h" path="libs/SPI/spi.h" type="1"/>
-    <File name="libs/FRT_Library/FreeRTOS/Source/include" path="" type="2"/>
     <File name="libs/configs/semaphore_project.h" path="libs/configs/semaphore_project.h" type="1"/>
+    <File name="libs/FRT_Library/FreeRTOS/Source/include" path="" type="2"/>
     <File name="libs/ctrl/controller.c" path="libs/ctrl/controller.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/MemMang/heap_2.c" path="libs/FRT_Library/FreeRTOS/Source/portable/MemMang/heap_2.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS" path="" type="2"/>
-    <File name="libs/read_pos/read_pos.h" path="libs/read_pos/read_pos.h" type="1"/>
     <File name="libs/debug/ftoa.h" path="libs/debug/ftoa.h" type="1"/>
+    <File name="libs/read_pos/read_pos.h" path="libs/read_pos/read_pos.h" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/queue.c" path="libs/FRT_Library/FreeRTOS/Source/queue.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/projdefs.h" path="libs/FRT_Library/FreeRTOS/Source/include/projdefs.h" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/croutine.h" path="libs/FRT_Library/FreeRTOS/Source/include/croutine.h" type="1"/>
@@ -131,6 +133,7 @@
     <File name="libs/inc" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/FreeRTOS.h" path="libs/FRT_Library/FreeRTOS/Source/include/FreeRTOS.h" type="1"/>
     <File name="libs/ctrl/ctrl_task.h" path="libs/ctrl/ctrl_task.h" type="1"/>
+    <File name="libs/log/log_task.h" path="libs/log/log_task.h" type="1"/>
     <File name="libs" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC" path="" type="2"/>
     <File name="libs/inc/gpio_ini.c" path="libs/inc/gpio_ini.c" type="1"/>
@@ -138,9 +141,9 @@
     <File name="libs/FRT_Library/FreeRTOS/Source/include/task.h" path="libs/FRT_Library/FreeRTOS/Source/include/task.h" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/croutine.c" path="libs/FRT_Library/FreeRTOS/Source/croutine.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" path="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" type="1"/>
-    <File name="libs/uart/uartprintf.h" path="libs/uart/uartprintf.h" type="1"/>
     <File name="libs/read_pos/read_pos.c" path="libs/read_pos/read_pos.c" type="1"/>
-    <File name="main.c" path="main.c" type="1"/>
+    <File name="libs/uart/uartprintf.h" path="libs/uart/uartprintf.h" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" path="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" type="1"/>
+    <File name="main.c" path="main.c" type="1"/>
   </Files>
 </Project>

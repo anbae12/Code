@@ -17,6 +17,7 @@
 #include "read_pwm/read_pwm.h"
 #include "ctrl/ctrl_task.h"
 #include "queue/queue_ini.h"
+#include "log/log_task.h"
 
 //#include "debug/ftoa.h"
 
@@ -65,8 +66,6 @@ void interface_task(void *pvParameters)
 {
   char mirror_string[UART_QUEUE_LEN] = {0};
 
-  char tempstring[UART_QUEUE_LEN] = {0};
-
   INT8U coord[COORDINATE_LEN] = {0};
 
   UARTprintf("Program started.\n");
@@ -100,10 +99,13 @@ void interface_task(void *pvParameters)
         //set ctrl_bit
         UARTprintf("set ctrl bit\n");
       }
-      else if (!strcmp(UI_CMD_READ,mirror_string))
+      else if (!strcmp(UI_CMD_READ,mirror_string)) /*         <===   READ LOG  <===              */
       {
-        //print log
-        UARTprintf("print log\n");
+        if(xSemaphoreTake(interface_log_sem, portMAX_DELAY))
+        {
+          print_log(log_global);
+          xSemaphoreGive(interface_log_sem);
+        }
       }
       else if (!strcmp(UI_CMD_OPEN_LOOP,mirror_string))
       {
