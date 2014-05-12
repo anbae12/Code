@@ -48,8 +48,8 @@ INT16S pan_controller(motor_pos target_pos, motor_pos current_pos)
 {
   // Jeg vil gerne lade disse afhænge af SAMPLE_BUFFER_SIZE, 
   // men så ved jeg ikke hvordan de skal initialiseres til 0
-  static FP32 input[5] = {0, 0, 0, 0, 0};
-  static FP32 output[5] = {0, 0, 0, 0, 0};
+  static FP32 input[5];
+  static FP32 output[5];
   FP32 a_coef[5] = {0, 0, 0, 0, 0}; // a[0] skal være = 0.
   FP32 b_coef[5] = {1, 0, 0.03, 0.01, 0};
   
@@ -75,6 +75,36 @@ INT16S pan_controller(motor_pos target_pos, motor_pos current_pos)
   
   return (int) output[0];
 }
+
+INT16S pid_parallel_controller(motor_pos target_pos, motor_pos current_pos)
+{
+  // Variables
+  static FP32 previous_error = 0;
+  static FP32 integral = 0;
+  FP32 derivative;
+  FP32 error;
+  FP32 return_value;
+  
+  FP32 dt = 0.001667;  // Insert sample period here xD
+  // Coefficients: 
+  FP32 Kp = 1;
+  FP32 Ki = 0;
+  FP32 Kd = 0; 
+  
+  
+  // Pan controller: 
+  error = target_pos.positionA - current_pos.positionA;;
+  
+  integral += error * dt;
+  derivative = (error - previous_error)/dt;
+  
+  return_value = Kp*error + Ki*integral + Kd*derivative; 
+  previous_error = error;
+  
+  return (INT16S) return_value;
+  
+}
+
 
 
 pwm_duty_cycle_type test_controller(motor_pos target_pos, motor_pos current_pos)
