@@ -46,10 +46,10 @@ INT16S pan_controller(motor_pos target_pos, motor_pos current_pos)
  *   Function : Implements the pan controller.
  ******************************************************************************/
 {
-  // Jeg vil gerne lade disse afhænge af SAMPLE_BUFFER_SIZE, 
-  // men så ved jeg ikke hvordan de skal initialiseres til 0
+  // Initializes to 0:
   static FP32 input[5];
   static FP32 output[5];
+  
   FP32 a_coef[5] = {0, 0, 0, 0, 0}; // a[0] skal være = 0.
   FP32 b_coef[5] = {1, 0, 0.03, 0.01, 0};
   
