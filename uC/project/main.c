@@ -71,18 +71,22 @@ int main(void)
 
   init_hardware();
   init_tasks_presched();
+  portBASE_TYPE return_val = pdTRUE;
 
-  xTaskCreate( uart_send_task, "uart send", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
-  xTaskCreate( uart_receive_task, "uart receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
-  xTaskCreate( interface_task, "interface", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
 
-//  xTaskCreate( spi_receive_task, "Spi_receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-//  xTaskCreate( spi_test_task, "SPI_test", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-  xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-  xTaskCreate( read_pos_task, "read position", USERTASK_STACK_SIZE*8, NULL, LOW_PRIO, NULL);
-  xTaskCreate( read_pwm_task, "read pwm", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-  xTaskCreate( log_task, "log task", USERTASK_STACK_SIZE, NULL, HIGH_PRIO, NULL);
+  return_val &= xTaskCreate( uart_send_task, "uart send", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
+  return_val &= xTaskCreate( uart_receive_task, "uart receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
+  return_val &= xTaskCreate( interface_task, "interface", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
 
+  return_val &= xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+  return_val &= xTaskCreate( read_pos_task, "read position", USERTASK_STACK_SIZE*15, NULL, LOW_PRIO, NULL);
+  return_val &= xTaskCreate( log_task, "log task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+  return_val &= xTaskCreate( read_pwm_task, "read pwm", USERTASK_STACK_SIZE*11, NULL, HIGH_PRIO, NULL);
+
+  if(! return_val == pdTRUE)
+  {
+    uart_char_put_blocking('F');
+  }
   vTaskStartScheduler();
 
   return 1;

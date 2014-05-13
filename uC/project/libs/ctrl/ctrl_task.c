@@ -35,7 +35,7 @@
 /*****************************    Defines    *******************************/
 #define PI 3.14159265359
 #define TICKS_PER_DEGREE 1080/360 //I know this is 3 but this is more descriptive
-#define CTRL_TASK_FREQUENCY 200
+#define CTRL_TASK_FREQUENCY 1000
 
 /******************************** Variables *********************************/
 INT8U interface_to_control_byte = 0b10000000;
@@ -50,6 +50,18 @@ void current_pos_debug(motor_pos target)
     conv = (INT16U) target.positionB * TICKS_PER_DEGREE;
     PRINTF("current ticks: %d\n",conv);
   }
+}
+
+void target_pwm_debug(pwm_duty_cycle_type target)
+{
+  if ( TARGET_PWM_DEBUG )
+  {
+      INT16S conv;
+      conv = (INT16S) target.motorA;
+      PRINTF("target pwm A: %d\t",conv);
+      conv = (INT16S) target.motorB;
+      PRINTF("target pwm B: %d\n",conv);
+    }
 }
 
 void target_pos_debug(motor_pos target)
@@ -190,6 +202,7 @@ pwm_duty_cycle_type get_target_pwm()
     target = target_pwm;
     xSemaphoreGive(target_pwm_sem);
   }
+  target_pwm_debug(target);
   return target;
 }
 
