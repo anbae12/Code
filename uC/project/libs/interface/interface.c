@@ -127,9 +127,6 @@ void interface_task(void *pvParameters)
           interface_pwm = invalid_pwm;
           xSemaphoreGive(interface_pwm_sem);
         }
-        //test open loop
-        UARTprintf("Ramp speed up\n");
-        UARTprintf("Ramp speed down\n");
       }
       else if(!strcmp(UI_CMD_RESET,mirror_string))
       {
@@ -195,7 +192,6 @@ void interface_task(void *pvParameters)
           {
             interface_pwm.motorA = 0;
           }
-
           xSemaphoreGive(interface_pwm_sem);
         }
       }

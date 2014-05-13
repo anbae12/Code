@@ -14,36 +14,37 @@
  * 140408  NI   Module created.
  *
  *****************************************************************************/
-#define READ_PWM_TASK_CYCLE 6000
+#define READ_PWM_TASK_CYCLE 1000
 
 /***************************** Include files *******************************/
 
+#include "configs/project_settings.h"
 #include "read_pwm.h"
 #include "queue/queue_ini.h"
-#include "configs/project_settings.h"
 
 /******************************** Variables *********************************/
 pwm_duty_cycle_type interface_pwm;
 pwm_duty_cycle_type target_pwm;
 
 /*****************************   Functions   *******************************/
-
 void read_pwm_task(void *pvParameters)
 {
+
+  PRINTF("read_pwm has started\n");
+
   INT8U index = 0;
-  pwm_duty_cycle_type pwm = {.motorA = 100, .motorB = 100};
+  pwm_duty_cycle_type pwm = {.motorA = 0, .motorB = 0};
   pwm_duty_cycle_type list[PWM_LIST_SIZE];
   
   init_pwm_list(list);
 
-  //for timing
+  // for timing
   portTickType last_wake_time;
 
   last_wake_time = xTaskGetTickCount();
-
   while(1)
   {
-    if( index < PWM_LIST_SIZE - 1 )
+    if( index < PWM_LIST_SIZE )
     {
       pwm = list[index++];
     }
@@ -69,8 +70,8 @@ void read_pwm_task(void *pvParameters)
       target_pwm = pwm;
       xSemaphoreGive(target_pwm_sem);
     }
-    
-    vTaskDelayUntil(&last_wake_time, MILLI_SEC(READ_PWM_TASK_CYCLE));
+
+   vTaskDelayUntil(&last_wake_time, MILLI_SEC(READ_PWM_TASK_CYCLE));
   }
 }
 
@@ -80,9 +81,7 @@ void init_pwm_list( pwm_duty_cycle_type final_list[PWM_LIST_SIZE] )
   INT16U i;
   INT8U j = 0;
   
-  FP32 matlab_liste[MATLAB_PWM_LIST_SIZE] = {
-  //paste matlab generated list here... I can handle FP32
-  //if we find that we need another data type we should correct this in the struct definition as well..
+  INT8U matlab_liste[MATLAB_PWM_LIST_SIZE] = {
       0,0,
       1,0,
       2,0,
@@ -188,7 +187,7 @@ void init_pwm_list( pwm_duty_cycle_type final_list[PWM_LIST_SIZE] )
   
   for( i = 0; i < MATLAB_PWM_LIST_SIZE; i++) 
   {
-    if( ( i % 2 ) == 0 ) final_list[j].motorA = matlab_liste[i];
-    if( ( i % 2 ) == 1 ) final_list[j++].motorB = matlab_liste[i];
+    if( ( i % 2 ) == 0 ) final_list[j].motorA = (INT16S) matlab_liste[i];
+    if( ( i % 2 ) == 1 ) final_list[j++].motorB = (INT16S) matlab_liste[i];
   }
 }

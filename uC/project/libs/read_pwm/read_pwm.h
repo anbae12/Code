@@ -26,7 +26,6 @@ extern pwm_duty_cycle_type interface_pwm;
 extern pwm_duty_cycle_type target_pwm;
 
 /*****************************   Functions   *******************************/
-
 extern void read_pwm_task(void *pvParameters);
 /*****************************************************************************
  * Input:       -

@@ -14,7 +14,7 @@
  * 140512  NI   Module created.
  *
  *****************************************************************************/
-#define LOG_TASK_CYCLE 500
+#define LOG_TASK_CYCLE 1000
 /***************************** Include files *******************************/
 
 #include "log_task.h"
@@ -38,7 +38,7 @@ void log_task(void *pvParameters)
     reset_log(log_global);
     xSemaphoreGive(interface_log_sem);
   }
-  PRINTF("log task is started");
+  PRINTF("log task is started\n");
   while(1)
   {    
     if( xSemaphoreTake(interface_log_sem, portMAX_DELAY) )
