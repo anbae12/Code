@@ -16,8 +16,8 @@
 #include "spi/spi.h"
 
 /*****************************    Defines    *******************************/
-#define PWM_LIST_SIZE 5
-#define MATLAB_PWM_LIST_SIZE 15 //3 times LIST_SIZE
+#define PWM_LIST_SIZE 101
+#define MATLAB_PWM_LIST_SIZE (PWM_LIST_SIZE*2) //2 times LIST_SIZE
 
 /*****************************   Constants   *******************************/
 static pwm_duty_cycle_type invalid_pwm = {.motorA = 1981, .motorB = 1981};
