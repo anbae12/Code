@@ -15,8 +15,8 @@
 #include "FRT_Library/FreeRTOS/Source/include/task.h"
 
 /*****************************    Defines    *******************************/
-#define LIST_SIZE 100
-#define MATLAB_LIST_SIZE 15 //3 times LIST_SIZE
+#define LIST_SIZE 92
+#define MATLAB_LIST_SIZE (LIST_SIZE*3)
 
 typedef struct coordinate_type {
   FP32 x;
