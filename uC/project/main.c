@@ -69,11 +69,9 @@ static void init_tasks_presched()
 
 int main(void)
 {
-
   init_hardware();
   init_tasks_presched();
   portBASE_TYPE return_val = pdTRUE;
-
 
   return_val &= xTaskCreate( uart_send_task, "uart send", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
   return_val &= xTaskCreate( uart_receive_task, "uart receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
@@ -86,15 +84,15 @@ int main(void)
 
   if( return_val != pdTRUE )
   {
-    uart_char_put_blocking('F');
-    uart_char_put_blocking('U');
-    uart_char_put_blocking('C');
-    uart_char_put_blocking('K');
+    uart_char_put_blocking('E');
+    uart_char_put_blocking('R');
+    uart_char_put_blocking('R');
+    uart_char_put_blocking('O');
+    uart_char_put_blocking('R');
   }
   vTaskStartScheduler();
 
   return 1;
-
 }
 
 char putChar(char input)//in case of stack overflow
