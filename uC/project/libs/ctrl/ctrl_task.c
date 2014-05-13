@@ -35,7 +35,7 @@
 /*****************************    Defines    *******************************/
 #define PI 3.14159265359
 #define TICKS_PER_DEGREE 1080/360 //I know this is 3 but this is more descriptive
-#define CTRL_TASK_FREQUENCY 6000
+#define CTRL_TASK_FREQUENCY 200
 
 /******************************** Variables *********************************/
 INT8U interface_to_control_byte = 0b10000000;
@@ -143,14 +143,15 @@ void ctrl_task(void *pvParameters)
     }
 
     current_pos_debug(current_pos);
+
     pwm_spi_debug(next_pwm);
 
     spi_send_pwm(next_pwm);
 
     set_status_log(next_pwm, current_pos, target_pos);
 
-    _wait(MILLI_SEC(CTRL_TASK_FREQUENCY));
-    //vTaskDelayUntil(&last_wake_time, MILLI_SEC(CTRL_TASK_FREQUENCY));
+    //_wait(MILLI_SEC(CTRL_TASK_FREQUENCY));
+    vTaskDelayUntil(&last_wake_time, MILLI_SEC(CTRL_TASK_FREQUENCY));
   }
 }
 
@@ -165,9 +166,17 @@ motor_pos get_target_position()
     xSemaphoreGive(target_var_sem);
   }
 
-  target.positionA = atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI; //phi
-  target.positionB = atan(coord.y/coord.x) * 180/PI; //theta
+  target.positionA = 90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ); //phi
+  target.positionB = ( atan(coord.y/coord.x) * 180/PI ); //theta
 
+  if(target.positionA < 0)
+  {
+    target.positionA += 360;
+  }
+  if(target.positionB < 0)
+  {
+    target.positionB += 360;
+  }
   target_pos_debug(target);
 
   return target;
@@ -188,7 +197,7 @@ void set_status_log(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target
 {
   static log_file_type hans;
 
-  hans.current_pos_A = (INT16U) current.positionB * TICKS_PER_DEGREE;
+  hans.current_pos_A = (INT16U) current.positionA * TICKS_PER_DEGREE;
   hans.current_pos_B = (INT16U) current.positionB * TICKS_PER_DEGREE;
   hans.target_pos_A = (INT16U) target.positionA * TICKS_PER_DEGREE;
   hans.target_pos_B = (INT16U) target.positionB * TICKS_PER_DEGREE;

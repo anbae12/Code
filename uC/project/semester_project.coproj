@@ -78,8 +78,8 @@
     <File name="libs/uart/uart.c" path="libs/uart/uart.c" type="1"/>
     <File name="libs/debug/ftoa.c" path="libs/debug/ftoa.c" type="1"/>
     <File name="libs/configs/uartcnf.h" path="libs/configs/uartcnf.h" type="1"/>
-    <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/tasks.c" path="libs/FRT_Library/FreeRTOS/Source/tasks.c" type="1"/>
+    <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" path="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" type="1"/>
     <File name="libs/inc/cpu.c" path="libs/inc/cpu.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/common.c" path="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/common.c" type="1"/>
@@ -134,8 +134,8 @@
     <File name="libs/FRT_Library/FreeRTOS/Source/include/FreeRTOS.h" path="libs/FRT_Library/FreeRTOS/Source/include/FreeRTOS.h" type="1"/>
     <File name="libs/ctrl/ctrl_task.h" path="libs/ctrl/ctrl_task.h" type="1"/>
     <File name="libs/log/log_task.h" path="libs/log/log_task.h" type="1"/>
-    <File name="libs" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC" path="" type="2"/>
+    <File name="libs" path="" type="2"/>
     <File name="libs/inc/gpio_ini.c" path="libs/inc/gpio_ini.c" type="1"/>
     <File name="libs/startup" path="" type="2"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/include/task.h" path="libs/FRT_Library/FreeRTOS/Source/include/task.h" type="1"/>

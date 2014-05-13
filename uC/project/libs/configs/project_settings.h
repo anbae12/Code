@@ -14,7 +14,7 @@
 /********************************* Defines **********************************/
 //------------- Helper Macros -------------
 #define _wait(no_of_ticks)                      vTaskDelay(no_of_ticks)
-#define MILLI_SEC(ms)                           (ms/portTICK_RATE_MS)
+#define MILLI_SEC(ms)                           ((ms*configTICK_RATE_HZ)/1000)
 #define CEIL_DIV(x, y)                          ((x) + (y) - 1) / (y)
 #define PRINTF                                  UARTprintf
 #define PUTCHAR                                 uart_direct_push_char

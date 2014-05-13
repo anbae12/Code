@@ -13,7 +13,7 @@
 #include "inc/emp_type.h"
 
 /*****************************    Defines    *******************************/
-#define MAX_LOG_ENTRIES 150
+#define MAX_LOG_ENTRIES 6 //1 is reserved to status so 6 means 5 entries
 
 /******************************** Variables *********************************/
 typedef struct log_file_type {
@@ -21,8 +21,8 @@ typedef struct log_file_type {
   INT16U current_pos_B;
   INT16U target_pos_A;
   INT16U target_pos_B;
-  INT16U pwm_motor_A;
-  INT16U pwm_motor_B;
+  INT16S pwm_motor_A;
+  INT16S pwm_motor_B;
 } log_file_type;
 
 extern log_file_type log_global[MAX_LOG_ENTRIES];

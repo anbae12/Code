@@ -14,7 +14,7 @@
  * 140512  NI   Module created.
  *
  *****************************************************************************/
-#define LOG_TASK_CYCLE 9001
+#define LOG_TASK_CYCLE 500
 /***************************** Include files *******************************/
 
 #include "log_task.h"
@@ -25,50 +25,53 @@
 log_file_type log_global[MAX_LOG_ENTRIES];
 static log_file_type log_has_been_printed = {1, 2, 3, 4, 5, 6}; 
 static log_file_type log_has_been_reset   = {0, 0, 0, 0, 0, 0};
+static log_file_type log_can_be_printed   = {6, 5, 4, 3, 2, 1};
 
 /*****************************   Functions   *******************************/
 
 void log_task(void *pvParameters)
 {
-  INT8U index = 0;
+  INT8U index = 1;
 
   if( xSemaphoreTake(interface_log_sem, portMAX_DELAY) )
   {
     reset_log(log_global);
     xSemaphoreGive(interface_log_sem);
   }
+  PRINTF("log task is started");
   while(1)
   {    
     if( xSemaphoreTake(interface_log_sem, portMAX_DELAY) )
     {
-      if( log_global[MAX_LOG_ENTRIES - 1].current_pos_A == 0 &&
-          log_global[MAX_LOG_ENTRIES - 1].current_pos_B == 0 &&
-          log_global[MAX_LOG_ENTRIES - 1].target_pos_A == 0 &&
-          log_global[MAX_LOG_ENTRIES - 1].target_pos_B == 0 &&
-          log_global[MAX_LOG_ENTRIES - 1].pwm_motor_A == 0 &&
-          log_global[MAX_LOG_ENTRIES - 1].pwm_motor_B == 0 )
+      if( log_global[0].current_pos_A == 0 &&
+          log_global[0].current_pos_B == 0 &&
+          log_global[0].target_pos_A == 0 &&
+          log_global[0].target_pos_B == 0 &&
+          log_global[0].pwm_motor_A == 0 &&
+          log_global[0].pwm_motor_B == 0 )
       {
         while( uxQueueMessagesWaiting(log_status_queue) > 0 )
         {
-          if(index >= ( MAX_LOG_ENTRIES - 1 ) )
+          if(index >= ( MAX_LOG_ENTRIES ) )
           { 
-            PRINTF("FULL BUFFER\n");
+            log_global[0] = log_can_be_printed;
             break;
           }
           else if( xQueueReceive(log_status_queue, &log_global[index], portMAX_DELAY) )
           {
+            //PRINTF("GOT MESSAGE\n");
             index++;
           }
         }
       }
-      else if(  log_global[MAX_LOG_ENTRIES - 1].current_pos_A == log_has_been_printed.current_pos_A &&
-                log_global[MAX_LOG_ENTRIES - 1].current_pos_B == log_has_been_printed.current_pos_B &&
-                log_global[MAX_LOG_ENTRIES - 1].target_pos_A  == log_has_been_printed.target_pos_A  &&
-                log_global[MAX_LOG_ENTRIES - 1].target_pos_B  == log_has_been_printed.target_pos_B  &&
-                log_global[MAX_LOG_ENTRIES - 1].pwm_motor_A   == log_has_been_printed.pwm_motor_A   &&
-                log_global[MAX_LOG_ENTRIES - 1].pwm_motor_B   == log_has_been_printed.pwm_motor_B )
+      else if(  log_global[0].current_pos_A == log_has_been_printed.current_pos_A &&
+                log_global[0].current_pos_B == log_has_been_printed.current_pos_B &&
+                log_global[0].target_pos_A  == log_has_been_printed.target_pos_A  &&
+                log_global[0].target_pos_B  == log_has_been_printed.target_pos_B  &&
+                log_global[0].pwm_motor_A   == log_has_been_printed.pwm_motor_A   &&
+                log_global[0].pwm_motor_B   == log_has_been_printed.pwm_motor_B )
       {
-        index = 0;
+        index = 1;
         reset_log(log_global);
       }
       xSemaphoreGive(interface_log_sem);
@@ -81,28 +84,27 @@ void print_log(log_file_type log[MAX_LOG_ENTRIES])
 {
   INT8U x;
 
-  PRINTF(
-  "Target A:\t"
-  "Target B:\t"
-  "Position A:\t"
-  "Position B:\t"
-  "PWM A:\t"
-  "PWM B:\n"
-  );
-  
-  for(x = 0; x < MAX_LOG_ENTRIES - 1; x++)
+  if( ( log_global[0].current_pos_A == log_can_be_printed.current_pos_A &&
+        log_global[0].current_pos_B == log_can_be_printed.current_pos_B &&
+        log_global[0].target_pos_A  == log_can_be_printed.target_pos_A  &&
+        log_global[0].target_pos_B  == log_can_be_printed.target_pos_B  &&
+        log_global[0].pwm_motor_A   == log_can_be_printed.pwm_motor_A   &&
+        log_global[0].pwm_motor_B   == log_can_be_printed.pwm_motor_B ) )
   {
-    PRINTF(
-    ", %u, %u, %u, %u, %u, %u",
-    log[x].current_pos_A,
-    log[x].current_pos_B,
-    log[x].target_pos_A,
-    log[x].target_pos_B,
-    log[x].pwm_motor_A,
-    log[x].pwm_motor_B
-    );
+    for(x = 1; x < MAX_LOG_ENTRIES; x++)
+    {
+      PRINTF(
+      "%u, \t%u, \t%u, \t%u, \t%d, \t%d\n",
+      log[x].current_pos_A,
+      log[x].current_pos_B,
+      log[x].target_pos_A,
+      log[x].target_pos_B,
+      log[x].pwm_motor_A,
+      log[x].pwm_motor_B
+      );
+    }
+    log[0] = log_has_been_printed; 
   }
-  log[MAX_LOG_ENTRIES - 1] = log_has_been_printed; 
 }
 
 void reset_log(log_file_type log[MAX_LOG_ENTRIES] )

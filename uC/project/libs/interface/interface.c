@@ -67,6 +67,7 @@ void interface_task(void *pvParameters)
   char mirror_string[UART_QUEUE_LEN] = {0};
 
   INT8U coord[COORDINATE_LEN] = {0};
+  INT8U read_log = FALSE;
 
   UARTprintf("Program started.\n");
   interface_display_commands();
@@ -101,10 +102,17 @@ void interface_task(void *pvParameters)
       }
       else if (!strcmp(UI_CMD_READ,mirror_string)) /*         <===   READ LOG  <===              */
       {
-        if(xSemaphoreTake(interface_log_sem, portMAX_DELAY))
+        read_log ^= TRUE;
+        if( read_log )
         {
-          print_log(log_global);
-          xSemaphoreGive(interface_log_sem);
+          PRINTF(
+              "Target A:\t"
+              "Target B:\t"
+              "Position A:\t"
+              "Position B:\t"
+              "PWM A:\t"
+              "PWM B:\n"
+          );
         }
       }
       else if (!strcmp(UI_CMD_OPEN_LOOP,mirror_string))
@@ -190,7 +198,6 @@ void interface_task(void *pvParameters)
 
           xSemaphoreGive(interface_pwm_sem);
         }
-
       }
       else
       {
@@ -198,8 +205,16 @@ void interface_task(void *pvParameters)
         interface_display_commands();
       }
     }
-    _wait(MILLI_SEC(10));
+    else if( read_log == TRUE )
+    {
+      if(xSemaphoreTake(interface_log_sem, portMAX_DELAY))
+      {
+        print_log(log_global);
+        xSemaphoreGive(interface_log_sem);
+      }
+    }
   }
+  _wait(MILLI_SEC(10));
 }
 
 void interface_display_commands()
