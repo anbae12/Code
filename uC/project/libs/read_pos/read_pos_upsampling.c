@@ -21,6 +21,7 @@
 #include "read_pos_upsampling.h"
 #include "queue/queue_ini.h"
 #include "configs/project_settings.h"
+#include "matlab_coor_list.h"
 
 /******************************** Variables *********************************/
 coordinate_type interface_coordinate;
@@ -117,17 +118,17 @@ coordinate_type fir_filter(coordinate_type new_sample)
 // FIR filter using coordinate type. 
 {
   float FIRCoef[Ntap] = { 
-        0.08190343120328541500,
-        0.08717042789250634100,
-        0.09141728478629804200,
-        0.09453344515685510600,
-        0.09643686561441695800,
-        0.09707709069327609400,
-        0.09643686561441695800,
-        0.09453344515685510600,
-        0.09141728478629804200,
-        0.08717042789250634100,
-        0.08190343120328541500
+        0.071437628886109203,
+        0.082395767953896401,
+        0.091709122473764906,
+        0.098810890401630894,
+        0.10325943087171,
+        0.10477431882577699,
+        0.10325943087171,
+        0.098810890401630894,
+        0.091709122473764906,
+        0.082395767953896401,
+        0.071437628886109203
   };
   static coordinate_type input[Ntap]; //input samples
   coordinate_type output = 0;          //output sample

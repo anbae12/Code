@@ -1,5 +1,5 @@
 #pragma once
-static const coordinate_type coor_list[PWM_LIST_SIZE] =
+static const coordinate_type coor_list[MATLAB_COOR_LIST_SIZE] =
 {
   {-13.7,-19.3,2.6},
   {-13.856,-18.752,2.6899},
