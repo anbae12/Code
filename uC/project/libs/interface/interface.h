@@ -33,7 +33,7 @@ void interface_display_commands();
 /*****************************************************************************
  * Input:       -
  * Output:      -
- * Function:	Display the commands, that the manager can use.
+ * Function:	Display the recognized interface commands.
  ****************************************************************************/
 
 

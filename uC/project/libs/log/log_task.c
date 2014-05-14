@@ -64,11 +64,11 @@ void log_task(void *pvParameters)
         }
       }
       else if(  log_global[0].current_pos_A == log_has_been_printed.current_pos_A &&
-                log_global[0].current_pos_B == log_has_been_printed.current_pos_B &&
-                log_global[0].target_pos_A  == log_has_been_printed.target_pos_A  &&
-                log_global[0].target_pos_B  == log_has_been_printed.target_pos_B  &&
-                log_global[0].pwm_motor_A   == log_has_been_printed.pwm_motor_A   &&
-                log_global[0].pwm_motor_B   == log_has_been_printed.pwm_motor_B )
+          log_global[0].current_pos_B == log_has_been_printed.current_pos_B &&
+          log_global[0].target_pos_A  == log_has_been_printed.target_pos_A  &&
+          log_global[0].target_pos_B  == log_has_been_printed.target_pos_B  &&
+          log_global[0].pwm_motor_A   == log_has_been_printed.pwm_motor_A   &&
+          log_global[0].pwm_motor_B   == log_has_been_printed.pwm_motor_B )
       {
         index = 1;
         reset_log(log_global);
@@ -84,22 +84,22 @@ void print_log(log_file_type log[MAX_LOG_ENTRIES])
   INT8U x;
 
   if( ( log_global[0].current_pos_A == log_can_be_printed.current_pos_A &&
-        log_global[0].current_pos_B == log_can_be_printed.current_pos_B &&
-        log_global[0].target_pos_A  == log_can_be_printed.target_pos_A  &&
-        log_global[0].target_pos_B  == log_can_be_printed.target_pos_B  &&
-        log_global[0].pwm_motor_A   == log_can_be_printed.pwm_motor_A   &&
-        log_global[0].pwm_motor_B   == log_can_be_printed.pwm_motor_B ) )
+      log_global[0].current_pos_B == log_can_be_printed.current_pos_B &&
+      log_global[0].target_pos_A  == log_can_be_printed.target_pos_A  &&
+      log_global[0].target_pos_B  == log_can_be_printed.target_pos_B  &&
+      log_global[0].pwm_motor_A   == log_can_be_printed.pwm_motor_A   &&
+      log_global[0].pwm_motor_B   == log_can_be_printed.pwm_motor_B ) )
   {
     for(x = 1; x < MAX_LOG_ENTRIES; x++)
     {
       PRINTF(
-      "%u, \t\t%u, \t\t%u, \t\t%u, \t\t%d, \t\t%d\n",
-      log[x].current_pos_A,
-      log[x].current_pos_B,
-      log[x].target_pos_A,
-      log[x].target_pos_B,
-      log[x].pwm_motor_A,
-      log[x].pwm_motor_B
+          "%u, \t\t%u, \t\t%u, \t\t%u, \t\t%d, \t\t%d\n",
+          log[x].current_pos_A,
+          log[x].current_pos_B,
+          log[x].target_pos_A,
+          log[x].target_pos_B,
+          log[x].pwm_motor_A,
+          log[x].pwm_motor_B
       );
     }
     log[0] = log_has_been_printed; 
@@ -121,7 +121,7 @@ void display_log_format(void)
 void reset_log(log_file_type log[MAX_LOG_ENTRIES] )
 {
   INT8U x;
-  
+
   for(x = 0; x < MAX_LOG_ENTRIES; x++)
   {
     log[x].current_pos_A = 0;

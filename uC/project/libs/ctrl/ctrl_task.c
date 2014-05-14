@@ -58,12 +58,12 @@ void target_pwm_debug(pwm_duty_cycle_type target)
 {
   if ( TARGET_PWM_DEBUG )
   {
-      INT16S conv;
-      conv = (INT16S) target.motorA;
-      PRINTF("target pwm A: %d\t",conv);
-      conv = (INT16S) target.motorB;
-      PRINTF("target pwm B: %d\n",conv);
-    }
+    INT16S conv;
+    conv = (INT16S) target.motorA;
+    PRINTF("target pwm A: %d\t",conv);
+    conv = (INT16S) target.motorB;
+    PRINTF("target pwm B: %d\n",conv);
+  }
 }
 
 void target_pos_debug(motor_pos target)
@@ -134,7 +134,7 @@ void ctrl_task(void *pvParameters)
   INT8U control_state;
   while(1)
   {
-
+    turn_on_red(); //to test timing
     control_state = interface_input();
     current_pos = spi_read_encoders();
     switch(control_state)
@@ -153,6 +153,7 @@ void ctrl_task(void *pvParameters)
       funny_business++;
       if(funny_business % CTRL_PER_PWM == 0)
       {
+        funny_business = 0;
         next_pwm = get_target_pwm();
       }
       break;
@@ -161,14 +162,14 @@ void ctrl_task(void *pvParameters)
     }
 
     current_pos_debug(current_pos);
-
     pwm_spi_debug(next_pwm);
+
 
     spi_send_pwm(next_pwm);
 
     set_status_log(next_pwm, current_pos, target_pos);
 
-    //_wait(MILLI_SEC(CTRL_TASK_CYCLE));
+    turn_off_red(); //to test timing
     vTaskDelayUntil(&last_wake_time, CTRL_TASK_CYCLE);
   }
 }
@@ -206,7 +207,7 @@ pwm_duty_cycle_type get_target_pwm()
 
   if( we_use_read_task == pdPASS )
   {
-//    PRINTF("TASK IS DOING THIS\n");
+    //    PRINTF("TASK IS DOING THIS\n");
     if( xSemaphoreTake(target_pwm_sem, 1) )
     {
       pwm = target_pwm;
@@ -216,7 +217,7 @@ pwm_duty_cycle_type get_target_pwm()
   }
   else
   {
-//    PRINTF("LOOK MOM... NO TASK\n");
+    //    PRINTF("LOOK MOM... NO TASK\n");
     pwm = read_pwm_function();
   }
   return pwm;
@@ -233,5 +234,5 @@ void set_status_log(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target
   hans.pwm_motor_A = (INT16S) pwm.motorA;
   hans.pwm_motor_B = (INT16S) pwm.motorB;
 
-  xQueueSend(log_status_queue,&hans,portMAX_DELAY);
+  xQueueSend(log_status_queue,&hans,0);
 }

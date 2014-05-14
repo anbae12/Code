@@ -46,10 +46,10 @@
 
 /* Task timings hvis de skal samles */
 /* ms er fjernet... */
-#define CTRL_TASK_CYCLE (MILLI_SEC(30))       //ctrl_task.c
-#define READ_PWM_TASK_CYCLE (MILLI_SEC(30))   //read_pwm.c
+#define CTRL_TASK_CYCLE      (MILLI_SEC(1000))       //ctrl_task.c
+#define READ_PWM_TASK_CYCLE  (MILLI_SEC(70))   //read_pwm.c
 #define INTERFACE_TASK_CYCLE (MILLI_SEC(10))  //interface.c
-#define LOG_TASK_CYCLE  (MILLI_SEC(10))       //log_task.c
+#define LOG_TASK_CYCLE       (MILLI_SEC(10))       //log_task.c
 
 
 //for at kun køre PWM og POS hvert x'nde gang

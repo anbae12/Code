@@ -39,6 +39,8 @@
 #include "read_pos/read_pos.h"
 #include "log/log_task.h"
 
+#include "inc/gpio_ini.h"
+
 /*****************************    Defines    *******************************/
 
 static void init_hardware(void)
@@ -53,6 +55,7 @@ static void init_hardware(void)
   clk_system_init();
   uart0_init();
   spi_init();
+  init_gpio();
   enable_global_int();
 }
 static void init_tasks_presched()
@@ -67,6 +70,7 @@ static void init_tasks_presched()
   init_uart_receive_task();
   init_uart_send_task();
   init_sem_and_queues();
+  led_ryg(0,0,0);
 }
 
 int main(void)
@@ -88,8 +92,6 @@ int main(void)
   {
     uart_char_put_blocking('E');
     uart_char_put_blocking('R');
-    uart_char_put_blocking('R');
-    uart_char_put_blocking('O');
     uart_char_put_blocking('R');
   }
   vTaskStartScheduler();
