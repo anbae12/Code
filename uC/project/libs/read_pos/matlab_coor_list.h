@@ -93,4 +93,4 @@ static const coordinate_type coor_list[MATLAB_COOR_LIST_SIZE] =
   {-27.554,29.429,-0.085081},
   {-27.71,29.976,-0.238},
   {-27.866,30.524,-0.39365}
-}
+};

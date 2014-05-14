@@ -45,12 +45,11 @@ coordinate_type target_var;
 
 /*****************************   Functions   *******************************/
 
-extern void read_pos_debug(coordinate_type coordinate); //strictly for debugging purposes... This is why it is not mentioned anywhere else...
+extern void read_pos_debug2(coordinate_type coordinate); //strictly for debugging purposes... This is why it is not mentioned anywhere else...
 
-extern coordinat_type read_pos(INT8U reset);
+extern coordinate_type read_pos_kart(INT8U reset);
 extern coordinate_type fir_filter(coordinate_type new_sample);
 
-extern void init_list( coordinate_type final_list[LIST_SIZE] );
 
 
 

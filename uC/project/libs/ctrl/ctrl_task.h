@@ -51,5 +51,6 @@ extern void ctrl_task();
  *              Put position into status
  ****************************************************************************/
 extern motor_pos get_target_position();
+extern motor_pos coordinate_transform(coordinate_type);
 extern pwm_duty_cycle_type get_target_pwm();
 /****************************** End Of Module *******************************/

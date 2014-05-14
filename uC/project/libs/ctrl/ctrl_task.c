@@ -26,8 +26,9 @@
 #include "configs/project_settings.h"
 #include "SPI/spi.h"
 #include "queue/queue_ini.h"
-#include "read_pos/read_pos.h"
+//#include "read_pos/read_pos.h"
 #include "read_pwm/read_pwm.h"
+#include "read_pos/read_pos_upsampling.h"
 #include "ctrl_task.h"
 #include <math.h>
 #include "controller.h"
@@ -122,7 +123,7 @@ void ctrl_task(void *pvParameters)
 
   motor_pos current_pos;
   motor_pos target_pos;
-
+  coordinate_type target_pos_kart;
   //for timing
   portTickType last_wake_time;
 
@@ -141,8 +142,10 @@ void ctrl_task(void *pvParameters)
       next_pwm.motorB = 0;
       break;
     case CTRL_POS_MODE:
-      target_pos = get_target_position();
-      next_pwm = test_controller(target_pos, current_pos);
+      //target_pos = get_target_position();
+      target_pos_kart = read_pos_kart(0);
+      target_pos = coordinate_transform(target_pos_kart);
+      //next_pwm = test_controller(target_pos, current_pos);
       //next_pwm.motorA = pan_controller(target_pos, current_pos);
       //next_pwm.motorB = tilt_controller(target_pos, current_pos);
       break;
@@ -164,6 +167,23 @@ void ctrl_task(void *pvParameters)
     //_wait(MILLI_SEC(CTRL_TASK_CYCLE));
     vTaskDelayUntil(&last_wake_time, CTRL_TASK_CYCLE);
   }
+}
+motor_pos coordinate_transform(coordinate_type coord)
+// This function transforms from kartesian to spherical coordinates.
+{
+	motor_pos return_value;
+	return_value.positionA = 90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ); //phi
+	return_value.positionB = ( atan(coord.y/coord.x) * 180/PI ); //theta
+
+	if(return_value.positionA < 0)
+	{
+		return_value.positionA += 360;
+	}
+	if(return_value.positionB < 0)
+	{
+		return_value.positionB += 360;
+	}
+	return return_value;
 }
 
 motor_pos get_target_position()
@@ -193,6 +213,7 @@ motor_pos get_target_position()
   return target;
 }
 
+
 pwm_duty_cycle_type get_target_pwm()
 {
   static pwm_duty_cycle_type target;
@@ -216,5 +237,5 @@ void set_status_log(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target
   hans.pwm_motor_A = (INT16S) pwm.motorA;
   hans.pwm_motor_B = (INT16S) pwm.motorB;
 
-  xQueueSend(log_status_queue,&hans,portMAX_DELAY);
+  xQueueSend(log_status_queue,&hans,0);
 }

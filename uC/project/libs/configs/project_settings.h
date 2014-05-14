@@ -46,10 +46,10 @@
 
 /* Task timings hvis de skal samles */
 /* ms er fjernet... */
-#define CTRL_TASK_CYCLE (MILLI_SEC(30))       //ctrl_task.c
+#define CTRL_TASK_CYCLE (MILLI_SEC(50))       //ctrl_task.c
 #define READ_PWM_TASK_CYCLE (MILLI_SEC(30))   //read_pwm.c
-#define INTERFACE_TASK_CYCLE (MILLI_SEC(10))  //interface.c
-#define LOG_TASK_CYCLE  (MILLI_SEC(10))       //log_task.c
+#define INTERFACE_TASK_CYCLE (MILLI_SEC(100))  //interface.c
+#define LOG_TASK_CYCLE  (MILLI_SEC(100))       //log_task.c
 
 #define STACK_OVERFLOW_GCC_HANDLER      putChar
 
