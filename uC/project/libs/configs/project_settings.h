@@ -51,6 +51,10 @@
 #define INTERFACE_TASK_CYCLE (MILLI_SEC(10))  //interface.c
 #define LOG_TASK_CYCLE  (MILLI_SEC(10))       //log_task.c
 
+
+//for at kun køre PWM og POS hvert x'nde gang
+#define CTRL_PER_PWM 10 //hvert 10'nde gang.
+
 #define STACK_OVERFLOW_GCC_HANDLER      putChar
 
 //Based on our SPI communication

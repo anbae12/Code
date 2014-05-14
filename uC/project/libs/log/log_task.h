@@ -46,4 +46,10 @@ extern void reset_log(log_file_type log[MAX_LOG_ENTRIES]);
 /*****************************************************************************
  * sets every entry to 0
  ****************************************************************************/
+extern void display_log_format(void);
+/*****************************************************************************
+ * like it says, it displays the log format... What did you think it would do?
+ * kill unicorns and happiness?
+ * It does that too... **DEPRECATED**
+ ****************************************************************************/
 /****************************** End Of Module *******************************/

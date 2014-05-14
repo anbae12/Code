@@ -106,6 +106,18 @@ void print_log(log_file_type log[MAX_LOG_ENTRIES])
   }
 }
 
+void display_log_format(void)
+{
+  PRINTF(
+      "Position A:\t"
+      "Position B:\t"
+      "Target A:\t"
+      "Target B:\t"
+      "PWM A:\t\t"
+      "PWM B:\n"
+  );
+  //kill_all(unicorns, happiness);
+}
 void reset_log(log_file_type log[MAX_LOG_ENTRIES] )
 {
   INT8U x;
