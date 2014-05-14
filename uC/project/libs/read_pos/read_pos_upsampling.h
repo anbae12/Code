@@ -24,10 +24,13 @@
 #include "FRT_Library/FreeRTOS/Source/include/task.h"
 
 /*****************************    Defines    *******************************/
+// Disse to bliver ikke brugt længere. 
 #define LIST_SIZE 92
 #define MATLAB_LIST_SIZE (LIST_SIZE*3)
 
 #define UPSAMPLING_FACTOR          10
+
+#define MATLAB_COOR_LIST_SIZE      92
 
 typedef struct coordinate_type {
   FP32 x;
