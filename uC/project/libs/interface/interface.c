@@ -108,14 +108,7 @@ void interface_task(void *pvParameters)
         read_log ^= TRUE;
         if( read_log )
         {
-          PRINTF(
-              "Target A:\t"
-              "Target B:\t"
-              "Position A:\t"
-              "Position B:\t"
-              "PWM A:\t\t"
-              "PWM B:\n"
-          );
+          display_log_format();
         }
       }
       else if (!strcmp(UI_CMD_OPEN_LOOP,mirror_string))

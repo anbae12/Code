@@ -44,6 +44,9 @@ extern xSemaphoreHandle interface_pwm_sem;
 extern xSemaphoreHandle interface_log_sem;
 extern xQueueHandle log_status_queue;
 
+
+//task on/off
+extern portBASE_TYPE we_use_read_task;
 /*****************************   Variables   *******************************/
 extern void init_sem_and_queues( void );
 extern void add_to_enc_queue(INT8U queue_id, INT16U data);

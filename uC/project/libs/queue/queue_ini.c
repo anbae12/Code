@@ -53,6 +53,7 @@ xSemaphoreHandle interface_pwm_sem;
 
 xSemaphoreHandle interface_log_sem;
 xQueueHandle log_status_queue;
+portBASE_TYPE we_use_read_task = pdFALSE;
 
 
 /*****************************   Variables   *******************************/

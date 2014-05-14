@@ -14,7 +14,6 @@
  * 140408  NI   Module created.
  *
  *****************************************************************************/
-#define END_PWM            (40*PWM_PERCENT) //hvis i vil have at den går til 40% ved slut af test.
 
 /***************************** Include files *******************************/
 
@@ -26,13 +25,11 @@
 /******************************** Variables *********************************/
 pwm_duty_cycle_type interface_pwm;
 pwm_duty_cycle_type target_pwm;
-
 /*****************************   Functions   *******************************/
 void read_pwm_task(void *pvParameters)
 {
   PRINTF("read_pwm has started\n");
 
-  INT16U index = 0;
   pwm_duty_cycle_type pwm = {.motorA = 0, .motorB = 0};
 
   /*for timing*/
@@ -40,27 +37,9 @@ void read_pwm_task(void *pvParameters)
   last_wake_time = xTaskGetTickCount();  
   while(1)
   {
-    if( index < PWM_LIST_SIZE )
-    {
-      pwm = list[index++];
-    }
-    else
-    {
-      pwm.motorA = END_PWM;
-      pwm.motorB = 0;
-    }
-
-    if( xSemaphoreTake(interface_pwm_sem, portMAX_DELAY) )
-    {
-      if( interface_pwm.motorA != invalid_pwm.motorA &&
-          interface_pwm.motorB != invalid_pwm.motorB  )
-      {
-        pwm = interface_pwm;
-        index = 0;
-      }
-      xSemaphoreGive(interface_pwm_sem);
-    }
-
+    
+    pwm = read_pwm_function();
+  
     if( xSemaphoreTake(target_pwm_sem, portMAX_DELAY) )
     {
       target_pwm = pwm;
@@ -71,6 +50,33 @@ void read_pwm_task(void *pvParameters)
   }
 }
 
+pwm_duty_cycle_type read_pwm_function( void )
+{
+  static INT16U index = 0;
+  pwm_duty_cycle_type pwm;
+  
+  if( index < PWM_LIST_SIZE )
+  {
+    pwm = list[index++];
+  }
+  else
+  {
+    pwm.motorA = END_PWM;
+    pwm.motorB = 0;
+  }
+
+  if( xSemaphoreTake(interface_pwm_sem, portMAX_DELAY) )
+  {
+    if( interface_pwm.motorA != invalid_pwm.motorA &&
+        interface_pwm.motorB != invalid_pwm.motorB  )
+    {
+      pwm = interface_pwm;
+      index = 0;
+    }
+    xSemaphoreGive(interface_pwm_sem);
+  }
+  return pwm;
+}
 
 void init_pwm_list( pwm_duty_cycle_type final_list[PWM_LIST_SIZE] )
 {

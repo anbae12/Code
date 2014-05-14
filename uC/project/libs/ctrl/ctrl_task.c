@@ -33,6 +33,9 @@
 #include <math.h>
 #include "controller.h"
 #include "log/log_task.h"
+
+//if we don't want read_pwm_task
+#include "read_pwm/matlab_pwm_liste.h"
 /*****************************    Defines    *******************************/
 #define PI 3.14159265359
 #define TICKS_PER_DEGREE 1080/360 //I know this is 3 but this is more descriptive
@@ -56,12 +59,12 @@ void target_pwm_debug(pwm_duty_cycle_type target)
 {
   if ( TARGET_PWM_DEBUG )
   {
-      INT16S conv;
-      conv = (INT16S) target.motorA;
-      PRINTF("target pwm A: %d\t",conv);
-      conv = (INT16S) target.motorB;
-      PRINTF("target pwm B: %d\n",conv);
-    }
+    INT16S conv;
+    conv = (INT16S) target.motorA;
+    PRINTF("target pwm A: %d\t",conv);
+    conv = (INT16S) target.motorB;
+    PRINTF("target pwm B: %d\n",conv);
+  }
 }
 
 void target_pos_debug(motor_pos target)
@@ -128,11 +131,11 @@ void ctrl_task(void *pvParameters)
   portTickType last_wake_time;
 
   last_wake_time = xTaskGetTickCount();
-
+  INT8U funny_business = 0;
   INT8U control_state;
   while(1)
   {
-
+    turn_on_red(); //to test timing
     control_state = interface_input();
     current_pos = spi_read_encoders();
     switch(control_state)
@@ -150,21 +153,26 @@ void ctrl_task(void *pvParameters)
       //next_pwm.motorB = tilt_controller(target_pos, current_pos);
       break;
     case CTRL_PWM_MODE:
-      next_pwm = get_target_pwm();
+      funny_business++;
+      if(funny_business % CTRL_PER_PWM == 0)
+      {
+        funny_business = 0;
+        next_pwm = get_target_pwm();
+      }
       break;
     default:
       break;
     }
 
     current_pos_debug(current_pos);
-
     pwm_spi_debug(next_pwm);
+
 
     spi_send_pwm(next_pwm);
 
     set_status_log(next_pwm, current_pos, target_pos);
 
-    //_wait(MILLI_SEC(CTRL_TASK_CYCLE));
+    turn_off_red(); //to test timing
     vTaskDelayUntil(&last_wake_time, CTRL_TASK_CYCLE);
   }
 }
@@ -216,14 +224,24 @@ motor_pos get_target_position()
 
 pwm_duty_cycle_type get_target_pwm()
 {
-  static pwm_duty_cycle_type target;
-  if( xSemaphoreTake(target_pwm_sem, 1) )
+  static pwm_duty_cycle_type pwm;
+
+  if( we_use_read_task == pdPASS )
   {
-    target = target_pwm;
-    xSemaphoreGive(target_pwm_sem);
+    //    PRINTF("TASK IS DOING THIS\n");
+    if( xSemaphoreTake(target_pwm_sem, 1) )
+    {
+      pwm = target_pwm;
+      xSemaphoreGive(target_pwm_sem);
+    }
+    target_pwm_debug(pwm);
   }
-  target_pwm_debug(target);
-  return target;
+  else
+  {
+    //    PRINTF("LOOK MOM... NO TASK\n");
+    pwm = read_pwm_function();
+  }
+  return pwm;
 }
 
 void set_status_log(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target)

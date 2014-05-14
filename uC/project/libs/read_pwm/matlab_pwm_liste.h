@@ -1,4 +1,5 @@
 #pragma once
+#include "read_pwm.h"
 static const pwm_duty_cycle_type list[PWM_LIST_SIZE] =
 {
 {1,0},

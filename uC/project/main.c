@@ -25,6 +25,8 @@
 #include "configs/project_settings.h"
 #include "inc/emp_type.h"
 
+#include "queue/queue_ini.h"
+
 #include "read_pwm/read_pwm.h"
 #include "inc/glob_def.h"
 #include "inc/binary.h"
@@ -36,6 +38,8 @@
 #include "ctrl/controller.h"
 #include "read_pos/read_pos.h"
 #include "log/log_task.h"
+
+#include "inc/gpio_ini.h"
 
 /*****************************    Defines    *******************************/
 
@@ -51,6 +55,7 @@ static void init_hardware(void)
   clk_system_init();
   uart0_init();
   spi_init();
+  init_gpio();
   enable_global_int();
 }
 static void init_tasks_presched()
@@ -65,6 +70,7 @@ static void init_tasks_presched()
   init_uart_receive_task();
   init_uart_send_task();
   init_sem_and_queues();
+  led_ryg(0,0,0);
 }
 
 int main(void)
@@ -79,15 +85,15 @@ int main(void)
 
   return_val &= xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, MED_PRIO, NULL);
 //  return_val &= xTaskCreate( read_pos_task, "read position", USERTASK_STACK_SIZE*15, NULL, LOW_PRIO, NULL);
+
 //  return_val &= xTaskCreate( log_task, "log task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-//  return_val &= xTaskCreate( read_pwm_task, "read pwm", USERTASK_STACK_SIZE, NULL, HIGH_PRIO, NULL);
+//  we_use_read_task = xTaskCreate( read_pwm_task, "read pwm", USERTASK_STACK_SIZE, NULL, HIGH_PRIO, NULL);
+
 
   if( return_val != pdTRUE )
   {
     uart_char_put_blocking('E');
     uart_char_put_blocking('R');
-    uart_char_put_blocking('R');
-    uart_char_put_blocking('O');
     uart_char_put_blocking('R');
   }
   vTaskStartScheduler();
