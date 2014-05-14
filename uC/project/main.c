@@ -64,7 +64,7 @@ static void init_tasks_presched()
 {
   init_uart_receive_task();
   init_uart_send_task();
-  init_spi_queue();
+  init_sem_and_queues();
 }
 
 int main(void)
@@ -77,10 +77,10 @@ int main(void)
   return_val &= xTaskCreate( uart_receive_task, "uart receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
   return_val &= xTaskCreate( interface_task, "interface", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
 
-  return_val &= xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-  return_val &= xTaskCreate( read_pos_task, "read position", USERTASK_STACK_SIZE*15, NULL, LOW_PRIO, NULL);
+  return_val &= xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, MED_PRIO, NULL);
+//  return_val &= xTaskCreate( read_pos_task, "read position", USERTASK_STACK_SIZE*15, NULL, LOW_PRIO, NULL);
   return_val &= xTaskCreate( log_task, "log task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-  return_val &= xTaskCreate( read_pwm_task, "read pwm", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+  return_val &= xTaskCreate( read_pwm_task, "read pwm", USERTASK_STACK_SIZE, NULL, HIGH_PRIO, NULL);
 
   if( return_val != pdTRUE )
   {

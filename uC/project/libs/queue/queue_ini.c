@@ -1,22 +1,22 @@
 /*****************************************************************************
-* Odense University College of Enginerring
-* Embedded C Programming (ECP)
-*
-* MODULENAME.: queue_ini.c
-*
-* PROJECT....: Pan and tilt
-*
-* DESCRIPTION:
-* This module is used to initialize freeRTOS queues. 
-*
-* Change Log:
-******************************************************************************
-* Date    Id    Change
-* YYMMDD
-* --------------------
-* 050128  KA    Module created.
-*
-*****************************************************************************/
+ * Odense University College of Enginerring
+ * Embedded C Programming (ECP)
+ *
+ * MODULENAME.: queue_ini.c
+ *
+ * PROJECT....: Pan and tilt
+ *
+ * DESCRIPTION:
+ * This module is used to initialize freeRTOS queues.
+ *
+ * Change Log:
+ ******************************************************************************
+ * Date    Id    Change
+ * YYMMDD
+ * --------------------
+ * 050128  KA    Module created.
+ *
+ *****************************************************************************/
 
 /***************************** Include files *******************************/
 #include "inc/lm3s6965.h"
@@ -56,37 +56,31 @@ xQueueHandle log_status_queue;
 
 
 /*****************************   Variables   *******************************/
-void init_spi_queue( void )
+void init_sem_and_queues( void )
 {
-//	enc_queue[0] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );
-//	enc_queue[1] = xQueueCreate( ENC_QUEUE_LENGTH, ENC_QUEUE_DATA_SIZE );
+  //Mutexes
+  position_ctrl_sem = xSemaphoreCreateMutex();
+  target_var_sem = xSemaphoreCreateMutex();
 
-//	pos_ctrl_queue = xQueueCreate( 3, sizeof(coordinate_type) );
-
-	/***** This should be renamed ****/
-	//Mutexes
-	position_ctrl_sem = xSemaphoreCreateMutex();
-	target_var_sem = xSemaphoreCreateMutex();
-
-	interface_pwm_sem = xSemaphoreCreateMutex();
+  interface_pwm_sem = xSemaphoreCreateMutex();
   target_pwm_sem = xSemaphoreCreateMutex();
-  
+
   interface_to_control_sem = xSemaphoreCreateMutex();
   interface_pwm_sem = xSemaphoreCreateMutex();
 
   interface_log_sem = xSemaphoreCreateMutex();
-  log_status_queue = xQueueCreate(100, sizeof(log_file_type) );
+  log_status_queue = xQueueCreate(15, sizeof(log_file_type) );
 
 }
 void add_to_enc_queue(INT8U queue_id, INT16U data)
 {
-	if ( enc_queue[queue_id] != 0 )
-	{
-		if (xQueueSendToFront(enc_queue[queue_id], &data, 100))
-		{
-			// ERROR!
-		}
-	}
+  if ( enc_queue[queue_id] != 0 )
+  {
+    if (xQueueSendToFront(enc_queue[queue_id], &data, 100))
+    {
+      // ERROR!
+    }
+  }
 }
 
 

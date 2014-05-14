@@ -45,7 +45,7 @@ extern xSemaphoreHandle interface_log_sem;
 extern xQueueHandle log_status_queue;
 
 /*****************************   Variables   *******************************/
-extern void init_spi_queue( void );
+extern void init_sem_and_queues( void );
 extern void add_to_enc_queue(INT8U queue_id, INT16U data);
 /*****************************   Functions   *******************************/
 

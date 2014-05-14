@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Mikkel, Åse & Mikael
- * MODULENAME: manager_interface
+ * MODULENAME: interface
  * DESCRIPTION:
  ****************************************************************************/
 /****************************** Include files *******************************/
@@ -97,8 +96,12 @@ void interface_task(void *pvParameters)
           interface_to_control_byte = (1 << stop_bit_location);
           xSemaphoreGive(interface_to_control_sem);
         }
-        //set ctrl_bit
-        UARTprintf("set ctrl bit\n");
+        if( xSemaphoreTake(interface_pwm_sem, portMAX_DELAY) ) // send stop to read_pwm_task
+        {
+          interface_pwm.motorB = 0;
+          interface_pwm.motorA = 0;
+          xSemaphoreGive(interface_pwm_sem);
+        }
       }
       else if (!strcmp(UI_CMD_READ,mirror_string)) /*         <===   READ LOG  <===              */
       {
@@ -110,7 +113,7 @@ void interface_task(void *pvParameters)
               "Target B:\t"
               "Position A:\t"
               "Position B:\t"
-              "PWM A:\t"
+              "PWM A:\t\t"
               "PWM B:\n"
           );
         }
@@ -210,7 +213,7 @@ void interface_task(void *pvParameters)
       }
     }
   }
-  _wait(MILLI_SEC(10));
+  _wait(INTERFACE_TASK_CYCLE);
 }
 
 void interface_display_commands()

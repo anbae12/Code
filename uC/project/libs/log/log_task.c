@@ -14,7 +14,6 @@
  * 140512  NI   Module created.
  *
  *****************************************************************************/
-#define LOG_TASK_CYCLE 1000
 /***************************** Include files *******************************/
 
 #include "log_task.h"
@@ -76,7 +75,7 @@ void log_task(void *pvParameters)
       }
       xSemaphoreGive(interface_log_sem);
     }
-    _wait(MILLI_SEC(LOG_TASK_CYCLE));
+    _wait(LOG_TASK_CYCLE);
   }
 }
 
@@ -94,7 +93,7 @@ void print_log(log_file_type log[MAX_LOG_ENTRIES])
     for(x = 1; x < MAX_LOG_ENTRIES; x++)
     {
       PRINTF(
-      "%u, \t%u, \t%u, \t%u, \t%d, \t%d\n",
+      "%u, \t\t%u, \t\t%u, \t\t%u, \t\t%d, \t\t%d\n",
       log[x].current_pos_A,
       log[x].current_pos_B,
       log[x].target_pos_A,

@@ -35,7 +35,6 @@
 /*****************************    Defines    *******************************/
 #define PI 3.14159265359
 #define TICKS_PER_DEGREE 1080/360 //I know this is 3 but this is more descriptive
-#define CTRL_TASK_FREQUENCY 1000
 
 /******************************** Variables *********************************/
 INT8U interface_to_control_byte = 0b10000000;
@@ -162,8 +161,8 @@ void ctrl_task(void *pvParameters)
 
     set_status_log(next_pwm, current_pos, target_pos);
 
-    //_wait(MILLI_SEC(CTRL_TASK_FREQUENCY));
-    vTaskDelayUntil(&last_wake_time, MILLI_SEC(CTRL_TASK_FREQUENCY));
+    //_wait(MILLI_SEC(CTRL_TASK_CYCLE));
+    vTaskDelayUntil(&last_wake_time, CTRL_TASK_CYCLE);
   }
 }
 

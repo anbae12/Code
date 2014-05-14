@@ -16,7 +16,7 @@
 #include "spi/spi.h"
 
 /*****************************    Defines    *******************************/
-#define PWM_LIST_SIZE 101
+#define PWM_LIST_SIZE 2048
 #define MATLAB_PWM_LIST_SIZE (PWM_LIST_SIZE*2) //2 times LIST_SIZE
 
 /*****************************   Constants   *******************************/
@@ -42,4 +42,5 @@ extern void init_pwm_list( pwm_duty_cycle_type final_list[PWM_LIST_SIZE] );
  * Initializes the list.
  * The matlab generated list should written into this function.
  ****************************************************************************/
+ 
 /****************************** End Of Module *******************************/
