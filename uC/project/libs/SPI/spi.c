@@ -27,7 +27,7 @@
 #include "spi.h"
 
 #include "FRT_Library/FreeRTOS/Source/include/FreeRTOS.h"
-#include "FRT_Library/FreeRTOS/Source/include/queue.h"
+#include "FRT_Library/FreeRTOS/Source/include/bqueue.h"
 
 #include "queue/queue_ini.h"
 
@@ -146,7 +146,7 @@ motor_pos spi_read_encoders()
   
   for(i = 0; i < 2; i++)
   {
-    spi_buffer_push(0); // Send a pwm, with ignorebit set.
+    spi_buffer_push(0x0000); // Send a pwm, with ignorebit set.
     for(count = 0; count < SPI_WAIT; count++); // If baudrate = 100k
     data_in = spi_receive();
     if (data_in != 0xFFFF) // Check if data is valid
@@ -184,7 +184,7 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
   if(pwm.motorB < 0)
   {
     motorB_direction = 0;
-    pwm.motorB = pwm.motorB * (- 1);
+    pwm.motorB = pwm.motorB * (-1);
   }
 
   if(pwm.motorA > 2047)
@@ -196,16 +196,15 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
     pwm.motorB = 2047;
   }
 
-
   messageA = (motorA_direction & 1) << SPI_DIRECTION_BIT_POS;
-  messageA |= pwm.motorA & SPI_PWM_MASK;
+  messageA |= (INT16U) pwm.motorA; 
   messageA |= 1 << SPI_PWM_BIT_POS;
   messageA |= 1 << SPI_MOTOR_BIT_POS;
 
   messageB = (motorB_direction & 1) << SPI_DIRECTION_BIT_POS;
-  messageB |= pwm.motorB & SPI_PWM_MASK;
+  messageB |= (INT16U) pwm.motorB;
   messageB |= 1 << SPI_PWM_BIT_POS;
-  messageB &= ~(0 << SPI_MOTOR_BIT_POS);
+  messageB &= ~(1 << SPI_MOTOR_BIT_POS);
 
   if( UART_MSG_OUT_DEBUG )
   {
@@ -222,28 +221,3 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
   data_in = spi_receive(); // unused
 }
 
-
-
-
-//--------------------------------------------------------------
-// Deprecated tasks: 
-//--------------------------------------------------------------
-void spi_test_task( void *pvParameters)
-{
-  vTaskDelay(3000 / portTICK_RATE_MS);
-  while(1)
-  {
-    spi_buffer_push(0xF0F0);
-    spi_buffer_push(0x0F0F);
-    vTaskDelay(1000 / portTICK_RATE_MS);
-  }
-}
-
-void spi_receive_task( void *pvParameters)
-{
-  //write_data(0);
-  while (1)
-  {
-    spi_receive();
-  }
-}

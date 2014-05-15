@@ -22,16 +22,12 @@
 
 /******************************** Variables *********************************/
 log_file_type log_global[MAX_LOG_ENTRIES];
-static log_file_type log_has_been_printed = {1, 2, 3, 4, 5, 6}; 
-static log_file_type log_has_been_reset   = {0, 0, 0, 0, 0, 0};
-static log_file_type log_can_be_printed   = {6, 5, 4, 3, 2, 1};
-
+static const log_file_type log_is_empty = {1, 2, 3, 4, 5, 6}; 
+<
 /*****************************   Functions   *******************************/
 
 void log_task(void *pvParameters)
 {
-  INT8U index = 1;
-
   if( xSemaphoreTake(interface_log_sem, portMAX_DELAY) )
   {
     reset_log(log_global);
@@ -42,36 +38,24 @@ void log_task(void *pvParameters)
   {    
     if( xSemaphoreTake(interface_log_sem, portMAX_DELAY) )
     {
-      if( log_global[0].current_pos_A == 0 &&
-          log_global[0].current_pos_B == 0 &&
-          log_global[0].target_pos_A == 0 &&
-          log_global[0].target_pos_B == 0 &&
-          log_global[0].pwm_motor_A == 0 &&
-          log_global[0].pwm_motor_B == 0 )
+      if( log_global[0].current_pos_B == log_is_empty.current_pos_B &&
+          log_global[0].target_pos_A == log_is_empty.target_pos_A &&
+          log_global[0].target_pos_B == log_is_empty.target_pos_B &&
+          log_global[0].pwm_motor_A == log_is_empty.pwm_motor_A &&
+          log_global[0].pwm_motor_B == log_is_empty.pwm_motor_B )
       {
         while( uxQueueMessagesWaiting(log_status_queue) > 0 )
         {
-          if(index >= ( MAX_LOG_ENTRIES ) )
+          if(log_global[0].current_pos_A >= ( MAX_LOG_ENTRIES ) )
           { 
-            log_global[0] = log_can_be_printed;
             break;
           }
-          else if( xQueueReceive(log_status_queue, &log_global[index], portMAX_DELAY) )
+          else if( xQueueReceive(log_status_queue, &log_global[log_global[0].current_pos_A], portMAX_DELAY) )
           {
             //PRINTF("GOT MESSAGE\n");
-            index++;
+            log_global[0].current_pos_A++;
           }
         }
-      }
-      else if(  log_global[0].current_pos_A == log_has_been_printed.current_pos_A &&
-          log_global[0].current_pos_B == log_has_been_printed.current_pos_B &&
-          log_global[0].target_pos_A  == log_has_been_printed.target_pos_A  &&
-          log_global[0].target_pos_B  == log_has_been_printed.target_pos_B  &&
-          log_global[0].pwm_motor_A   == log_has_been_printed.pwm_motor_A   &&
-          log_global[0].pwm_motor_B   == log_has_been_printed.pwm_motor_B )
-      {
-        index = 1;
-        reset_log(log_global);
       }
       xSemaphoreGive(interface_log_sem);
     }
@@ -81,16 +65,11 @@ void log_task(void *pvParameters)
 
 void print_log(log_file_type log[MAX_LOG_ENTRIES])
 {
-  INT8U x;
-
-  if( ( log_global[0].current_pos_A == log_can_be_printed.current_pos_A &&
-      log_global[0].current_pos_B == log_can_be_printed.current_pos_B &&
-      log_global[0].target_pos_A  == log_can_be_printed.target_pos_A  &&
-      log_global[0].target_pos_B  == log_can_be_printed.target_pos_B  &&
-      log_global[0].pwm_motor_A   == log_can_be_printed.pwm_motor_A   &&
-      log_global[0].pwm_motor_B   == log_can_be_printed.pwm_motor_B ) )
+  if(xSemaphoreTake(interface_log_sem, portMAX_DELAY))
   {
-    for(x = 1; x < MAX_LOG_ENTRIES; x++)
+    INT8U x;
+  
+    for(x = 1; x < log_global[0].current_pos_A; x++)
     {
       PRINTF(
           "%u, \t\t%u, \t\t%u, \t\t%u, \t\t%d, \t\t%d\n",
@@ -102,7 +81,9 @@ void print_log(log_file_type log[MAX_LOG_ENTRIES])
           log[x].pwm_motor_B
       );
     }
-    log[0] = log_has_been_printed; 
+    reset_log(log_global);
+  }
+    xSemaphoreGive(interface_log_sem);
   }
 }
 
@@ -131,4 +112,5 @@ void reset_log(log_file_type log[MAX_LOG_ENTRIES] )
     log[x].pwm_motor_A = 0;
     log[x].pwm_motor_B = 0;
   }
+  log[0] = log_is_empty;
 }

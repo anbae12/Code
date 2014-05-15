@@ -199,11 +199,7 @@ void interface_task(void *pvParameters)
     }
     else if( read_log == TRUE )
     {
-      if(xSemaphoreTake(interface_log_sem, portMAX_DELAY))
-      {
-        print_log(log_global);
-        xSemaphoreGive(interface_log_sem);
-      }
+      print_log(log_global);
     }
   }
   _wait(INTERFACE_TASK_CYCLE);
