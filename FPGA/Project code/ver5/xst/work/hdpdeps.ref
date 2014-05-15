@@ -1,0 +1,71 @@
+V3 35
+FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/clk_scaler.vhd" 2014/05/15.12:17:11 P.20131013
+EN work/clk_scaler 1400160599 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/clk_scaler.vhd" \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/clk_scaler/Behavioral 1400160600 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/clk_scaler.vhd" \
+      EN work/clk_scaler 1400160599
+FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/decoder_reset.vhd" 2014/05/15.13:13:00 P.20131013
+EN work/decoder_reset 1400160607 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/decoder_reset.vhd" \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179 PB ieee/NUMERIC_STD 1381692181
+AR work/decoder_reset/Behavioral 1400160608 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/decoder_reset.vhd" \
+      EN work/decoder_reset 1400160607
+FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/display_debug.vhd" 2014/05/15.12:19:03 P.20131013
+EN work/display_debug 1400160601 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/display_debug.vhd" \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/display_debug/Behavioral 1400160602 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/display_debug.vhd" \
+      EN work/display_debug 1400160601
+FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/input_decoder.vhd" 2014/05/15.13:11:21 P.20131013
+EN work/input_decoder 1400160605 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/input_decoder.vhd" \
+      PB ieee/std_logic_1164 1381692176
+AR work/input_decoder/Behavioral 1400160606 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/input_decoder.vhd" \
+      EN work/input_decoder 1400160605
+FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/main.vhd" 2014/05/15.13:27:21 P.20131013
+EN work/main 1400160613 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/main.vhd" \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/main/Behavioral 1400160614 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/main.vhd" \
+      EN work/main 1400160613 CP tic_counter CP clk_scaler CP display_debug \
+      CP PWM_generator CP input_decoder CP decoder_reset CP SPI CP output_decoder
+FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/output_decoder.vhd" 2014/05/15.13:19:52 P.20131013
+EN work/output_decoder 1400160611 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/output_decoder.vhd" \
+      PB ieee/std_logic_1164 1381692176
+AR work/output_decoder/Behavioral 1400160612 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/output_decoder.vhd" \
+      EN work/output_decoder 1400160611
+FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/PWM_generator.vhd" 2014/05/15.12:20:42 P.20131013
+EN work/PWM_generator 1400160603 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/PWM_generator.vhd" \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179 PB ieee/NUMERIC_STD 1381692181
+AR work/PWM_generator/Behavioral 1400160604 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/PWM_generator.vhd" \
+      EN work/PWM_generator 1400160603
+FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/SPI.vhd" 2014/05/15.13:26:23 P.20131013
+EN work/SPI 1400160609 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/SPI.vhd" \
+      PB ieee/std_logic_1164 1381692176
+AR work/SPI/Behavioral 1400160610 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/SPI.vhd" \
+      EN work/SPI 1400160609
+FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/tic_counter.vhd" 2014/05/15.12:16:32 P.20131013
+EN work/tic_counter 1400160597 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/tic_counter.vhd" \
+      PB ieee/std_logic_1164 1381692176 PB ieee/std_logic_arith 1381692177 \
+      PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/tic_counter/Behavioral 1400160598 \
+      FL "C:/Users/Mikkel Jaedicke/Dropbox/Semesterprojekt F14/FPGA/ver5/tic_counter.vhd" \
+      EN work/tic_counter 1400160597
