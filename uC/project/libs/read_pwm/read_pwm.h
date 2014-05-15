@@ -21,10 +21,9 @@
 #define END_PWM            (40*PWM_PERCENT) //hvis i vil have at den går til 40% ved slut af test.
 
 /*****************************   Constants   *******************************/
-static pwm_duty_cycle_type invalid_pwm = {.motorA = 1981, .motorB = 1981};
+static const pwm_duty_cycle_type invalid_pwm = {.motorA = 1981, .motorB = 1981};
 /******************************** Variables *********************************/
 extern pwm_duty_cycle_type interface_pwm;
-extern pwm_duty_cycle_type target_pwm;
 
 /*****************************   Functions   *******************************/
 extern void read_pwm_task(void *pvParameters);

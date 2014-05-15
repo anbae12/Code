@@ -135,14 +135,13 @@ void ctrl_task(void *pvParameters)
   INT8U control_state;
   while(1)
   {
-    turn_on_red(); //to test timing
+    led_ryg(1,0,0); //to test timing
     control_state = interface_input();
     current_pos = spi_read_encoders();
     switch(control_state)
     {
     case CTRL_STOP_MODE:
-      next_pwm.motorA = 0;
-      next_pwm.motorB = 0;
+      next_pwm = get_target_pwm(); //interface makes sure this is 0
       break;
     case CTRL_POS_MODE:
       //target_pos = get_target_position();
@@ -163,16 +162,12 @@ void ctrl_task(void *pvParameters)
     default:
       break;
     }
-
-    current_pos_debug(current_pos);
-    pwm_spi_debug(next_pwm);
-
-
     spi_send_pwm(next_pwm);
-
+    //current_pos_debug(current_pos);
+    //pwm_spi_debug(next_pwm);
     set_status_log(next_pwm, current_pos, target_pos);
 
-    turn_off_red(); //to test timing
+    led_ryg(0,0,0); //to test timing
     vTaskDelayUntil(&last_wake_time, CTRL_TASK_CYCLE);
   }
 }
@@ -180,16 +175,16 @@ motor_pos coordinate_transform(coordinate_type coord)
 // This function transforms from kartesian to spherical coordinates.
 {
 	motor_pos return_value;
-	return_value.positionA = 90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ); //phi
-	return_value.positionB = ( atan(coord.y/coord.x) * 180/PI ); //theta
+	return_value.positionA = (90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ) )*3; //phi
+	return_value.positionB = ( atan(coord.y/coord.x) * 180/PI )* 3; //theta
 
 	if(return_value.positionA < 0)
 	{
-		return_value.positionA += 360;
+		return_value.positionA += 1079;
 	}
 	if(return_value.positionB < 0)
 	{
-		return_value.positionB += 360;
+		return_value.positionB += 1079;
 	}
 	return return_value;
 }
@@ -205,16 +200,16 @@ motor_pos get_target_position()
     xSemaphoreGive(target_var_sem);
   }
 
-  target.positionA = 90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ); //phi
-  target.positionB = ( atan(coord.y/coord.x) * 180/PI ); //theta
+  target.positionA = (90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ))*3; //phi
+  target.positionB = ( atan(coord.y/coord.x) * 180/PI )*3; //theta
 
   if(target.positionA < 0)
   {
-    target.positionA += 360;
+    target.positionA += 1079;
   }
   if(target.positionB < 0)
   {
-    target.positionB += 360;
+    target.positionB += 1079;
   }
   target_pos_debug(target);
 
@@ -231,7 +226,7 @@ pwm_duty_cycle_type get_target_pwm()
     //    PRINTF("TASK IS DOING THIS\n");
     if( xSemaphoreTake(target_pwm_sem, 1) )
     {
-      pwm = target_pwm;
+      //pwm = target_pwm;
       xSemaphoreGive(target_pwm_sem);
     }
     target_pwm_debug(pwm);
@@ -248,12 +243,12 @@ void set_status_log(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target
 {
   static log_file_type hans;
 
-  hans.current_pos_A = (INT16U) current.positionA * TICKS_PER_DEGREE;
-  hans.current_pos_B = (INT16U) current.positionB * TICKS_PER_DEGREE;
-  hans.target_pos_A = (INT16U) target.positionA * TICKS_PER_DEGREE;
-  hans.target_pos_B = (INT16U) target.positionB * TICKS_PER_DEGREE;
-  hans.pwm_motor_A = (INT16S) pwm.motorA;
-  hans.pwm_motor_B = (INT16S) pwm.motorB;
+  hans.current_pos_A = (INT16U) current.positionA;
+  hans.current_pos_B = (INT16U) current.positionB;
+  hans.target_pos_A =  (INT16U) target.positionA;
+  hans.target_pos_B =  (INT16U) target.positionB;
+  hans.pwm_motor_A =   (INT16S) pwm.motorA;
+  hans.pwm_motor_B =   (INT16S) pwm.motorB;
 
   xQueueSend(log_status_queue,&hans,0);
 }

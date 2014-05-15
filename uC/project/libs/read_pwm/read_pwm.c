@@ -53,7 +53,7 @@ void read_pwm_task(void *pvParameters)
 pwm_duty_cycle_type read_pwm_function( void )
 {
   static INT16U index = 0;
-  pwm_duty_cycle_type pwm;
+  static pwm_duty_cycle_type pwm;
   
   if( index < PWM_LIST_SIZE )
   {
@@ -65,7 +65,7 @@ pwm_duty_cycle_type read_pwm_function( void )
     pwm.motorB = 0;
   }
 
-  if( xSemaphoreTake(interface_pwm_sem, portMAX_DELAY) )
+  if( xSemaphoreTake(interface_pwm_sem, 0) )
   {
     if( interface_pwm.motorA != invalid_pwm.motorA &&
         interface_pwm.motorB != invalid_pwm.motorB  )

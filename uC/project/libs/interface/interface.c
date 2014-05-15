@@ -91,16 +91,16 @@ void interface_task(void *pvParameters)
       }
       else if(!strcmp(UI_CMD_STOP,mirror_string))
       {
-        if( xSemaphoreTake(interface_to_control_sem, portMAX_DELAY) )
-        {
-          interface_to_control_byte = (1 << stop_bit_location);
-          xSemaphoreGive(interface_to_control_sem);
-        }
         if( xSemaphoreTake(interface_pwm_sem, portMAX_DELAY) ) // send stop to read_pwm_task
         {
           interface_pwm.motorB = 0;
           interface_pwm.motorA = 0;
           xSemaphoreGive(interface_pwm_sem);
+        }
+        if( xSemaphoreTake(interface_to_control_sem, portMAX_DELAY) )
+        {
+          interface_to_control_byte = (1 << stop_bit_location);
+          xSemaphoreGive(interface_to_control_sem);
         }
       }
       else if (!strcmp(UI_CMD_READ,mirror_string)) /*         <===   READ LOG  <===              */

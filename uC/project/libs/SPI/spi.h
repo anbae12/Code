@@ -29,16 +29,18 @@
 #define SPI_PWM_BIT_POS       13
 #define SPI_PWM_MASK          0x07FF
 
+#define SPI_WAIT 85
 
 
 
 #define SPI_MODE_MASTER                0x00000000
-#define SPI_PRESCALE_VALUE             0x0000000A  // = 10
+#define SPI_PRESCALE_VALUE             0x00000002  // = 500khz
 #define SPI_CLEAR_REGISTER             0x00000000
 
 #define SPI_PINS                       0b00111100  // Bit mask for SPI pins
 
-#define SPI_CLOCK_RATE                 0b00110010  // = 50
+//#define SPI_CLOCK_RATE                 0b00110010  // = 50
+#define SPI_CLOCK_RATE                 0b00011000  // = 24
 #define SPI_PROTOCOL_MODE              0b01        // TI SSI Frame format (p. 476)
 #define SPI_DATA_SIZE                  0b1111      // 16 bit data (p. 487)
 

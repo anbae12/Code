@@ -134,22 +134,30 @@ motor_pos spi_read_encoders()
 
   INT8U i;
   INT32U count;
+
+  //empty spi buffer
+  do
+  {
+    data_in = spi_receive();
+  }
+  while( data_in != 0xFFFF );
+
 // motorbit | retningsbit | pwmbit| 2 ignore | 11 pwm
   
-  for(i = 0; i < 3; i++)
+  for(i = 0; i < 2; i++)
   {
     spi_buffer_push(0); // Send a pwm, with ignorebit set.
-    for(count = 0; count < 8500; count++); // If baudrate = 100k
+    for(count = 0; count < SPI_WAIT; count++); // If baudrate = 100k
     data_in = spi_receive();
     if (data_in != 0xFFFF) // Check if data is valid
     {
       if( !(data_in & SPI_MOTOR_SEL_MASK) ) 
       {
-        return_value.positionA = (FP32)(data_in & SPI_MOTOR_POS_MASK) / 3;
+        return_value.positionA = (FP32) (data_in & SPI_MOTOR_POS_MASK);
       }
       else 
       {
-        return_value.positionB = (FP32)(data_in & SPI_MOTOR_POS_MASK) / 3;
+        return_value.positionB = (FP32) (data_in & SPI_MOTOR_POS_MASK);
       }
     }
   }
@@ -206,11 +214,11 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
   }
   
   spi_buffer_push(messageA);
-  for(count = 0; count < 8500; count++); // If baudrate = 100k
+  for(count = 0; count < SPI_WAIT; count++);
   data_in = spi_receive(); // unused
 
   spi_buffer_push(messageB);
-  for(count = 0; count < 8500; count++); // If baudrate = 100k //it would be better to empty the queue before we read
+  for(count = 0; count < SPI_WAIT; count++);
   data_in = spi_receive(); // unused
 }
 
