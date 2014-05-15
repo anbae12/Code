@@ -49,6 +49,7 @@ extern void read_pos_debug2(coordinate_type coordinate); //strictly for debuggin
 
 extern coordinate_type read_pos_kart(INT8U reset);
 extern coordinate_type fir_filter(coordinate_type new_sample);
+extern coordinate_type iir_filter(coordinate_type new_sample);
 
 
 
