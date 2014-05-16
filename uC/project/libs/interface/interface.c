@@ -77,15 +77,15 @@ void interface_task(void *pvParameters)
     {
       if(!strcmp(UI_CMD_START,mirror_string))
       {
-        if( xSemaphoreTake(interface_to_control_sem, portMAX_DELAY) )
-        {
-          interface_to_control_byte = (1 << pos_bit_location);
-          xSemaphoreGive(interface_to_control_sem);
-        }
         if( xSemaphoreTake(position_ctrl_sem, portMAX_DELAY) )
         {
           interface_coordinate = invalid_coordinate;
           xSemaphoreGive(position_ctrl_sem);
+        }
+        if( xSemaphoreTake(interface_to_control_sem, portMAX_DELAY) )
+        {
+          interface_to_control_byte = (1 << pos_bit_location);
+          xSemaphoreGive(interface_to_control_sem);
         }
         UARTprintf("set pos ctrl\n");
       }

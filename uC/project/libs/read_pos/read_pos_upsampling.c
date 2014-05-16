@@ -110,7 +110,11 @@ coordinate_type read_pos_kart(INT8U reset)
     }
     xSemaphoreGive(position_ctrl_sem);
   }
-
+  INT16S corx, cory, corz;
+  corx = (INT16S) (output.x * 100);
+  cory = (INT16S) (output.y * 100);
+  corz = (INT16S) (output.z * 100);
+//  PRINTF("x: %d\t y: %d\t z: %d\n",corx,cory,corz);
   return output;
 }
 

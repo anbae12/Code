@@ -18,6 +18,7 @@
 /***************************** Include files *******************************/
 #include "inc/lm3s6965.h"
 #include "inc/emp_type.h"
+#include "inc/glob_def.h"
 #include "configs/project_settings.h"
 #include "FRT_Library/FreeRTOS/Source/include/FreeRTOS.h"
 #include "FRT_Library/FreeRTOS/Source/include/semphr.h"
@@ -153,7 +154,8 @@ void ctrl_task(void *pvParameters)
       //next_pwm = test_controller(target_pos, current_pos);
 //      next_pwm.motorA = pan_controller(target_pos, current_pos);
 //      next_pwm.motorB = tilt_controller(target_pos, current_pos);
-      next_pwm.motorA = pid_parallel_controller(target_pos, current_pos);
+      next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
+      next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
       break;
     case CTRL_PWM_MODE:
       funny_business++;
@@ -167,11 +169,12 @@ void ctrl_task(void *pvParameters)
     default:
       break;
     }
-    spi_send_pwm(next_pwm);
+
     //current_pos_debug(current_pos);
     //pwm_spi_debug(next_pwm);
     set_status_log(next_pwm, current_pos, target_pos);
-
+    //next_pwm.motorB = 0;
+    spi_send_pwm(next_pwm);
     led_ryg(0,0,0); //to test timing
     vTaskDelayUntil(&last_wake_time, CTRL_TASK_CYCLE);
   }

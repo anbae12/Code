@@ -32,6 +32,12 @@
 
 
 /*****************************    Defines    *******************************/
+#define HALF_ONE 1
+#define HALF_TWO 2
+#define SAME_HALF_ONE 3
+#define SAME_HALF_TWO 4
+#define DIFFERENT_CUR_HALF_ONE 5
+#define DIFFERENT_CUR_HALF_TWO 6
 
 /*****************************   Constants   *******************************/
 
@@ -76,7 +82,7 @@ INT16S pan_controller(motor_pos target_pos, motor_pos current_pos)
   return (int) output[0];
 }
 
-INT16S pid_parallel_controller(motor_pos target_pos, motor_pos current_pos)
+INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos)
 {
   // Variables
   static FP32 previous_error = 0;
@@ -91,13 +97,16 @@ INT16S pid_parallel_controller(motor_pos target_pos, motor_pos current_pos)
   FP32 Ki = 0;
   FP32 Kd = 0; 
   
-  
   // Pan controller: 
   error = target_pos.positionA - current_pos.positionA;
 
-  if (error < -(TICKS_PER_REVOLOTION/2) )
+  if ( ( error < -(TICKS_PER_REVOLOTION/2) ) )
   {
     error += TICKS_PER_REVOLOTION;
+  }
+  else if(error > (TICKS_PER_REVOLOTION/2) )
+  {
+    error -= TICKS_PER_REVOLOTION;
   }
   error *= -1;
   integral += error * dt;
@@ -155,3 +164,54 @@ pwm_duty_cycle_type test_controller(motor_pos target_pos, motor_pos current_pos)
 
   return next_pwm;
 }
+
+
+
+INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos)
+{
+  // Variables
+  static FP32 previous_error = 0;
+  static FP32 integral = 0;
+  FP32 derivative;
+  FP32 error;
+  FP32 return_value;
+
+  FP32 dt = 0.001667;  // Insert sample period here xD
+  // Coefficients:
+  FP32 Kp = 10;
+  FP32 Ki = 0;
+  FP32 Kd = 0;
+  INT8U state;
+  INT8U position_half;
+  INT8U current_half;
+
+
+  error = target_pos.positionB - current_pos.positionB;
+
+    if ( ( error < -(TICKS_PER_REVOLOTION/2) ) )
+    {
+      error += TICKS_PER_REVOLOTION;
+    }
+    else if(error > (TICKS_PER_REVOLOTION/2) )
+    {
+      error -= TICKS_PER_REVOLOTION;
+    }
+    error *= -1;
+
+  integral += error * dt;
+  derivative = (error - previous_error)/dt;
+
+  return_value = Kp*error + Ki*integral + Kd*derivative;
+
+  previous_error = error;
+
+  if (target_pos.positionB < 900 && target_pos.positionB > 200) //only for safety - can be removed if you wear gloves and goggles.
+  {
+          return_value = 0;
+  }
+
+  return (INT16S) return_value;
+}
+
+
+

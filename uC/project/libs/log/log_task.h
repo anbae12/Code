@@ -13,7 +13,8 @@
 #include "inc/emp_type.h"
 
 /*****************************    Defines    *******************************/
-#define MAX_LOG_ENTRIES 51 //1 is reserved to status so 6 means 5 entries
+#define MAX_LOG_ENTRIES 150 //1 is reserved to status so 6 means 5 entries
+#define LOG_QUEUE_SIZE 150
 
 /******************************** Variables *********************************/
 typedef struct log_file_type {

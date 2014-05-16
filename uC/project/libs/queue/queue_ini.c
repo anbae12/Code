@@ -33,7 +33,7 @@
 
 #include "queue_ini.h"
 
-
+#include "log/log_task.h"
 
 /*****************************    Defines    *******************************/
 
@@ -70,7 +70,7 @@ void init_sem_and_queues( void )
   interface_pwm_sem = xSemaphoreCreateMutex();
 
   interface_log_sem = xSemaphoreCreateMutex();
-  log_status_queue = xQueueCreate(30, sizeof(log_file_type) );
+  log_status_queue = xQueueCreate(LOG_QUEUE_SIZE, sizeof(log_file_type) );
 
 }
 void add_to_enc_queue(INT8U queue_id, INT16U data)

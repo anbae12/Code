@@ -42,5 +42,6 @@
 
 INT16S pan_controller(motor_pos target_pos, motor_pos current_pos);
 
+INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos);
 
 extern pwm_duty_cycle_type test_controller(motor_pos target_pos, motor_pos current_pos);

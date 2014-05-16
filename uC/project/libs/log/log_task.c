@@ -68,22 +68,24 @@ void print_log(log_file_type log[MAX_LOG_ENTRIES])
   if(xSemaphoreTake(interface_log_sem, portMAX_DELAY))
   {
     INT8U x;
-  
-    for(x = 1; x < log_global[0].current_pos_A; x++)
-    {
-      PRINTF(
-          "%u, \t\t%u, \t\t%u, \t\t%u, \t\t%d, \t\t%d\n",
-          log[x].current_pos_A,
-          log[x].current_pos_B,
-          log[x].target_pos_A,
-          log[x].target_pos_B,
-          log[x].pwm_motor_A,
-          log[x].pwm_motor_B
-      );
-    }
+    if(log_global[0].current_pos_A > 1)
+    {      
+      for(x = 1; x < log_global[0].current_pos_A; x++)
+      {
+        PRINTF(
+            "%u, \t\t%u, \t\t%u, \t\t%u, \t\t%d, \t\t%d\n",
+            log[x].current_pos_A,
+            log[x].current_pos_B,
+            log[x].target_pos_A,
+            log[x].target_pos_B,
+            log[x].pwm_motor_A,
+            log[x].pwm_motor_B
+        );
+      }
     reset_log(log_global);
+    }
+    xSemaphoreGive(interface_log_sem);
   }
-  xSemaphoreGive(interface_log_sem);
 }
 
 void display_log_format(void)
@@ -100,16 +102,17 @@ void display_log_format(void)
 }
 void reset_log(log_file_type log[MAX_LOG_ENTRIES] )
 {
-  INT8U x;
+    INT8U x;
 
-  for(x = 0; x < MAX_LOG_ENTRIES; x++)
-  {
-    log[x].current_pos_A = 0;
-    log[x].current_pos_B = 0;
-    log[x].target_pos_A = 0;
-    log[x].target_pos_B = 0;
-    log[x].pwm_motor_A = 0;
-    log[x].pwm_motor_B = 0;
-  }
-  log[0] = log_is_empty;
+    for(x = 0; x < MAX_LOG_ENTRIES; x++)
+    {
+      log[x].current_pos_A = 0;
+      log[x].current_pos_B = 0;
+      log[x].target_pos_A = 0;
+      log[x].target_pos_B = 0;
+      log[x].pwm_motor_A = 0;
+      log[x].pwm_motor_B = 0;
+    }
+    log[0] = log_is_empty;
+  
 }
