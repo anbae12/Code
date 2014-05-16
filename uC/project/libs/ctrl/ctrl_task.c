@@ -133,6 +133,7 @@ void ctrl_task(void *pvParameters)
   last_wake_time = xTaskGetTickCount();
   INT8U funny_business = 0;
   INT8U control_state;
+  INT8U reset = 1;
   while(1)
   {
     led_ryg(1,0,0); //to test timing
@@ -142,14 +143,17 @@ void ctrl_task(void *pvParameters)
     {
     case CTRL_STOP_MODE:
       next_pwm = get_target_pwm(); //interface makes sure this is 0
+      reset = 1;
       break;
     case CTRL_POS_MODE:
       //target_pos = get_target_position();
-      target_pos_kart = read_pos_kart(0);
+      target_pos_kart = read_pos_kart(reset);
+      reset = 0;
       target_pos = coordinate_transform(target_pos_kart);
       //next_pwm = test_controller(target_pos, current_pos);
-      //next_pwm.motorA = pan_controller(target_pos, current_pos);
-      //next_pwm.motorB = tilt_controller(target_pos, current_pos);
+//      next_pwm.motorA = pan_controller(target_pos, current_pos);
+//      next_pwm.motorB = tilt_controller(target_pos, current_pos);
+      next_pwm.motorA = pid_parallel_controller(target_pos, current_pos);
       break;
     case CTRL_PWM_MODE:
       funny_business++;
@@ -157,6 +161,7 @@ void ctrl_task(void *pvParameters)
       {
         funny_business = 0;
         next_pwm = get_target_pwm();
+        //1024-2047 giver måske fejl transmission
       }
       break;
     default:

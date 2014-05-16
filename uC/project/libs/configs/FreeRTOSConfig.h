@@ -70,7 +70,7 @@
 #define configUSE_IDLE_HOOK			0
 #define configUSE_TICK_HOOK			0
 #define configCPU_CLOCK_HZ			( ( unsigned long ) 50000000 )
-#define configTICK_RATE_HZ			( ( portTickType ) 1300 )
+#define configTICK_RATE_HZ			( ( portTickType ) 600 )
 #define configMINIMAL_STACK_SIZE	        ( ( unsigned short ) 250 ) //70 std.
 #define configTOTAL_HEAP_SIZE		        ( ( size_t ) ( 11000 ) )//( ( size_t ) ( 7000 ) )
 #define configMAX_TASK_NAME_LEN		        ( 10 )

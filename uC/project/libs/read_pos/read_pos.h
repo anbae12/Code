@@ -25,7 +25,7 @@ typedef struct coordinate_type {
 } coordinate_type;
 
 /*****************************   Constants   *******************************/
-static coordinate_type invalid_coordinate = {.y = 1000, .x = 1000, .z = 1000};
+static const coordinate_type invalid_coordinate = {.y = 1000, .x = 1000, .z = 1000};
 /******************************** Variables *********************************/
 extern coordinate_type interface_coordinate;
 extern coordinate_type target_var;

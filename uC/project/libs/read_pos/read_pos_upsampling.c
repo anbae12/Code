@@ -49,6 +49,7 @@ coordinate_type read_pos_kart(INT8U reset)
 // Gets camera input from "read_pos" and upsamples. 
 // If reset is set, the index for read_pos is set to 0. 
 {
+
   static INT16U array_index;
   coordinate_type coordinate = {.x = 0, .y = 0, .z = 0};
   //coordinate_type list[LIST_SIZE];
@@ -58,11 +59,11 @@ coordinate_type read_pos_kart(INT8U reset)
     array_index = 0;
   
   
-  static INT8U upsample_count; 
+  static INT8U upsample_count = 0;
   
   upsample_count++;
   // Read new value
-  if (upsample_count == 1)
+  if (upsample_count == 1 )
   {
     // Read samples from list at 60 Hz
     if( array_index < LIST_SIZE - 0 )
@@ -96,6 +97,18 @@ coordinate_type read_pos_kart(INT8U reset)
 
   // Debug
     read_pos_debug2(output);
+
+    if( xSemaphoreTake(position_ctrl_sem, 0) )
+    {
+      if( interface_coordinate.x != invalid_coordinate.x &&
+          interface_coordinate.y != invalid_coordinate.y &&
+          interface_coordinate.z != invalid_coordinate.z )
+      {
+        output = interface_coordinate;
+        array_index = 0;
+      }
+      xSemaphoreGive(position_ctrl_sem);
+    }
 
   return output;
 }
@@ -140,7 +153,7 @@ coordinate_type iir_filter(coordinate_type new_sample)
 coordinate_type fir_filter(coordinate_type new_sample)
 // FIR filter using coordinate type. 
 {
-  float FIRCoef[Ntap] = { 
+  FP32 FIRCoef[Ntap] = {
 		  0.00307400318384166,
 		  0.00415195519710886,
 		  0.00675738846385896,
@@ -179,12 +192,27 @@ coordinate_type fir_filter(coordinate_type new_sample)
 
   //Calculate the new output
   input[0] = new_sample;
+
   for(n=0; n<Ntap; n++)
   {
     output.x += FIRCoef[n] * input[n].x;
     output.y += FIRCoef[n] * input[n].y;
     output.z += FIRCoef[n] * input[n].z;
   }
+
+
+//  INT16U conv1, conv2;
+//  conv1 = (INT16U) (new_sample.x * 10000);
+//  conv2 = (INT16U) (output.x * 10000) ;
+//  PRINTF("Input: %u\t\t Output: %u\n",conv1,conv2);
+//  conv1 = (INT16U) (new_sample.y * 10000);
+//  conv2 = (INT16U) (output.y * 10000) ;
+//  PRINTF("Input: %u\t\t Output: %u\n",conv1,conv2);
+//  conv1 = (INT16U) (new_sample.z * 10000);
+//  conv2 = (INT16U) (output.z * 10000) ;
+//  PRINTF("Input: %u\t\t Output: %u\n",conv1,conv2);
+
+
   return output;
   
   

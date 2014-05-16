@@ -197,7 +197,7 @@ void init_list( coordinate_type final_list[LIST_SIZE] )
       -27.866,30.524,-0.39365
   };
   
-  for( i = 0; i < MATLAB_LIST_SIZE; i++) //TODO this list is not correct...
+  for( i = 0; i < MATLAB_LIST_SIZE; i++)
   {
     if( ( i % 3 ) == 0 ) final_list[j].x = matlab_liste[i];
     if( ( i % 3 ) == 1 ) final_list[j].y = matlab_liste[i];

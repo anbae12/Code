@@ -12,7 +12,7 @@
 #include "configs/project_settings.h"
 #include "uart/uart.h"
 #include "uart/uartprintf.h"
-#include "read_pos/read_pos.h"
+#include "read_pos/read_pos_upsampling.h"
 #include "read_pwm/read_pwm.h"
 #include "ctrl/ctrl_task.h"
 #include "queue/queue_ini.h"

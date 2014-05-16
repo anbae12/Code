@@ -18,7 +18,8 @@
 /*****************************    Defines    *******************************/
 #define PWM_LIST_SIZE 2048
 #define MATLAB_PWM_LIST_SIZE (PWM_LIST_SIZE*2) //2 times LIST_SIZE
-#define END_PWM            (40*PWM_PERCENT) //hvis i vil have at den går til 40% ved slut af test.
+// #define END_PWM            (40*PWM_PERCENT) //hvis i vil have at den går til 40% ved slut af test.
+#define END_PWM            (1024) //hvis i vil have at den går til 40% ved slut af test.
 
 /*****************************   Constants   *******************************/
 static const pwm_duty_cycle_type invalid_pwm = {.motorA = 1981, .motorB = 1981};

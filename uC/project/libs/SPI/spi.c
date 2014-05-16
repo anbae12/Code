@@ -176,6 +176,7 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
   BOOLEAN motorA_direction = 1;
   BOOLEAN motorB_direction = 1;
 
+  //check direction
   if(pwm.motorA < 0)
   {
     motorA_direction = 0;
@@ -187,6 +188,7 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
     pwm.motorB = pwm.motorB * (-1);
   }
 
+  //Saturate pwm
   if(pwm.motorA > 2047)
   {
     pwm.motorA = 2047;
@@ -206,12 +208,15 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
   messageB |= 1 << SPI_PWM_BIT_POS;
   messageB &= ~(1 << SPI_MOTOR_BIT_POS);
 
+  static INT8U qwerty = 0;
   if( UART_MSG_OUT_DEBUG )
   {
-    PRINTF("MESSAGEA = 0x%x\n",messageA);
+    qwerty++;
+    if(qwerty == 100){
+    qwerty = 0;
+    PRINTF("MESSAGEA = 0x%x\t",messageA);
     PRINTF("MESSAGEB = 0x%x\n",messageB);
-  }
-  
+    }}
   spi_buffer_push(messageA);
   for(count = 0; count < SPI_WAIT; count++);
   data_in = spi_receive(); // unused

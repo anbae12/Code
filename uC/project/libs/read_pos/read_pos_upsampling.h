@@ -31,7 +31,6 @@
 #define UPSAMPLING_FACTOR          10
 
 #define MATLAB_COOR_LIST_SIZE      92
-
 typedef struct coordinate_type {
   FP32 x;
   FP32 y;
@@ -42,7 +41,7 @@ typedef struct coordinate_type {
 /******************************** Variables *********************************/
 coordinate_type interface_coordinate;
 coordinate_type target_var;
-
+static const coordinate_type invalid_coordinate = {.y = 1000, .x = 1000, .z = 1000};
 /*****************************   Functions   *******************************/
 
 extern void read_pos_debug2(coordinate_type coordinate); //strictly for debugging purposes... This is why it is not mentioned anywhere else...
