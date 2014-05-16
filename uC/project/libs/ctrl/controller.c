@@ -19,7 +19,7 @@
  * TODO:
  *   Initialize function
  ****************************************************************************/
-
+#define TICKS_PER_REVOLOTION 1080
 /***************************** Include files *******************************/
 #include "inc/lm3s6965.h"
 #include "inc/emp_type.h"
@@ -87,20 +87,30 @@ INT16S pid_parallel_controller(motor_pos target_pos, motor_pos current_pos)
   
   FP32 dt = 0.001667;  // Insert sample period here xD
   // Coefficients: 
-  FP32 Kp = 2;
+  FP32 Kp = 15;
   FP32 Ki = 0;
   FP32 Kd = 0; 
   
   
   // Pan controller: 
   error = target_pos.positionA - current_pos.positionA;
-  
+
+  if (error < -(TICKS_PER_REVOLOTION/2) )
+  {
+    error += TICKS_PER_REVOLOTION;
+  }
+  error *= -1;
   integral += error * dt;
   derivative = (error - previous_error)/dt;
   
   return_value = Kp*error + Ki*integral + Kd*derivative; 
+
   previous_error = error;
   
+//  INT32S conv;
+//  conv = (INT32S) error;
+//  PRINTF("error: %d\n", conv);
+
   return (INT16S) return_value;
   
 }

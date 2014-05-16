@@ -47,7 +47,7 @@
 /* Task timings hvis de skal samles */
 /* ms er fjernet... */
 
-#define CTRL_TASK_CYCLE (1)       //ctrl_task.c
+#define CTRL_TASK_CYCLE (10)       //ctrl_task.c
 #define READ_PWM_TASK_CYCLE (MILLI_SEC(30))   //read_pwm.c
 #define INTERFACE_TASK_CYCLE (10)  //interface.c
 #define LOG_TASK_CYCLE  (12)       //log_task.c

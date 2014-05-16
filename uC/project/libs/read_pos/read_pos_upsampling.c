@@ -96,19 +96,20 @@ coordinate_type read_pos_kart(INT8U reset)
   output = fir_filter(coordinate);
 
   // Debug
-    read_pos_debug2(output);
+  read_pos_debug2(output);
 
-    if( xSemaphoreTake(position_ctrl_sem, 0) )
+  //if interface sends a coordinate
+  if( xSemaphoreTake(position_ctrl_sem, 0) )
+  {
+    if( interface_coordinate.x != invalid_coordinate.x &&
+        interface_coordinate.y != invalid_coordinate.y &&
+        interface_coordinate.z != invalid_coordinate.z )
     {
-      if( interface_coordinate.x != invalid_coordinate.x &&
-          interface_coordinate.y != invalid_coordinate.y &&
-          interface_coordinate.z != invalid_coordinate.z )
-      {
-        output = interface_coordinate;
-        array_index = 0;
-      }
-      xSemaphoreGive(position_ctrl_sem);
+      output = interface_coordinate;
+      array_index = 0;
     }
+    xSemaphoreGive(position_ctrl_sem);
+  }
 
   return output;
 }
