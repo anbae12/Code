@@ -23,7 +23,7 @@
 /******************************** Variables *********************************/
 log_file_type log_global[MAX_LOG_ENTRIES];
 static const log_file_type log_is_empty = {1, 2, 3, 4, 5, 6}; 
-<
+
 /*****************************   Functions   *******************************/
 
 void log_task(void *pvParameters)
@@ -83,8 +83,7 @@ void print_log(log_file_type log[MAX_LOG_ENTRIES])
     }
     reset_log(log_global);
   }
-    xSemaphoreGive(interface_log_sem);
-  }
+  xSemaphoreGive(interface_log_sem);
 }
 
 void display_log_format(void)

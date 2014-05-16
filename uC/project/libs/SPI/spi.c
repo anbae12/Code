@@ -27,7 +27,7 @@
 #include "spi.h"
 
 #include "FRT_Library/FreeRTOS/Source/include/FreeRTOS.h"
-#include "FRT_Library/FreeRTOS/Source/include/bqueue.h"
+#include "FRT_Library/FreeRTOS/Source/include/queue.h"
 
 #include "queue/queue_ini.h"
 
