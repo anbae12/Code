@@ -16,7 +16,6 @@
 #include "read_pwm/read_pwm.h"
 #include "ctrl/ctrl_task.h"
 #include "queue/queue_ini.h"
-#include "log/log_task.h"       //@TODO: REMOVE THIS
 #include "logger/logger.h"
 
 //#include "debug/ftoa.h"

@@ -33,7 +33,6 @@
 #include "ctrl_task.h"
 #include <math.h>
 #include "controller.h"
-#include "log/log_task.h"
 
 //if we don't want read_pwm_task
 #include "read_pwm/matlab_pwm_liste.h"
@@ -246,18 +245,4 @@ pwm_duty_cycle_type get_target_pwm()
     pwm = read_pwm_function();
   }
   return pwm;
-}
-
-void set_status_log(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target)
-{
-  static log_file_type hans;
-
-  hans.current_pos_A = (INT16U) current.positionA;
-  hans.current_pos_B = (INT16U) current.positionB;
-  hans.target_pos_A =  (INT16U) target.positionA;
-  hans.target_pos_B =  (INT16U) target.positionB;
-  hans.pwm_motor_A =   (INT16S) pwm.motorA;
-  hans.pwm_motor_B =   (INT16S) pwm.motorB;
-
-  xQueueSend(log_status_queue,&hans,0);
 }

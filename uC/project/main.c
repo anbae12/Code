@@ -37,7 +37,6 @@
 #include "ctrl/ctrl_task.h"
 #include "ctrl/controller.h"
 #include "read_pos/read_pos.h"
-#include "log/log_task.h"
 #include "led/led_on_off.h"
 
 //The new and improved....
