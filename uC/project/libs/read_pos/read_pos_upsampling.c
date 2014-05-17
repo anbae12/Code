@@ -125,10 +125,10 @@ coordinate_type read_pos_kart(INT8U reset)
   output = fir_filter(coordinate);
 
   // Debug
-  read_pos_debug2(output);
+  //read_pos_debug2(output);
 
   //if interface sends a coordinate
-  if( xSemaphoreTake(position_ctrl_sem, 0) )
+  if( xSemaphoreTake(position_ctrl_mutex, 0) )
   {
     if( interface_coordinate.x != invalid_coordinate.x &&
         interface_coordinate.y != invalid_coordinate.y &&
@@ -137,7 +137,7 @@ coordinate_type read_pos_kart(INT8U reset)
       output = interface_coordinate;
       array_index = 0;
     }
-    xSemaphoreGive(position_ctrl_sem);
+    xSemaphoreGive(position_ctrl_mutex);
   }
   INT16S corx, cory, corz;
   corx = (INT16S) (output.x * 100);
@@ -148,46 +148,10 @@ coordinate_type read_pos_kart(INT8U reset)
 }
 
 
-#define IIR_TAPS   3
-coordinate_type iir_filter(coordinate_type new_sample)
-// IIR filter using coordinate type
-{
-	// Initializes to 0:
-	  static coordinate_type input[IIR_TAPS];
-	  static coordinate_type output[IIR_TAPS];
-
-	  FP32 a_coef[IIR_TAPS] = {0, 0.7753, 0.9078}; // a[0] skal være = 0.
-	  FP32 b_coef[IIR_TAPS] = {0.85408, 1.7535, 1.8843};
-
-	  INT8U i;
-
-	  // Shift buffers:
-	  for (i = 1; i < IIR_TAPS; i++)
-	  {
-	    output[i] = output[i-1];
-	    input[i] = input[i-1];
-	  }
-
-
-	  input[0] = new_sample;
-	  output[0].x = 0;
-	  output[0].y = 0;
-	  output[0].z = 0;
-	    for(i=0; i<IIR_TAPS; i++)
-	    {
-	      output[0].x += b_coef[i] * input[i].x - a_coef[i] * output[i].x;
-	      output[0].y += b_coef[i] * input[i].y - a_coef[i] * output[i].y;
-	      output[0].z += b_coef[i] * input[i].z - a_coef[i] * output[i].z;
-	    }
-
-	return output[0];
-}
-
 coordinate_type fir_filter(coordinate_type new_sample)
 // FIR filter using coordinate type. 
 {
-
-  static coordinate_type input[Ntap]; //input samples
+  static coordinate_type input[Ntap] = {{0,0,0}}; //input samples
   coordinate_type output = {0,0,0};          //output sample
   INT8U n;
   
@@ -195,9 +159,9 @@ coordinate_type fir_filter(coordinate_type new_sample)
   for(n=Ntap-1; n>0; n--)
      input[n] = input[n-1];
   
-  //Calculate the new output
   input[0] = new_sample;
 
+  //Calculate the new output
   for(n=0; n<Ntap; n++)
   {
     output.x += FIRCoef[n] * input[n].x;

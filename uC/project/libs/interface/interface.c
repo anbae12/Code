@@ -33,6 +33,8 @@
 #define UI_CMD_OPEN_LOOP "open"
 #define COORDINATE_LEN 11
 
+#define WHATtheFUCK_EVER        100
+
 
 
 /******************************** Constants *********************************/
@@ -68,7 +70,7 @@ void interface_task(void *pvParameters)
   INT8U coord[COORDINATE_LEN] = {0};
   INT8U read_log = FALSE;
 
-  UARTprintf("Program started.\n");
+  UARTprintf("\n\n\nProgram started.\n");
   interface_display_commands();
 
   while(1)
@@ -77,30 +79,30 @@ void interface_task(void *pvParameters)
     {
       if(!strcmp(UI_CMD_START,mirror_string))
       {
-        if( xSemaphoreTake(position_ctrl_sem, portMAX_DELAY) )
-        {
-          interface_coordinate = invalid_coordinate;
-          xSemaphoreGive(position_ctrl_sem);
-        }
-        if( xSemaphoreTake(interface_to_control_sem, portMAX_DELAY) )
-        {
-          interface_to_control_byte = (1 << pos_bit_location);
-          xSemaphoreGive(interface_to_control_sem);
-        }
+        _MTX_TAKE_BLOCKING(interface_to_control_mutex);
+        interface_to_control_byte = (1 << stop_bit_location);
+        _MTX_GIVE(interface_to_control_mutex);
+        _wait(WHATtheFUCK_EVER);
+        _MTX_TAKE_BLOCKING(position_ctrl_mutex);
+        interface_coordinate = invalid_coordinate;
+        _MTX_GIVE(position_ctrl_mutex);
+        _MTX_TAKE_BLOCKING(interface_to_control_mutex);
+        interface_to_control_byte = (1 << pos_bit_location);
+        _MTX_GIVE(interface_to_control_mutex);
         UARTprintf("set pos ctrl\n");
       }
       else if(!strcmp(UI_CMD_STOP,mirror_string))
       {
-        if( xSemaphoreTake(interface_pwm_sem, portMAX_DELAY) ) // send stop to read_pwm_task
+        if( xSemaphoreTake(interface_pwm_mutex, portMAX_DELAY) ) // send stop to read_pwm_task
         {
           interface_pwm.motorB = 0;
           interface_pwm.motorA = 0;
-          xSemaphoreGive(interface_pwm_sem);
+          xSemaphoreGive(interface_pwm_mutex);
         }
-        if( xSemaphoreTake(interface_to_control_sem, portMAX_DELAY) )
+        if( xSemaphoreTake(interface_to_control_mutex, portMAX_DELAY) )
         {
           interface_to_control_byte = (1 << stop_bit_location);
-          xSemaphoreGive(interface_to_control_sem);
+          xSemaphoreGive(interface_to_control_mutex);
         }
       }
       else if (!strcmp(UI_CMD_READ,mirror_string)) /*         <===   READ LOG  <===              */
@@ -113,62 +115,62 @@ void interface_task(void *pvParameters)
       }
       else if (!strcmp(UI_CMD_OPEN_LOOP,mirror_string))
       {
-        if( xSemaphoreTake(interface_to_control_sem, portMAX_DELAY) )
+        if( xSemaphoreTake(interface_to_control_mutex, portMAX_DELAY) )
         {
           interface_to_control_byte = (1 << pwm_bit_location);
-          xSemaphoreGive(interface_to_control_sem);
+          xSemaphoreGive(interface_to_control_mutex);
         }
-        if( xSemaphoreTake(interface_pwm_sem, portMAX_DELAY) )
+        if( xSemaphoreTake(interface_pwm_mutex, portMAX_DELAY) )
         {
           interface_pwm = invalid_pwm;
-          xSemaphoreGive(interface_pwm_sem);
+          xSemaphoreGive(interface_pwm_mutex);
         }
       }
       else if(!strcmp(UI_CMD_RESET,mirror_string))
       {
-        if( xSemaphoreTake(interface_to_control_sem, portMAX_DELAY) )
+        if( xSemaphoreTake(interface_to_control_mutex, portMAX_DELAY) )
         {
           interface_to_control_byte = (1 << pos_bit_location);
-          xSemaphoreGive(interface_to_control_sem);
+          xSemaphoreGive(interface_to_control_mutex);
         }
         INT8U index;
         for(index = 0; index < COORDINATE_LEN; index++)
         {
           coord[index] = 0;
         }
-        if( xSemaphoreTake(position_ctrl_sem, portMAX_DELAY) )
+        if( xSemaphoreTake(position_ctrl_mutex, portMAX_DELAY) )
         {
           interface_coordinate = input_coordinate(coord);
-          xSemaphoreGive(position_ctrl_sem);
+          xSemaphoreGive(position_ctrl_mutex);
         }
       }
       else if(mirror_string[0] == 'C' && mirror_string[5] == '.' && mirror_string[9] == '.')
       {
-        if( xSemaphoreTake(interface_to_control_sem, portMAX_DELAY) )
+        if( xSemaphoreTake(interface_to_control_mutex, portMAX_DELAY) )
         {
           interface_to_control_byte = (1 << pos_bit_location);
-          xSemaphoreGive(interface_to_control_sem);
+          xSemaphoreGive(interface_to_control_mutex);
         }
         INT8U index;
         for(index = 0; index < COORDINATE_LEN; index++)
         {
           coord[index] = mirror_string[index + 2] - '0';
         }
-        if( xSemaphoreTake(position_ctrl_sem, portMAX_DELAY) )
+        if( xSemaphoreTake(position_ctrl_mutex, portMAX_DELAY) )
         {
           interface_coordinate = input_coordinate(coord);
-          xSemaphoreGive(position_ctrl_sem);
+          xSemaphoreGive(position_ctrl_mutex);
         }
       }
       else if(mirror_string[0] == 'P' && strlen(mirror_string) == 5)
       {
-        if( xSemaphoreTake(interface_to_control_sem, portMAX_DELAY) )
+        if( xSemaphoreTake(interface_to_control_mutex, portMAX_DELAY) )
         {
           interface_to_control_byte = (1 << pwm_bit_location);
-          xSemaphoreGive(interface_to_control_sem);
+          xSemaphoreGive(interface_to_control_mutex);
         }
 
-        if( xSemaphoreTake(interface_pwm_sem, portMAX_DELAY) )
+        if( xSemaphoreTake(interface_pwm_mutex, portMAX_DELAY) )
         {
           interface_pwm.motorA = (mirror_string[3] - '0') * 10;
           interface_pwm.motorA += mirror_string[4] - '0';
@@ -188,7 +190,7 @@ void interface_task(void *pvParameters)
           {
             interface_pwm.motorA = 0;
           }
-          xSemaphoreGive(interface_pwm_sem);
+          xSemaphoreGive(interface_pwm_mutex);
         }
       }
       else

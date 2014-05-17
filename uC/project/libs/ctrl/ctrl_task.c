@@ -94,7 +94,7 @@ void pwm_spi_debug(pwm_duty_cycle_type target)
 INT8U interface_input(void)
 {
   static INT8U control_state = CTRL_STOP_MODE;
-  if( xSemaphoreTake(interface_to_control_sem, 0) )
+  if( xSemaphoreTake(interface_to_control_mutex, 0) )
   {
     if (1 & (interface_to_control_byte >> stop_bit_location ) )
     {
@@ -108,7 +108,7 @@ INT8U interface_input(void)
     {
       control_state = CTRL_PWM_MODE;
     }
-    xSemaphoreGive(interface_to_control_sem);
+    xSemaphoreGive(interface_to_control_mutex);
   }
   return control_state;
 }
@@ -202,10 +202,10 @@ motor_pos get_target_position()
   static motor_pos target;
   coordinate_type coord;
 
-  if( xSemaphoreTake(target_var_sem, 1) )
+  if( xSemaphoreTake(target_var_mutex, 1) )
   {
     coord = target_var;
-    xSemaphoreGive(target_var_sem);
+    xSemaphoreGive(target_var_mutex);
   }
 
   target.positionA = (90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ))*3; //phi
@@ -232,10 +232,10 @@ pwm_duty_cycle_type get_target_pwm()
   if( we_use_read_task == pdPASS )
   {
     //    PRINTF("TASK IS DOING THIS\n");
-    if( xSemaphoreTake(target_pwm_sem, 1) )
+    if( xSemaphoreTake(target_pwm_mutex, 1) )
     {
       //pwm = target_pwm;
-      xSemaphoreGive(target_pwm_sem);
+      xSemaphoreGive(target_pwm_mutex);
     }
     target_pwm_debug(pwm);
   }

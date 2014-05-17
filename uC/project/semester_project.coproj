@@ -124,7 +124,6 @@
     <File name="libs/ctrl/controller.c" path="libs/ctrl/controller.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/MemMang/heap_2.c" path="libs/FRT_Library/FreeRTOS/Source/portable/MemMang/heap_2.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS" path="" type="2"/>
-    <File name="libs/read_pos/read_pos.h" path="libs/read_pos/read_pos.h" type="1"/>
     <File name="libs/debug/ftoa.h" path="libs/debug/ftoa.h" type="1"/>
     <File name="libs/led/led_on_off.h" path="libs/led/led_on_off.h" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/queue.c" path="libs/FRT_Library/FreeRTOS/Source/queue.c" type="1"/>
@@ -149,7 +148,6 @@
     <File name="libs/FRT_Library/FreeRTOS/Source/croutine.c" path="libs/FRT_Library/FreeRTOS/Source/croutine.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" path="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h" type="1"/>
     <File name="libs/uart/uartprintf.h" path="libs/uart/uartprintf.h" type="1"/>
-    <File name="libs/read_pos/read_pos.c" path="libs/read_pos/read_pos.c" type="1"/>
     <File name="main.c" path="main.c" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" path="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c" type="1"/>
   </Files>
