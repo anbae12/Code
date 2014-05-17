@@ -172,7 +172,8 @@ void ctrl_task(void *pvParameters)
 
     //current_pos_debug(current_pos);
     //pwm_spi_debug(next_pwm);
-    set_status_log(next_pwm, current_pos, target_pos);
+    //set_status_log(next_pwm, current_pos, target_pos); //The old one
+    log_entry_register(next_pwm, current_pos, target_pos);
     //next_pwm.motorB = 0;
     spi_send_pwm(next_pwm);
     led_ryg(0,0,0); //to test timing

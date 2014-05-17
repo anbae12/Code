@@ -16,7 +16,8 @@
 #include "read_pwm/read_pwm.h"
 #include "ctrl/ctrl_task.h"
 #include "queue/queue_ini.h"
-#include "log/log_task.h"
+#include "log/log_task.h"       //@TODO: REMOVE THIS
+#include "logger/logger.h"
 
 //#include "debug/ftoa.h"
 
@@ -199,7 +200,8 @@ void interface_task(void *pvParameters)
     }
     else if( read_log == TRUE )
     {
-      print_log(log_global);
+      //print_log(log_global); //The old one
+      log_flush(TRUE); //The new and improved one!
     }
   }
   _wait(INTERFACE_TASK_CYCLE);
