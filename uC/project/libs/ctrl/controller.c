@@ -93,9 +93,9 @@ INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos)
   
   FP32 dt = 0.001667;  // Insert sample period here xD
   // Coefficients: 
-  FP32 Kp = 22.344;
-  FP32 Ki = 0;          //1493.7;
-  FP32 Kd = 0.0836;
+  FP32 Kp = CONTROL_TILT_P;
+  FP32 Ki = CONTROL_TILT_I;          //1493.7;
+  FP32 Kd = CONTROL_TILT_D;
   
   // Pan controller: 
   error = target_pos.positionA - current_pos.positionA;
@@ -124,49 +124,6 @@ INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos)
   
 }
 
-
-
-pwm_duty_cycle_type test_controller(motor_pos target_pos, motor_pos current_pos)
-/*****************************************************************************
- *   Input    : positions
- *   Output   : pwm
- *   Function : Test function to see if basic stuff works.
- ******************************************************************************/
-{
-  pwm_duty_cycle_type next_pwm;
-
-
-  if(target_pos.positionA >= current_pos.positionA )
-  {
-    next_pwm.motorA = 20 * PWM_PERCENT;
-  }
-  else if(target_pos.positionA < current_pos.positionA)
-  {
-    next_pwm.motorA = 30 * PWM_PERCENT;
-  }
-
-/*
-  if(target_pos.positionB <= current_pos.positionB + TEST_OFFSET_C)
-  {
-    next_pwm.motorB = 60 * PWM_PERCENT;
-  }
-  else if(target_pos.positionB <= current_pos.positionB + TEST_OFFSET_B)
-  {
-    next_pwm.motorB = 50 * PWM_PERCENT;
-  }
-  else if(target_pos.positionB <= current_pos.positionB + TEST_OFFSET_A)
-  {
-    next_pwm.motorB = 30 * PWM_PERCENT;
-  }
-  else
-  */
-  next_pwm.motorB = 0 * PWM_PERCENT;
-
-  return next_pwm;
-}
-
-
-
 INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos)
 {
   // Variables
@@ -178,9 +135,9 @@ INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos)
 
   FP32 dt = 0.001667;  // Insert sample period here xD
   // Coefficients:
-  FP32 Kp = 18.56;
-  FP32 Ki = 0; //1670.4;
-  FP32 Kd = 0.0952;
+  FP32 Kp = CONTROL_PAN_P;
+  FP32 Ki = CONTROL_PAN_I;
+  FP32 Kd = CONTROL_PAN_D;
   INT8U state;
   INT8U position_half;
   INT8U current_half;

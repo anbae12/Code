@@ -112,6 +112,8 @@ void ctrl_task(void *pvParameters)
   INT8U reset = 1;
   message_user_interface_type ui_message;
   PRINTF("control task started\n");
+  INT8U write_to_log_en = 0;
+  INT8U write_to_log_count = 0;
   while(1)
   {
     led_ryg(1,0,0); //to test timing
@@ -124,6 +126,7 @@ void ctrl_task(void *pvParameters)
       target_pos = *( (motor_pos *)(ui_message.msg) );
       next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
       next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
+      write_to_log_en = 100;
       break;
 
     case SINGLE_CARTESIAN_POSITION:
@@ -131,16 +134,20 @@ void ctrl_task(void *pvParameters)
       target_pos = coordinate_transform(target_pos_kart);
       next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
       next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
+      write_to_log_en = 100;
       break;
 
     case SINGLE_PWM_MODE:
       next_pwm = *( (pwm_duty_cycle_type *)(ui_message.msg) );
+      write_to_log_en = 100;
       break;
 
     case STOP_MOTORS_NOW:
       next_pwm.motorA = 0;
       next_pwm.motorB = 0;
       reset = 1;
+      write_to_log_en = 0;
+      write_to_log_count = 0;
       break;
 
     case SKEET_SHOOT_DEMO:
@@ -149,6 +156,8 @@ void ctrl_task(void *pvParameters)
       target_pos = coordinate_transform(target_pos_kart);
       next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
       next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
+      write_to_log_en = 1;
+      write_to_log_count = 0;
       break;
 
     case OPEN_LOOP_TEST:
@@ -158,6 +167,7 @@ void ctrl_task(void *pvParameters)
         open_loop_scale= 0;
         next_pwm = read_pwm_function( reset );
         reset = 0;
+        write_to_log_en = 1;
         //1024-2047 giver måske fejl transmission
       }
       break;
@@ -168,8 +178,12 @@ void ctrl_task(void *pvParameters)
     //current_pos_debug(current_pos);
     //pwm_spi_debug(next_pwm);
     //set_status_log(next_pwm, current_pos, target_pos); //The old one
-    log_entry_register(next_pwm, current_pos, target_pos);
-    //next_pwm.motorB = 0;
+    write_to_log_count++;
+    if(write_to_log_en && (write_to_log_count == write_to_log_en) )
+    {
+      write_to_log_count = 0;
+      log_entry_register(next_pwm, current_pos, target_pos);
+    }
     spi_send_pwm(next_pwm);
 
     led_ryg(0,0,0); //to test timing

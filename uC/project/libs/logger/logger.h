@@ -16,6 +16,7 @@ typedef struct closedloop_entry {
   INT16U setpointB;
   INT16S pwmA;
   INT16S pwmB;
+  INT16S offset;
 } log_entry;
 
 /******************************** Constants *********************************/

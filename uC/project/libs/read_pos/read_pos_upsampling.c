@@ -21,6 +21,7 @@
 #include "queue/queue_ini.h"
 #include "configs/project_settings.h"
 #include "matlab_coor_list.h"
+#include "ctrl/ctrl_task.h"
 
 
 /********************************* Defines **********************************/
@@ -100,7 +101,7 @@ coordinate_type read_pos_kart(INT8U reset)
   if (upsample_count == 1 )
   {
     // Read samples from list at 60 Hz
-    if( array_index < LIST_SIZE - 0 )
+    if( array_index < MATLAB_COOR_LIST_SIZE - 0 )
     {
       coordinate = coor_list[array_index++];
     }
@@ -126,9 +127,17 @@ coordinate_type read_pos_kart(INT8U reset)
   if (upsample_count == UPSAMPLING_FACTOR)
   {
     upsample_count = 0;
-    if( array_index < LIST_SIZE - 0 )
+    if( array_index < MATLAB_COOR_LIST_SIZE - 1 )
     {
       coordinate = coor_list[++array_index];
+    }
+    else
+    {
+      //we are done...
+
+      INT8U state;
+      state = STOP_MOTORS_NOW;
+      control_set_state(state, &state);
     }
   }
   coordinate = coor_list[array_index];
@@ -136,7 +145,7 @@ coordinate_type read_pos_kart(INT8U reset)
   //PRINTF("\nCount: %d\t",array_index);
   //PRINTF("     Count2: %d\t",upsample_count);
   // Run the FIR filter from winfilter.
- // output = fir_filter(coordinate);
+  //output = fir_filter(coordinate);
   output = coordinate;
 
   // Debug

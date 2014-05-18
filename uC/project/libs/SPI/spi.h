@@ -23,6 +23,10 @@
 
 /*****************************    Defines    *******************************/
 
+#define DEAD_BAND_TILT 141
+#define DEAD_BAND_PAN  221
+
+
 // motorbit | retningsbit | pwmbit| 2 ignore | 11 pwm
 #define SPI_MOTOR_BIT_POS     15
 #define SPI_DIRECTION_BIT_POS 14
@@ -48,6 +52,7 @@
 #define SPI_MOTOR_POS_MASK             0x07FF  // Bit mask for reading motor position
 
 #define SPI_MOTOR_SEL_BIT_POS          15
+
 /*****************************   Constants   *******************************/
 
 /*****************************   Variables   *******************************/

@@ -88,7 +88,7 @@ void interface_task(void *pvParameters)
   char mirror_string[UART_QUEUE_LEN] = {0};
 
   INT8U coord[COORDINATE_LEN] = {0};
-  INT8U read_log = FALSE;
+  INT8U read_log = TRUE;
   INT8U next_control_state;
   PRINTF("\n\n\nProgram started.\n");
   interface_display_commands();
@@ -129,8 +129,8 @@ void interface_task(void *pvParameters)
       else if(!strcmp(UI_CMD_RESET,mirror_string))
       {
         next_control_state = SINGLE_ANGLE_POSITION; 
-        input_angle_pos.positionA = 0;
-        input_angle_pos.positionB = 0;
+        input_angle_pos.positionA = 18;
+        input_angle_pos.positionB = 163;
         control_set_state(next_control_state, &input_angle_pos);
       }
       else if(mirror_string[0] == 'C' && mirror_string[5] == '.' && mirror_string[9] == '.')
