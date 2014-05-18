@@ -16,7 +16,7 @@
 #include "read_pwm/read_pwm.h"
 #include "ctrl/ctrl_task.h"
 #include "queue/queue_ini.h"
-#include "log/log_task.h"
+#include "logger/logger.h"
 
 //#include "debug/ftoa.h"
 
@@ -31,7 +31,10 @@
 #define UI_CMD_PWM "PA+99"//Set pwm
 #define UI_CMD_READ "read" //Læs sensorværdier. 
 #define UI_CMD_OPEN_LOOP "open"
+#define UI_CMD_ANGLE "A aaaa.bbbb" 
 #define COORDINATE_LEN 11
+
+#define WHATtheFUCK_EVER        100
 
 
 
@@ -87,7 +90,7 @@ void interface_task(void *pvParameters)
   INT8U coord[COORDINATE_LEN] = {0};
   INT8U read_log = FALSE;
   INT8U next_control_state;
-  UARTprintf("Program started.\n");
+  PRINTF("\n\n\nProgram started.\n");
   interface_display_commands();
 
   static INT8U dummy_ptr = 1;
@@ -103,7 +106,6 @@ void interface_task(void *pvParameters)
       {
         next_control_state = SKEET_SHOOT_DEMO; 
         control_set_state(next_control_state, &dummy_ptr);
-        
         UARTprintf("set pos ctrl\n");
       }
       else if(!strcmp(UI_CMD_STOP,mirror_string))
@@ -139,7 +141,6 @@ void interface_task(void *pvParameters)
         {
           coord[index] = mirror_string[index + 2] - '0';
         }
-        //input
         input_cart_pos = input_coordinate(coord);
         control_set_state(next_control_state, &input_cart_pos);
       }
@@ -155,7 +156,6 @@ void interface_task(void *pvParameters)
           input_converted *= -1;
         }
         input_converted *= PWM_PERCENT;
-
         if(mirror_string[1] == 'A')
         {
           input_pwm.motorA = input_converted;
@@ -187,7 +187,8 @@ void interface_task(void *pvParameters)
     }
     else if( read_log == TRUE )
     {
-      print_log(log_global);
+      //print_log(log_global); //The old one
+      log_flush(TRUE); //The new and improved one!
     }
   }
   _wait(INTERFACE_TASK_CYCLE);
@@ -204,7 +205,8 @@ void interface_display_commands()
       "Enter <%s> for emergency stop\n"
       "Enter <%s> to test open loop\n"
       "Enter <%s> to move to reset position\n"
-      "Enter <%s> to go to a specific coordinate\n"
+      "Enter <%s> to go to a Cartesian coordinate\n"
+      "Enter <%s> to go to a Spherical coordinate\n"
       "Enter <%s> to force a PWM on a single motor\n",
       UI_CMD_READ,
       UI_CMD_START,
@@ -212,6 +214,7 @@ void interface_display_commands()
       UI_CMD_OPEN_LOOP,
       UI_CMD_RESET,
       UI_CMD_COORDINATE,
+      UI_CMD_ANGLE,
       UI_CMD_PWM
   );
 }

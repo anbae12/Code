@@ -29,19 +29,19 @@
 extern xQueueHandle enc_queue[2];
 extern xQueueHandle pos_ctrl_queue;
 
-extern xSemaphoreHandle position_ctrl_sem;
-extern xSemaphoreHandle target_var_sem;
+extern xSemaphoreHandle position_ctrl_mutex;
+extern xSemaphoreHandle target_var_mutex;
 
 //set pwm
-extern xSemaphoreHandle interface_pwm_sem;
-extern xSemaphoreHandle target_pwm_sem;
+extern xSemaphoreHandle interface_pwm_mutex;
+extern xSemaphoreHandle target_pwm_mutex;
 
 //control the control_task
-extern xSemaphoreHandle interface_to_control_sem;
-extern xSemaphoreHandle interface_pwm_sem;
+extern xSemaphoreHandle interface_to_control_mutex;
+extern xSemaphoreHandle interface_pwm_mutex;
 
 //log task
-extern xSemaphoreHandle interface_log_sem;
+extern xSemaphoreHandle interface_log_mutex;
 extern xQueueHandle log_status_queue;
 
 

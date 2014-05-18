@@ -28,13 +28,11 @@
 #include "FRT_Library/FreeRTOS/Source/include/queue.h"
 #include "FRT_Library/FreeRTOS/Source/include/semphr.h"
 
-#include "read_pos/read_pos.h"
-#include "log/log_task.h"
 
 #include "ctrl/ctrl_task.h"
+
 #include "queue_ini.h"
 
-#include "log/log_task.h"
 
 /*****************************    Defines    *******************************/
 
@@ -43,16 +41,16 @@
 //xQueueHandle enc_queue[2];
 //xQueueHandle pos_ctrl_queue;
 
-xSemaphoreHandle position_ctrl_sem;
-xSemaphoreHandle target_var_sem;
+xSemaphoreHandle position_ctrl_mutex;
+xSemaphoreHandle target_var_mutex;
 
-xSemaphoreHandle interface_pwm_sem;
-xSemaphoreHandle target_pwm_sem;
+xSemaphoreHandle interface_pwm_mutex;
+xSemaphoreHandle target_pwm_mutex;
 
-xSemaphoreHandle interface_to_control_sem;
-xSemaphoreHandle interface_pwm_sem;
+xSemaphoreHandle interface_to_control_mutex;
+xSemaphoreHandle interface_pwm_mutex;
 
-xSemaphoreHandle interface_log_sem;
+xSemaphoreHandle interface_log_mutex;
 xQueueHandle log_status_queue;
 portBASE_TYPE we_use_read_task = pdFALSE;
 
@@ -61,18 +59,19 @@ portBASE_TYPE we_use_read_task = pdFALSE;
 void init_sem_and_queues( void )
 {
   //Mutexes
-  position_ctrl_sem = xSemaphoreCreateMutex();
-  target_var_sem = xSemaphoreCreateMutex();
+  position_ctrl_mutex = xSemaphoreCreateMutex();
+  target_var_mutex = xSemaphoreCreateMutex();
 
-  interface_pwm_sem = xSemaphoreCreateMutex();
-  target_pwm_sem = xSemaphoreCreateMutex();
+  interface_pwm_mutex = xSemaphoreCreateMutex();
+  target_pwm_mutex = xSemaphoreCreateMutex();
 
-  interface_to_control_sem = xSemaphoreCreateMutex();
-  interface_pwm_sem = xSemaphoreCreateMutex();
+  interface_to_control_mutex = xSemaphoreCreateMutex();
+  interface_pwm_mutex = xSemaphoreCreateMutex();
 
-  interface_log_sem = xSemaphoreCreateMutex();
-  log_status_queue = xQueueCreate(LOG_QUEUE_SIZE, sizeof(log_file_type) );
-  interface_to_control_queue = xQueueCreate(LOG_QUEUE_SIZE, sizeof(message_user_interface_type) );
+  interface_log_mutex = xSemaphoreCreateMutex();
+  //log_status_queue = xQueueCreate(LOG_QUEUE_SIZE, sizeof(log_file_type) );
+  interface_to_control_queue = xQueueCreate(2, sizeof(message_user_interface_type) );
+
 }
 void add_to_enc_queue(INT8U queue_id, INT16U data)
 {

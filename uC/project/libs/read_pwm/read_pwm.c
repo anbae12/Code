@@ -40,10 +40,10 @@ void read_pwm_task(void *pvParameters)
     
     pwm = read_pwm_function(0);
   
-    if( xSemaphoreTake(target_pwm_sem, portMAX_DELAY) )
+    if( xSemaphoreTake(target_pwm_mutex, portMAX_DELAY) )
     {
       target_pwm = pwm;
-      xSemaphoreGive(target_pwm_sem);
+      xSemaphoreGive(target_pwm_mutex);
     }
     
    vTaskDelayUntil(&last_wake_time, READ_PWM_TASK_CYCLE);
@@ -69,6 +69,7 @@ pwm_duty_cycle_type read_pwm_function( INT8U reset )
     pwm.motorA = END_PWM;
     pwm.motorB = 0;
   }
+
   return pwm;
 }
 

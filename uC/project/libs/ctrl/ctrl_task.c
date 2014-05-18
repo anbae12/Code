@@ -33,7 +33,7 @@
 #include "ctrl_task.h"
 #include <math.h>
 #include "controller.h"
-#include "log/log_task.h"
+#include "logger/logger.h"
 
 //if we don't want read_pwm_task
 #include "read_pwm/matlab_pwm_liste.h"
@@ -92,7 +92,6 @@ void pwm_spi_debug(pwm_duty_cycle_type target)
   }
 }
 
-
 void ctrl_task(void *pvParameters)
 /*****************************************************************************
  *   Input    :  -
@@ -109,7 +108,7 @@ void ctrl_task(void *pvParameters)
   portTickType last_wake_time;
   last_wake_time = xTaskGetTickCount();
 
-  INT8U funny_business = 0;
+  INT8U open_loop_scale= 0;
   INT8U reset = 1;
   message_user_interface_type ui_message;
   PRINTF("control task started\n");
@@ -120,25 +119,30 @@ void ctrl_task(void *pvParameters)
     current_pos = spi_read_encoders();
     switch(ui_message.state)
     {
+
     case SINGLE_ANGLE_POSITION:
       target_pos = *( (motor_pos *)(ui_message.msg) );
       next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
       next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
       break;
+
     case SINGLE_CARTESIAN_POSITION:
       target_pos_kart = *( (coordinate_type *)(ui_message.msg) );
       target_pos = coordinate_transform(target_pos_kart);
       next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
       next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
       break;
+
     case SINGLE_PWM_MODE:
       next_pwm = *( (pwm_duty_cycle_type *)(ui_message.msg) );
       break;
+
     case STOP_MOTORS_NOW:
       next_pwm.motorA = 0;
       next_pwm.motorB = 0;
       reset = 1;
       break;
+
     case SKEET_SHOOT_DEMO:
       target_pos_kart = read_pos_kart(reset);
       reset = 0;
@@ -146,25 +150,28 @@ void ctrl_task(void *pvParameters)
       next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
       next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
       break;
+
     case OPEN_LOOP_TEST:
-      funny_business++;
-      if(funny_business % CTRL_PER_PWM == 0)
+      open_loop_scale++;
+      if(open_loop_scale == CTRL_PER_PWM)
       {
-        funny_business = 0;
+        open_loop_scale= 0;
         next_pwm = read_pwm_function( reset );
         reset = 0;
         //1024-2047 giver måske fejl transmission
       }
       break;
+
     default:
       break;
     }
-
     //current_pos_debug(current_pos);
     //pwm_spi_debug(next_pwm);
-    set_status_log(next_pwm, current_pos, target_pos);
+    //set_status_log(next_pwm, current_pos, target_pos); //The old one
+    log_entry_register(next_pwm, current_pos, target_pos);
     //next_pwm.motorB = 0;
     spi_send_pwm(next_pwm);
+
     led_ryg(0,0,0); //to test timing
     vTaskDelayUntil(&last_wake_time, CTRL_TASK_CYCLE);
   }
@@ -193,12 +200,6 @@ motor_pos get_target_position()
   static motor_pos target;
   coordinate_type coord;
 
-  if( xSemaphoreTake(target_var_sem, 1) )
-  {
-    coord = target_var;
-    xSemaphoreGive(target_var_sem);
-  }
-
   target.positionA = (90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ))*3; //phi
   target.positionB = ( atan(coord.y/coord.x) * 180/PI )*3; //theta
 
@@ -215,57 +216,33 @@ motor_pos get_target_position()
   return target;
 }
 
-
-pwm_duty_cycle_type get_target_pwm()
-{
-  static pwm_duty_cycle_type pwm;
-
-  if( we_use_read_task == pdPASS )
-  {
-    //    PRINTF("TASK IS DOING THIS\n");
-    if( xSemaphoreTake(target_pwm_sem, 1) )
-    {
-      //pwm = target_pwm;
-      xSemaphoreGive(target_pwm_sem);
-    }
-    target_pwm_debug(pwm);
-  }
-  else
-  {
-    //    PRINTF("LOOK MOM... NO TASK\n");
-    pwm = read_pwm_function( 0 );
-  }
-  return pwm;
-}
-
 void set_status_log(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target)
 {
-  static log_file_type hans;
+  static log_entry gert_the_impaler;
 
-  hans.current_pos_A = (INT16U) current.positionA;
-  hans.current_pos_B = (INT16U) current.positionB;
-  hans.target_pos_A =  (INT16U) target.positionA;
-  hans.target_pos_B =  (INT16U) target.positionB;
-  hans.pwm_motor_A =   (INT16S) pwm.motorA;
-  hans.pwm_motor_B =   (INT16S) pwm.motorB;
+  gert_the_impaler.current_posA = (INT16U) current.positionA;
+  gert_the_impaler.current_posB = (INT16U) current.positionB;
+  gert_the_impaler.setpointA =  (INT16U) target.positionA;
+  gert_the_impaler.setpointB =  (INT16U) target.positionB;
+  gert_the_impaler.pwmA =   (INT16S) pwm.motorA;
+  gert_the_impaler.pwmB =   (INT16S) pwm.motorB;
 
-  xQueueSend(log_status_queue,&hans,0);
+  xQueueSend(log_status_queue,&gert_the_impaler,0);
 }
 
 //interface_to_control stuff
-message_user_interface_type control_get_state(void )
+message_user_interface_type control_get_state( void )
 {
-  static message_user_interface_type interface_message = {.state=STOP_MOTORS_NOW, .msg=0};
+  static message_user_interface_type interface_message = {.state=STOP_MOTORS_NOW, .msg=(INT8U) 0 };
   xQueueReceive(interface_to_control_queue, &interface_message, 0);
   return interface_message;
 }
 
-extern void control_set_state( INT8U state, void *msg )
+void control_set_state( INT8U state, void *msg )
 {
   message_user_interface_type message;
   message.state = state;
   message.msg = msg;
   xQueueSend(interface_to_control_queue, &message, portMAX_DELAY);
 }
-
 
