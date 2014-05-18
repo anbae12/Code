@@ -31,6 +31,7 @@
 #include "read_pos/read_pos.h"
 #include "log/log_task.h"
 
+#include "ctrl/ctrl_task.h"
 #include "queue_ini.h"
 
 #include "log/log_task.h"
@@ -71,7 +72,7 @@ void init_sem_and_queues( void )
 
   interface_log_sem = xSemaphoreCreateMutex();
   log_status_queue = xQueueCreate(LOG_QUEUE_SIZE, sizeof(log_file_type) );
-
+  interface_to_control_queue = xQueueCreate(LOG_QUEUE_SIZE, sizeof(message_user_interface_type) );
 }
 void add_to_enc_queue(INT8U queue_id, INT16U data)
 {

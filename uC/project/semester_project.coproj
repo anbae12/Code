@@ -79,8 +79,8 @@
     <File name="libs/uart/uart.c" path="libs/uart/uart.c" type="1"/>
     <File name="libs/debug/ftoa.c" path="libs/debug/ftoa.c" type="1"/>
     <File name="libs/configs/uartcnf.h" path="libs/configs/uartcnf.h" type="1"/>
-    <File name="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" path="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3" path="" type="2"/>
+    <File name="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" path="libs/FRT_Library/FreeRTOS/Source/include/mpu_wrappers.h" type="1"/>
     <File name="libs/FRT_Library/FreeRTOS/Source/tasks.c" path="libs/FRT_Library/FreeRTOS/Source/tasks.c" type="1"/>
     <File name="libs/inc/cpu.c" path="libs/inc/cpu.c" type="1"/>
     <File name="libs/startup/startup_frt.c" path="libs/startup/startup_frt.c" type="1"/>
@@ -112,10 +112,10 @@
     <File name="libs/inc/cpu.h" path="libs/inc/cpu.h" type="1"/>
     <File name="libs/interface/interface.h" path="libs/interface/interface.h" type="1"/>
     <File name="libs/inc/gpio_ini.h" path="libs/inc/gpio_ini.h" type="1"/>
-    <File name="libs/ctrl/ctrl_task.c" path="libs/ctrl/ctrl_task.c" type="1"/>
     <File name="libs/read_pwm/read_pwm.h" path="libs/read_pwm/read_pwm.h" type="1"/>
-    <File name="libs/configs" path="" type="2"/>
     <File name="libs/read_pos/read_pos_upsampling.h" path="libs/read_pos/read_pos_upsampling.h" type="1"/>
+    <File name="libs/configs" path="" type="2"/>
+    <File name="libs/ctrl/ctrl_task.c" path="libs/ctrl/ctrl_task.c" type="1"/>
     <File name="libs/inc/glob_def.h" path="libs/inc/glob_def.h" type="1"/>
     <File name="libs/SPI/spi.h" path="libs/SPI/spi.h" type="1"/>
     <File name="libs/configs/semaphore_project.h" path="libs/configs/semaphore_project.h" type="1"/>

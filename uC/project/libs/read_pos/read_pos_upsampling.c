@@ -50,19 +50,21 @@ coordinate_type read_pos_kart(INT8U reset)
 // If reset is set, the index for read_pos is set to 0. 
 {
 
-  static INT16U array_index;
-  coordinate_type coordinate = {.x = 0, .y = 0, .z = 0};
+  static INT16U array_index = 0;
+  static INT8U upsample_count = 0;
+  coordinate_type coordinate = {.x = 0, .y = 0, .z = 0};  // static hvis vi kører ZOH
   //coordinate_type list[LIST_SIZE];
   coordinate_type output;
 
-  if(reset) // Reset index
+  if(reset)
+  {// Reset index
     array_index = 0;
-  
-  
-  static INT8U upsample_count = 0;
+    upsample_count = 0;
+  }
   
   upsample_count++;
   // Read new value
+#if 0
   if (upsample_count == 1 )
   {
     // Read samples from list at 60 Hz
@@ -87,34 +89,28 @@ coordinate_type read_pos_kart(INT8U reset)
 	coordinate.y = 0;
 	coordinate.z = 0;
   }
-  
-
+#endif
+#if 1
+  if (upsample_count == UPSAMPLING_FACTOR)
+  {
+    upsample_count = 0;
+    if( array_index < LIST_SIZE - 0 )
+    {
+      coordinate = coor_list[++array_index];
+    }
+  }
+  coordinate = coor_list[array_index];
+#endif
   //PRINTF("\nCount: %d\t",array_index);
   //PRINTF("     Count2: %d\t",upsample_count);
 
   // Run the FIR filter from winfilter.
-  output = fir_filter(coordinate);
+ // output = fir_filter(coordinate);
+  output = coordinate;
 
   // Debug
   read_pos_debug2(output);
 
-  //if interface sends a coordinate
-  if( xSemaphoreTake(position_ctrl_sem, 0) )
-  {
-    if( interface_coordinate.x != invalid_coordinate.x &&
-        interface_coordinate.y != invalid_coordinate.y &&
-        interface_coordinate.z != invalid_coordinate.z )
-    {
-      output = interface_coordinate;
-      array_index = 0;
-    }
-    xSemaphoreGive(position_ctrl_sem);
-  }
-  INT16S corx, cory, corz;
-  corx = (INT16S) (output.x * 100);
-  cory = (INT16S) (output.y * 100);
-  corz = (INT16S) (output.z * 100);
-//  PRINTF("x: %d\t y: %d\t z: %d\n",corx,cory,corz);
   return output;
 }
 

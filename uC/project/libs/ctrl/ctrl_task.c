@@ -92,29 +92,6 @@ void pwm_spi_debug(pwm_duty_cycle_type target)
   }
 }
 
-INT8U interface_input(void)
-{
-  static INT8U control_state = CTRL_STOP_MODE;
-  if( xSemaphoreTake(interface_to_control_sem, 0) )
-  {
-    if (1 & (interface_to_control_byte >> stop_bit_location ) )
-    {
-      control_state = CTRL_STOP_MODE;
-    }
-    else if (1 & (interface_to_control_byte >> pos_bit_location ) )
-    {
-      control_state = CTRL_POS_MODE;
-    }
-    else if (1 & (interface_to_control_byte >> pwm_bit_location ) )
-    {
-      control_state = CTRL_PWM_MODE;
-    }
-    xSemaphoreGive(interface_to_control_sem);
-  }
-  return control_state;
-}
-
-
 
 void ctrl_task(void *pvParameters)
 /*****************************************************************************
@@ -130,39 +107,52 @@ void ctrl_task(void *pvParameters)
   coordinate_type target_pos_kart;
   //for timing
   portTickType last_wake_time;
-
   last_wake_time = xTaskGetTickCount();
+
   INT8U funny_business = 0;
-  INT8U control_state;
   INT8U reset = 1;
+  message_user_interface_type ui_message;
+  PRINTF("control task started\n");
   while(1)
   {
     led_ryg(1,0,0); //to test timing
-    control_state = interface_input();
+    ui_message = control_get_state(); //shall we move this to stop mode and make every function return to stop mode or keep it simple like this?
     current_pos = spi_read_encoders();
-    switch(control_state)
+    switch(ui_message.state)
     {
-    case CTRL_STOP_MODE:
-      next_pwm = get_target_pwm(); //interface makes sure this is 0
-      reset = 1;
-      break;
-    case CTRL_POS_MODE:
-      //target_pos = get_target_position();
-      target_pos_kart = read_pos_kart(reset);
-      reset = 0;
-      target_pos = coordinate_transform(target_pos_kart);
-      //next_pwm = test_controller(target_pos, current_pos);
-//      next_pwm.motorA = pan_controller(target_pos, current_pos);
-//      next_pwm.motorB = tilt_controller(target_pos, current_pos);
+    case SINGLE_ANGLE_POSITION:
+      target_pos = *( (motor_pos *)(ui_message.msg) );
       next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
       next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
       break;
-    case CTRL_PWM_MODE:
+    case SINGLE_CARTESIAN_POSITION:
+      target_pos_kart = *( (coordinate_type *)(ui_message.msg) );
+      target_pos = coordinate_transform(target_pos_kart);
+      next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
+      next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
+      break;
+    case SINGLE_PWM_MODE:
+      next_pwm = *( (pwm_duty_cycle_type *)(ui_message.msg) );
+      break;
+    case STOP_MOTORS_NOW:
+      next_pwm.motorA = 0;
+      next_pwm.motorB = 0;
+      reset = 1;
+      break;
+    case SKEET_SHOOT_DEMO:
+      target_pos_kart = read_pos_kart(reset);
+      reset = 0;
+      target_pos = coordinate_transform(target_pos_kart);
+      next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
+      next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
+      break;
+    case OPEN_LOOP_TEST:
       funny_business++;
       if(funny_business % CTRL_PER_PWM == 0)
       {
         funny_business = 0;
-        next_pwm = get_target_pwm();
+        next_pwm = read_pwm_function( reset );
+        reset = 0;
         //1024-2047 giver måske fejl transmission
       }
       break;
@@ -179,6 +169,7 @@ void ctrl_task(void *pvParameters)
     vTaskDelayUntil(&last_wake_time, CTRL_TASK_CYCLE);
   }
 }
+
 motor_pos coordinate_transform(coordinate_type coord)
 // This function transforms from kartesian to spherical coordinates.
 {
@@ -242,7 +233,7 @@ pwm_duty_cycle_type get_target_pwm()
   else
   {
     //    PRINTF("LOOK MOM... NO TASK\n");
-    pwm = read_pwm_function();
+    pwm = read_pwm_function( 0 );
   }
   return pwm;
 }
@@ -260,3 +251,21 @@ void set_status_log(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target
 
   xQueueSend(log_status_queue,&hans,0);
 }
+
+//interface_to_control stuff
+message_user_interface_type control_get_state(void )
+{
+  static message_user_interface_type interface_message = {.state=STOP_MOTORS_NOW, .msg=0};
+  xQueueReceive(interface_to_control_queue, &interface_message, 0);
+  return interface_message;
+}
+
+extern void control_set_state( INT8U state, void *msg )
+{
+  message_user_interface_type message;
+  message.state = state;
+  message.msg = msg;
+  xQueueSend(interface_to_control_queue, &message, portMAX_DELAY);
+}
+
+

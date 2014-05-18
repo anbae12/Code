@@ -93,9 +93,9 @@ INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos)
   
   FP32 dt = 0.001667;  // Insert sample period here xD
   // Coefficients: 
-  FP32 Kp = 15;
-  FP32 Ki = 0;
-  FP32 Kd = 0; 
+  FP32 Kp = 22.344;
+  FP32 Ki = 0;          //1493.7;
+  FP32 Kd = 0.0836;
   
   // Pan controller: 
   error = target_pos.positionA - current_pos.positionA;
@@ -178,9 +178,9 @@ INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos)
 
   FP32 dt = 0.001667;  // Insert sample period here xD
   // Coefficients:
-  FP32 Kp = 10;
-  FP32 Ki = 0;
-  FP32 Kd = 0;
+  FP32 Kp = 18.56;
+  FP32 Ki = 0; //1670.4;
+  FP32 Kd = 0.0952;
   INT8U state;
   INT8U position_half;
   INT8U current_half;
