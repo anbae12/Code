@@ -32,7 +32,8 @@
 
 
 /*****************************    Defines    *******************************/
-#define   SAMPLE_BUFFER_SIZE          5
+#define DEAD_BAND_TILT 141    //tested dead band for tilt
+#define DEAD_BAND_PAN  221    //tested dead band pan
 
 #define CONTROL_TILT_P 74.4933      //within 2 degrees...
 #define CONTROL_TILT_I 435.0662
@@ -47,8 +48,8 @@
 
 /*****************************   Functions   *******************************/
 
-INT16S pan_controller(motor_pos target_pos, motor_pos current_pos);
-
+INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos);
 INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos);
+INT16S p_controller_safe(FP32 target_pos, FP32 current_pos);
 
-extern pwm_duty_cycle_type test_controller(motor_pos target_pos, motor_pos current_pos);
+pwm_duty_cycle_type account_for_deadband(pwm_duty_cycle_type pwm);

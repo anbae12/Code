@@ -104,7 +104,7 @@ void ctrl_task(void *pvParameters)
   motor_pos current_pos;
   motor_pos target_pos;
   coordinate_type target_pos_kart;
-  //for timing
+
   portTickType last_wake_time;
   last_wake_time = xTaskGetTickCount();
 
@@ -117,23 +117,25 @@ void ctrl_task(void *pvParameters)
   while(1)
   {
     led_ryg(1,0,0); //to test timing
-    ui_message = control_get_state(); //shall we move this to stop mode and make every function return to stop mode or keep it simple like this?
+    ui_message = control_get_state();
     current_pos = spi_read_encoders();
     switch(ui_message.state)
     {
 
     case SINGLE_ANGLE_POSITION:
       target_pos = *( (motor_pos *)(ui_message.msg) );
-      next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
-      next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
+      next_pwm.motorA = p_controller_safe(target_pos.positionA, current_pos.positionA);
+      next_pwm.motorB = p_controller_safe(target_pos.positionB, current_pos.positionB);
+      next_pwm = account_for_deadband(next_pwm);
       write_to_log_en = 100;
       break;
 
     case SINGLE_CARTESIAN_POSITION:
       target_pos_kart = *( (coordinate_type *)(ui_message.msg) );
       target_pos = coordinate_transform(target_pos_kart);
-      next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
-      next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
+      next_pwm.motorA = p_controller_safe(target_pos.positionA, current_pos.positionA);
+      next_pwm.motorB = p_controller_safe(target_pos.positionB, current_pos.positionB);
+      next_pwm = account_for_deadband(next_pwm);
       write_to_log_en = 100;
       break;
 
@@ -168,16 +170,13 @@ void ctrl_task(void *pvParameters)
         next_pwm = read_pwm_function( reset );
         reset = 0;
         write_to_log_en = 1;
-        //1024-2047 giver måske fejl transmission
+        write_to_log_count = 0;
       }
       break;
 
     default:
       break;
     }
-    //current_pos_debug(current_pos);
-    //pwm_spi_debug(next_pwm);
-    //set_status_log(next_pwm, current_pos, target_pos); //The old one
     write_to_log_count++;
     if(write_to_log_en && (write_to_log_count == write_to_log_en) )
     {
@@ -194,19 +193,19 @@ void ctrl_task(void *pvParameters)
 motor_pos coordinate_transform(coordinate_type coord)
 // This function transforms from kartesian to spherical coordinates.
 {
-	motor_pos return_value;
-	return_value.positionA = (90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ) )*3; //phi
-	return_value.positionB = ( atan(coord.y/coord.x) * 180/PI )* 3; //theta
+  motor_pos return_value;
+  return_value.positionA = (90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ) )*3; //phi
+  return_value.positionB = ( atan(coord.y/coord.x) * 180/PI )* 3; //theta
 
-	if(return_value.positionA < 0)
-	{
-		return_value.positionA += 1079;
-	}
-	if(return_value.positionB < 0)
-	{
-		return_value.positionB += 1079;
-	}
-	return return_value;
+  if(return_value.positionA < 0)
+  {
+    return_value.positionA += 1079;
+  }
+  if(return_value.positionB < 0)
+  {
+    return_value.positionB += 1079;
+  }
+  return return_value;
 }
 
 motor_pos get_target_position()
@@ -230,21 +229,6 @@ motor_pos get_target_position()
   return target;
 }
 
-void set_status_log(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target)
-{
-  static log_entry gert_the_impaler;
-
-  gert_the_impaler.current_posA = (INT16U) current.positionA;
-  gert_the_impaler.current_posB = (INT16U) current.positionB;
-  gert_the_impaler.setpointA =  (INT16U) target.positionA;
-  gert_the_impaler.setpointB =  (INT16U) target.positionB;
-  gert_the_impaler.pwmA =   (INT16S) pwm.motorA;
-  gert_the_impaler.pwmB =   (INT16S) pwm.motorB;
-
-  xQueueSend(log_status_queue,&gert_the_impaler,0);
-}
-
-//interface_to_control stuff
 message_user_interface_type control_get_state( void )
 {
   static message_user_interface_type interface_message = {.state=STOP_MOTORS_NOW, .msg=(INT8U) 0 };
@@ -257,6 +241,6 @@ void control_set_state( INT8U state, void *msg )
   message_user_interface_type message;
   message.state = state;
   message.msg = msg;
-  xQueueSend(interface_to_control_queue, &message, portMAX_DELAY);
+  xQueueSend(interface_to_control_queue, &message, 0);
 }
 

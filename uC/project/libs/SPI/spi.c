@@ -197,14 +197,7 @@ void spi_send_pwm(pwm_duty_cycle_type pwm)
   {
     pwm.motorB = 2047;
   }
-  if( (pwm.motorA < DEAD_BAND_TILT) && (pwm.motorA > 10))
-  {
-    pwm.motorA = DEAD_BAND_TILT; //testet deadband tilt
-  }
-  if((pwm.motorB < DEAD_BAND_PAN) && (pwm.motorB > 10))
-  {
-    pwm.motorB = DEAD_BAND_PAN; //testet deadband pan
-  }
+
 
   messageA = (motorA_direction & 1) << SPI_DIRECTION_BIT_POS;
   messageA |= (INT16U) pwm.motorA; 

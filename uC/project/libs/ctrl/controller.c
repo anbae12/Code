@@ -15,9 +15,6 @@
  * --------------------
  * 140508  MSC   Created
  *
- *****************************************************************************
- * TODO:
- *   Initialize function
  ****************************************************************************/
 #define TICKS_PER_REVOLOTION 1080
 /***************************** Include files *******************************/
@@ -44,44 +41,6 @@
 /*****************************   Variables   *******************************/
 
 /*****************************   Functions   *******************************/
-
-INT16S pan_controller(motor_pos target_pos, motor_pos current_pos) 
-/*****************************************************************************
- *   Input    :
- *   Output   :
- *   Function : Implements the pan controller.
- ******************************************************************************/
-{
-  // Initializes to 0:
-  static FP32 input[5];
-  static FP32 output[5];
-  
-  FP32 a_coef[5] = {0, 0, 0, 0, 0}; // a[0] skal være = 0.
-  FP32 b_coef[5] = {1, 0, 0.03, 0.01, 0};
-  
-  INT8U i;
-  
-  // Shift buffers:
-  for (i = 0; i < 4; i++)
-  {
-    output[i-1] = output[i];
-    input[i-1] = input[i];
-  }
-  
-   
-  input[0] = target_pos.positionA - current_pos.positionA;
-  output[0] = 0;
-  
-  // Differensligningen
-  for (i = 0; i < 5; i++)
-  {
-    output[0] += input[i]*b_coef[i] - output[i]*a_coef[i];
-  }
-  // asd
-  
-  return (int) output[0];
-}
-
 INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos)
 {
   // Variables
@@ -133,7 +92,7 @@ INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos)
   FP32 error;
   FP32 return_value;
 
-  FP32 dt = 0.001667;  // Insert sample period here xD
+  FP32 dt = 0.001667;  // Insert sample period here
   // Coefficients:
   FP32 Kp = CONTROL_PAN_P;
   FP32 Ki = CONTROL_PAN_I;
@@ -162,13 +121,45 @@ INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos)
 
   previous_error = error;
 
-  if (target_pos.positionB < 900 && target_pos.positionB > 200) //only for safety - can be removed if you wear gloves and goggles.
-  {
-          return_value = 0;
-  }
+  return (INT16S) return_value;
+}
+
+INT16S p_controller_safe(FP32 target_pos, FP32 current_pos)
+{
+  // Variables
+  FP32 error;
+  FP32 return_value;
+
+  FP32 Kp = 10;
+
+  error = target_pos - current_pos;
+
+    if ( ( error < -(TICKS_PER_REVOLOTION/2) ) )
+    {
+      error += TICKS_PER_REVOLOTION;
+    }
+    else if(error > (TICKS_PER_REVOLOTION/2) )
+    {
+      error -= TICKS_PER_REVOLOTION;
+    }
+    error *= -1;
+
+  return_value = Kp*error;
 
   return (INT16S) return_value;
 }
 
-
-
+pwm_duty_cycle_type account_for_deadband(pwm_duty_cycle_type pwm)
+{
+  pwm_duty_cycle_type output;
+  if( (pwm.motorA < DEAD_BAND_TILT) && (pwm.motorA > 10))
+  {
+    output.motorA = DEAD_BAND_TILT;
+  }
+  if((pwm.motorB < DEAD_BAND_PAN) && (pwm.motorB > 10))
+  {
+    output.motorB = DEAD_BAND_PAN;
+  }
+  else output = pwm;
+  return output;
+}
