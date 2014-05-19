@@ -45,6 +45,37 @@
 
 /*****************************    Defines    *******************************/
 
+/****************************** Functions **********************************/
+
+void vApplicationStackOverflowHook( xTaskHandle *pxTask, signed portCHAR *pcTaskName )
+/*****************************************************************************
+ *   Input    :  -
+ *   Output   :  -
+ *   Function : Handles stack overflow by entering infinite loop.
+ *****************************************************************************/
+{
+  INT8U i;
+  signed char sofmsg[28]="\n\rStack Overflow in task: <";
+  /* This function will get called if a task overflows its stack.   If the
+        parameters are corrupt then inspect pxCurrentTCB to find which was the
+        offending task. */
+  led_ryg(TRUE,FALSE,FALSE);
+  for(i=0; i<28; ++i)
+    uart_char_put_blocking(sofmsg[i]);
+  if(pcTaskName[i]!='\0')
+    uart_char_put_blocking('?');
+  else
+    for(i=0; i<configMAX_TASK_NAME_LEN; ++i)
+      if(pcTaskName[i]!='\0')
+        uart_char_put_blocking(pcTaskName[i]);
+      else
+        break;
+  uart_char_put_blocking('>');
+  uart_char_put_blocking('\n');
+  uart_char_put_blocking('\r');
+  for( ;; );
+}
+
 static void init_hardware(void)
 /*****************************************************************************
  *   Input    :  -
@@ -85,16 +116,8 @@ int main(void)
   return_val &= xTaskCreate( uart_send_task, "uart send", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
   return_val &= xTaskCreate( uart_receive_task, "uart receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
   return_val &= xTaskCreate( interface_task, "interface", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
-
   return_val &= xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, MED_PRIO, NULL);
-//  return_val &= xTaskCreate( read_pos_task, "read position", USERTASK_STACK_SIZE*15, NULL, LOW_PRIO, NULL);
-
-  //return_val &= xTaskCreate( log_task, "log task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-//  we_use_read_task = xTaskCreate( read_pwm_task, "read pwm", USERTASK_STACK_SIZE, NULL, HIGH_PRIO, NULL);
-
   return_val &= xTaskCreate( logger_task, "logger", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-
-
 
   if( return_val != pdTRUE )
   {
@@ -103,6 +126,13 @@ int main(void)
     uart_char_put_blocking('R');
   }
   vTaskStartScheduler();
+
+  led_ryg(TRUE,FALSE,FALSE);
+  signed char msg[43]="\n\rScheduler not started. Try bigger heap!\n";
+  INT8U i;
+  for(i=0; i<43; ++i)
+    uart_char_put_blocking(msg[i]);
+
 
   return 1;
 }
