@@ -39,7 +39,7 @@ extern void read_pwm_task(void *pvParameters);
  *              If nothing has been taken in 15 seconds the list index is resat. 
  ****************************************************************************/
 extern void init_pwm_list( pwm_duty_cycle_type final_list[PWM_LIST_SIZE] );
-extern pwm_duty_cycle_type read_pwm_function( void );
+extern pwm_duty_cycle_type read_pwm_function( INT8U reset );
 
 /*****************************************************************************
  * Initializes the list.

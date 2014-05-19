@@ -38,7 +38,7 @@ void read_pwm_task(void *pvParameters)
   while(1)
   {
     
-    pwm = read_pwm_function();
+    pwm = read_pwm_function(0);
   
     if( xSemaphoreTake(target_pwm_mutex, portMAX_DELAY) )
     {
@@ -50,11 +50,16 @@ void read_pwm_task(void *pvParameters)
   }
 }
 
-pwm_duty_cycle_type read_pwm_function( void )
+pwm_duty_cycle_type read_pwm_function( INT8U reset )
 {
   static INT16U index = 0;
   static pwm_duty_cycle_type pwm;
   
+  if(reset)
+  {
+    index = 0;
+  }
+
   if( index < PWM_LIST_SIZE )
   {
     pwm = list[index++];
@@ -65,16 +70,6 @@ pwm_duty_cycle_type read_pwm_function( void )
     pwm.motorB = 0;
   }
 
-  if( xSemaphoreTake(interface_pwm_mutex, 0) )
-  {
-    if( interface_pwm.motorA != invalid_pwm.motorA &&
-        interface_pwm.motorB != invalid_pwm.motorB  )
-    {
-      pwm = interface_pwm;
-      index = 0;
-    }
-    xSemaphoreGive(interface_pwm_mutex);
-  }
   return pwm;
 }
 

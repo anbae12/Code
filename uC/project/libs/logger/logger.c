@@ -66,7 +66,8 @@ void log_flush(BOOLEAN print)
   {
     for(i=0;i<n;i++)
     {
-      PRINTF("%u, %u, %u, %u, %d, %d\n",
+      PRINTF(
+          "%u, \t\t%u, \t\t%u, \t\t%u, \t\t%d, \t\t%d\n",
           log[i].current_posA,
           log[i].current_posB,
           log[i].setpointA,

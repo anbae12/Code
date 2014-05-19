@@ -28,6 +28,9 @@
 #include "FRT_Library/FreeRTOS/Source/include/queue.h"
 #include "FRT_Library/FreeRTOS/Source/include/semphr.h"
 
+
+#include "ctrl/ctrl_task.h"
+
 #include "queue_ini.h"
 
 
@@ -67,6 +70,7 @@ void init_sem_and_queues( void )
 
   interface_log_mutex = xSemaphoreCreateMutex();
   //log_status_queue = xQueueCreate(LOG_QUEUE_SIZE, sizeof(log_file_type) );
+  interface_to_control_queue = xQueueCreate(2, sizeof(message_user_interface_type) );
 
 }
 void add_to_enc_queue(INT8U queue_id, INT16U data)

@@ -21,6 +21,7 @@
 #include "queue/queue_ini.h"
 #include "configs/project_settings.h"
 #include "matlab_coor_list.h"
+#include "ctrl/ctrl_task.h"
 
 
 /********************************* Defines **********************************/
@@ -89,17 +90,18 @@ coordinate_type read_pos_kart(INT8U reset)
   coordinate_type output;
 
   if(reset) // Reset index
-  {
+   {
     array_index = 0;
     upsample_count = 0;
   }
   
   upsample_count++;
   // Read new value
+#if 0
   if (upsample_count == 1 )
   {
     // Read samples from list at 60 Hz
-    if( array_index < LIST_SIZE - 0 )
+    if( array_index < MATLAB_COOR_LIST_SIZE - 0 )
     {
       coordinate = coor_list[array_index++];
     }
@@ -120,30 +122,35 @@ coordinate_type read_pos_kart(INT8U reset)
 	coordinate.y = 0;
 	coordinate.z = 0;
   }
+#endif
+#if 1
+  if (upsample_count == UPSAMPLING_FACTOR)
+  {
+    upsample_count = 0;
+    if( array_index < MATLAB_COOR_LIST_SIZE - 1 )
+    {
+      coordinate = coor_list[++array_index];
+    }
+    else
+    {
+      //we are done...
 
+      INT8U state;
+      state = STOP_MOTORS_NOW;
+      control_set_state(state, &state);
+    }
+  }
+  coordinate = coor_list[array_index];
+#endif
+  //PRINTF("\nCount: %d\t",array_index);
+  //PRINTF("     Count2: %d\t",upsample_count);
   // Run the FIR filter from winfilter.
-  output = fir_filter(coordinate);
+  //output = fir_filter(coordinate);
+  output = coordinate;
 
   // Debug
   //read_pos_debug2(output);
 
-  //if interface sends a coordinate
-  if( xSemaphoreTake(position_ctrl_mutex, 0) )
-  {
-    if( interface_coordinate.x != invalid_coordinate.x &&
-        interface_coordinate.y != invalid_coordinate.y &&
-        interface_coordinate.z != invalid_coordinate.z )
-    {
-      output = interface_coordinate;
-      array_index = 0;
-    }
-    xSemaphoreGive(position_ctrl_mutex);
-  }
-  INT16S corx, cory, corz;
-  corx = (INT16S) (output.x * 100);
-  cory = (INT16S) (output.y * 100);
-  corz = (INT16S) (output.z * 100);
-//  PRINTF("x: %d\t y: %d\t z: %d\n",corx,cory,corz);
   return output;
 }
 
