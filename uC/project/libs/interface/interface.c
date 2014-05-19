@@ -56,7 +56,15 @@ motor_pos input_position( INT8U coord[11])
   {
     pos.positionA = 0;
   }
-  if(pos.positionB > 1079)
+  if( (pos.positionB > 550) && (pos.positionB < 900) )
+  {
+    pos.positionB = 900;
+  }
+  if( (pos.positionB > 200 ) && (pos.positionB <= 550 ) )
+  {
+    pos.positionB = 200;
+  }
+  if( (pos.positionB > 1079) )
   {
     pos.positionB = 0;
   }
@@ -106,7 +114,7 @@ void interface_task(void *pvParameters)
       {
         next_control_state = SKEET_SHOOT_DEMO; 
         control_set_state(next_control_state, &dummy_ptr);
-        UARTprintf("set pos ctrl\n");
+        PRINTF("set pos ctrl\n");
       }
       else if(!strcmp(UI_CMD_STOP,mirror_string))
       {
@@ -129,11 +137,11 @@ void interface_task(void *pvParameters)
       else if(!strcmp(UI_CMD_RESET,mirror_string))
       {
         next_control_state = SINGLE_ANGLE_POSITION; 
-        input_angle_pos.positionA = 18;
-        input_angle_pos.positionB = 163;
+        input_angle_pos.positionA = RESET_POS_TILT; 
+        input_angle_pos.positionB = RESET_POS_PAN;
         control_set_state(next_control_state, &input_angle_pos);
       }
-      else if(mirror_string[0] == 'C' && mirror_string[5] == '.' && mirror_string[9] == '.')
+      else if(mirror_string[0] == 'C' && mirror_string[5] == '.' && mirror_string[9] == '.' && strlen(mirror_string) == 13)
       {
         next_control_state = SINGLE_CARTESIAN_POSITION; 
         INT8U index;
@@ -181,14 +189,13 @@ void interface_task(void *pvParameters)
       }
       else
       {
-        UARTprintf("Invalid command entered.\n");
+        PRINTF("Invalid command entered.\n");
         interface_display_commands();
       }
     }
     else if( read_log == TRUE )
     {
-      //print_log(log_global); //The old one
-      log_flush(TRUE); //The new and improved one!
+      log_flush(TRUE);
     }
   }
   _wait(INTERFACE_TASK_CYCLE);
@@ -199,7 +206,7 @@ void interface_display_commands()
  * Function: See header file
  ****************************************************************************/
 {
-  UARTprintf(
+  PRINTF(
       "Enter <%s> to get a readable list\n"
       "Enter <%s> to start following the predefined parabola\n"
       "Enter <%s> for emergency stop\n"

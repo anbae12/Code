@@ -86,70 +86,36 @@ coordinate_type read_pos_kart(INT8U reset)
   static INT16U array_index = 0;
   static INT8U upsample_count = 0;
   coordinate_type coordinate = {.x = 0, .y = 0, .z = 0};
-  //coordinate_type list[LIST_SIZE];
   coordinate_type output;
 
   if(reset) // Reset index
-   {
+  {
     array_index = 0;
     upsample_count = 0;
   }
   
   upsample_count++;
   // Read new value
-#if 0
-  if (upsample_count == 1 )
-  {
-    // Read samples from list at 60 Hz
-    if( array_index < MATLAB_COOR_LIST_SIZE - 0 )
-    {
-      coordinate = coor_list[array_index++];
-    }
-    else
-    {
-      coordinate.x = 0;
-      coordinate.y = 0;
-      coordinate.z = 0;
-    }
-  }
-  else
-  {
-    if (upsample_count == UPSAMPLING_FACTOR)
-    {
-      upsample_count = 0;
-    }
-	coordinate.x = 0;
-	coordinate.y = 0;
-	coordinate.z = 0;
-  }
-#endif
-#if 1
+
   if (upsample_count == UPSAMPLING_FACTOR)
   {
     upsample_count = 0;
     if( array_index < MATLAB_COOR_LIST_SIZE - 1 )
     {
-      coordinate = coor_list[++array_index];
+      array_index++;
+      //coordinate = coor_list[++array_index];
     }
     else
     {
-      //we are done...
-
+      //we are done. Change the state to stop
       INT8U state;
       state = STOP_MOTORS_NOW;
       control_set_state(state, &state);
     }
   }
   coordinate = coor_list[array_index];
-#endif
-  //PRINTF("\nCount: %d\t",array_index);
-  //PRINTF("     Count2: %d\t",upsample_count);
-  // Run the FIR filter from winfilter.
-  //output = fir_filter(coordinate);
-  output = coordinate;
 
-  // Debug
-  //read_pos_debug2(output);
+  output = coordinate;
 
   return output;
 }
