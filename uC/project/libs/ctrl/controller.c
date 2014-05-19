@@ -91,7 +91,7 @@ INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos)
   FP32 error;
   FP32 return_value;
   
-  FP32 dt = 0.001667;  // Insert sample period here xD
+  FP32 dt = 0.001666660;  // Insert sample period here xD
   // Coefficients: 
   FP32 Kp = CONTROL_TILT_P;
   FP32 Ki = CONTROL_TILT_I;          //1493.7;
