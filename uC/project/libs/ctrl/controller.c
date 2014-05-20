@@ -92,7 +92,7 @@ INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos)
   FP32 error;
   FP32 return_value;
 
-  FP32 dt = 0.001667;  // Insert sample period here
+  FP32 dt = 0.001666660;  // Insert sample period here
   // Coefficients:
   FP32 Kp = CONTROL_PAN_P;
   FP32 Ki = CONTROL_PAN_I;
