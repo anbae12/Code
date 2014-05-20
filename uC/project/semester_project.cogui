@@ -69,7 +69,7 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/configs/project_settings.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="210"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="controller.c" partName="controller.c" path="C:/Users/Mikael/Desktop/Skole/4. sem/PRO/Code/uC/project/libs/ctrl/controller.c" title="controller.c" tooltip="C:/Users/Mikael/Desktop/Skole/4. sem/PRO/Code/uC/project/libs/ctrl/controller.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="controller.c" partName="controller.c" path="C:/Users/Mikael/Desktop/Skole/4. sem/PRO/Code/uC/project/libs/ctrl/controller.c" title="controller.c" tooltip="C:/Users/Mikael/Desktop/Skole/4. sem/PRO/Code/uC/project/libs/ctrl/controller.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/ctrl/controller.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3927" selectionTopPixel="2457"/>
 </editor>
@@ -85,15 +85,12 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/SPI/spi.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5010" selectionTopPixel="3993"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="controller.h" partName="controller.h" path="C:/Users/Mikael/Desktop/Skole/4. sem/PRO/Code/uC/project/libs/ctrl/controller.h" title="controller.h" tooltip="C:/Users/Mikael/Desktop/Skole/4. sem/PRO/Code/uC/project/libs/ctrl/controller.h" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="controller.h" partName="controller.h" path="C:/Users/Mikael/Desktop/Skole/4. sem/PRO/Code/uC/project/libs/ctrl/controller.h" title="controller.h" tooltip="C:/Users/Mikael/Desktop/Skole/4. sem/PRO/Code/uC/project/libs/ctrl/controller.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/ctrl/controller.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2188" selectionTopPixel="740"/>
 </editor>
 </editors>
 <views>
-<view id="org.coocox.component.ui.ComponentView" partName="Components">
-<viewState/>
-</view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
 <viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="1">
 <expanded>
@@ -106,6 +103,9 @@
 <element path="/semester_project/libs/ctrl/controller.h"/>
 </selection>
 </viewState>
+</view>
+<view id="org.coocox.component.ui.ComponentView" partName="Components">
+<viewState/>
 </view>
 <view id="org.eclipse.debug.ui.RegisterView" partName="Registers">
 <viewState/>
@@ -336,10 +336,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/SPI/spi.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/SPI/spi.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/ctrl_task.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/controller.h"/>
 </editors>
-<item historyLabel="controller.h" index="0">
-<position info="not_deleted" x="1187" y="0"/>
-</item>
 <item historyLabel="controller.c" index="1">
 <position info="not_deleted" x="1454" y="0"/>
 </item>
@@ -484,8 +482,11 @@
 <item historyLabel="controller.h" index="15">
 <position info="not_deleted" x="2188" y="0"/>
 </item>
-<item active="true" historyLabel="controller.c" index="16">
+<item historyLabel="controller.c" index="16">
 <position info="not_deleted" x="355" y="0"/>
+</item>
+<item active="true" historyLabel="controller.h" index="20">
+<position info="not_deleted" x="2188" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>

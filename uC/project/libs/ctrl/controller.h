@@ -32,8 +32,11 @@
 
 
 /*****************************    Defines    *******************************/
-#define DEAD_BAND_TILT 141    //tested dead band for tilt
-#define DEAD_BAND_PAN  221    //tested dead band pan
+#define DEAD_BAND_TILT 245    //tested dead band for tilt (12 % * 2048 = 245)
+#define DEAD_BAND_PAN  204    //tested dead band pan ( 10 % * 2048 = 204)
+
+#define DEAD_BAND_TILT_MIN  20  //1 %
+#define DEAD_BAND_PAN_MIN   20  //1 %
 
 //Parameters for PID Controller with no d-filter
 //Set 1 (Mathematical model)

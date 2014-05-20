@@ -158,6 +158,7 @@ void ctrl_task(void *pvParameters)
       target_pos = coordinate_transform(target_pos_kart);
       next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
       next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
+      next_pwm = account_for_deadband(next_pwm);
       write_to_log_en = 1;
       write_to_log_count = 0;
       break;
