@@ -146,6 +146,11 @@ INT16S p_controller_safe(FP32 target_pos, FP32 current_pos)
 
   return_value = Kp*error;
 
+  if(return_value > 800)
+    return_value = 800; //This controller should be SAFE!
+  if(return_value < -800)
+    return_value = -800;
+
   return (INT16S) return_value;
 }
 
