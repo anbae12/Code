@@ -14,6 +14,7 @@
 #include "FRT_Library/FreeRTOS/Source/include/semphr.h"
 #include "FRT_Library/FreeRTOS/Source/include/task.h"
 #include "SPI/spi.h"
+#include "read_pos/read_pos_upsampling.h"
 
 /*****************************    Defines    *******************************/
 #define UART_QUEUE_LEN  50
@@ -63,7 +64,7 @@ extern void ctrl_task();
  *              Put position into status
  ****************************************************************************/
 extern motor_pos get_target_position();
-extern motor_pos coordinate_transform(coordinate_type);
+extern motor_pos coordinate_transform(coordinate_type coord);
 extern pwm_duty_cycle_type get_target_pwm();
 
 extern message_user_interface_type control_get_state(void );

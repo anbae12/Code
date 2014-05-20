@@ -157,11 +157,11 @@ INT16S p_controller_safe(FP32 target_pos, FP32 current_pos)
 pwm_duty_cycle_type account_for_deadband(pwm_duty_cycle_type pwm)
 {
   pwm_duty_cycle_type output;
-  if( (pwm.motorA < DEAD_BAND_TILT) && (pwm.motorA > DEAD_BAND_TILT_MIN))
+  if( (pwm.motorA < (INT16S)(DEAD_BAND_TILT)) && (pwm.motorA > (INT16S)(DEAD_BAND_TILT_MIN)))
   {
     output.motorA = DEAD_BAND_TILT;
   }
-  if((pwm.motorB < DEAD_BAND_PAN) && (pwm.motorB > DEAD_BAND_PAN_MIN))
+  if((pwm.motorB < (INT16S)(DEAD_BAND_PAN)) && (pwm.motorB > (INT16S)(DEAD_BAND_PAN_MIN)))
   {
     output.motorB = DEAD_BAND_PAN;
   }
