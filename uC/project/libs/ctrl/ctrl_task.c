@@ -127,7 +127,7 @@ void ctrl_task(void *pvParameters)
       next_pwm.motorA = p_controller_safe(target_pos.positionA, current_pos.positionA);
       next_pwm.motorB = p_controller_safe(target_pos.positionB, current_pos.positionB);
       next_pwm = account_for_deadband(next_pwm);
-      write_to_log_en = 100;
+      write_to_log_en = 10;
       break;
 
     case SINGLE_CARTESIAN_POSITION:
@@ -154,11 +154,11 @@ void ctrl_task(void *pvParameters)
 
     case SKEET_SHOOT_DEMO:
       target_pos_kart = read_pos_kart(reset);
-      reset = 0;
       target_pos = coordinate_transform(target_pos_kart);
-      next_pwm.motorB = pid_controller_pan(target_pos, current_pos);
-      next_pwm.motorA = pid_controller_tilt(target_pos, current_pos);
-      //next_pwm = account_for_deadband(next_pwm);
+      next_pwm.motorB = pid_controller_pan(target_pos, current_pos, reset);
+      next_pwm.motorA = pid_controller_tilt(target_pos, current_pos, reset);
+      next_pwm = account_for_deadband(next_pwm);
+      reset = 0;
       write_to_log_en = 1;
       write_to_log_count = 0;
       break;

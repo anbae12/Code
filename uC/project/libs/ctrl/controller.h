@@ -58,13 +58,15 @@
 //#define CONTROL_PAN_I  435.8195;      //1670.4;
 //#define CONTROL_PAN_D   0.24264;
 
-#define CONTROL_TILT_P 74.4933      //within 2 degrees...
-#define CONTROL_TILT_I 435.0662
-#define CONTROL_TILT_D 0.24896
+#define CONTROL_TILT_P 30//74.4933      //within 2 degrees...
+#define CONTROL_TILT_I 30//435.0662
+#define CONTROL_TILT_D 0//0.24896
 
-#define CONTROL_PAN_P  37.174
-#define CONTROL_PAN_I  33.361
-#define CONTROL_PAN_D  0.215658
+#define CONTROL_PAN_P  17//37.174
+#define CONTROL_PAN_I  16.83//33.361
+#define CONTROL_PAN_D  0//0.215658
+
+#define INTEGRAL_SATURATION 2047
 
 
 /*****************************   Constants   *******************************/
@@ -73,8 +75,8 @@
 
 /*****************************   Functions   *******************************/
 
-INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos);
-INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos);
+INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos, INT8U reset);
+INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos, INT8U reset);
 INT16S p_controller_safe(FP32 target_pos, FP32 current_pos);
 
 pwm_duty_cycle_type account_for_deadband(pwm_duty_cycle_type pwm);

@@ -21,22 +21,25 @@
 <part id="8"/>
 <part id="9"/>
 <part id="10"/>
-<part id="14"/>
-<part id="11"/>
 <part id="12"/>
+<part id="11"/>
 <part id="13"/>
+<part id="14"/>
 <part id="15"/>
+<part id="16"/>
+<part id="17"/>
+<part id="18"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/niko/Documents/GitHub/Code/uC/project/main.c" title="main.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2838" selectionTopPixel="1026"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4145" selectionTopPixel="1590"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="ctrl_task.c" partName="ctrl_task.c" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/ctrl/ctrl_task.c" title="ctrl_task.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/ctrl/ctrl_task.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/ctrl/ctrl_task.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2690" selectionTopPixel="1941"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4982" selectionTopPixel="1986"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="read_pos.c" partName="read_pos.c" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/read_pos/read_pos.c" title="read_pos.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/read_pos/read_pos.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/read_pos/read_pos.c"/>
@@ -60,7 +63,7 @@
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="read_pwm.c" partName="read_pwm.c" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/read_pwm/read_pwm.c" title="read_pwm.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/read_pwm/read_pwm.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/read_pwm/read_pwm.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="17" selectionOffset="1473" selectionTopPixel="501"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="623" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="read_pwm.h" partName="read_pwm.h" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/read_pwm/read_pwm.h" title="read_pwm.h" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/read_pwm/read_pwm.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/read_pwm/read_pwm.h"/>
@@ -68,31 +71,43 @@
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="project_settings.h" partName="project_settings.h" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/configs/project_settings.h" title="project_settings.h" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/configs/project_settings.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/configs/project_settings.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="210"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2448" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="controller.c" partName="controller.c" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/ctrl/controller.c" title="controller.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/ctrl/controller.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/ctrl/controller.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="710" selectionTopPixel="111"/>
+<editorState selectionHorizontalPixel="0" selectionLength="19" selectionOffset="2245" selectionTopPixel="840"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="read_pos_upsampling.c" partName="read_pos_upsampling.c" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/read_pos/read_pos_upsampling.c" title="read_pos_upsampling.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/read_pos/read_pos_upsampling.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/read_pos/read_pos_upsampling.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3606" selectionTopPixel="1161"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="spi.h" partName="spi.h" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/SPI/spi.h" title="spi.h" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/SPI/spi.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/SPI/spi.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="821" selectionTopPixel="276"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="spi.c" partName="spi.c" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/SPI/spi.c" title="spi.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/SPI/spi.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/SPI/spi.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5010" selectionTopPixel="2856"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3583" selectionTopPixel="1575"/>
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="controller.h" partName="controller.h" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/ctrl/controller.h" title="controller.h" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/ctrl/controller.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/ctrl/controller.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="6" selectionOffset="2234" selectionTopPixel="51"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2365" selectionTopPixel="621"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="interface.h" partName="interface.h" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/interface/interface.h" title="interface.h" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/interface/interface.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/interface/interface.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="465" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="logger.h" partName="logger.h" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/logger/logger.h" title="logger.h" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/logger/logger.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/logger/logger.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="880" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="uart.c" partName="uart.c" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/uart/uart.c" title="uart.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/uart/uart.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/uart/uart.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6328" selectionTopPixel="3300"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="uartprintf.h" partName="uartprintf.h" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/uart/uartprintf.h" title="uartprintf.h" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/uart/uartprintf.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/uart/uartprintf.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1099" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="uartprintf.c" partName="uartprintf.c" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/uart/uartprintf.c" title="uartprintf.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/uart/uartprintf.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/uart/uartprintf.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="9" selectionOffset="1172" selectionTopPixel="2151"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="logger.c" partName="logger.c" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/logger/logger.c" title="logger.c" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/logger/logger.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/logger/logger.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="544" selectionOffset="2161" selectionTopPixel="1065"/>
 </editor>
 </editors>
 <views>
@@ -100,7 +115,7 @@
 <viewState/>
 </view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="9">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="3">
 <expanded>
 <element path="/semester_project"/>
 <element path="/semester_project/libs"/>
@@ -181,7 +196,7 @@
 <layout>
 <mainWindow>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@1da5d7">
-<folder appearance="2" expanded="2">
+<folder appearance="2" expanded="0">
 <page content="org.coocox.component.ui.ComponentView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
@@ -215,13 +230,13 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@267e27" ratio="0.75" ratioLeft="480" ratioRight="160" relationship="4" relative="org.eclipse.ui.editorss">
-<folder appearance="2" expanded="2">
+<folder appearance="2" expanded="0">
 <page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@72f580" ratio="0.36875" ratioLeft="236" ratioRight="404" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1da5d7">
-<folder appearance="2" expanded="2">
+<folder appearance="2" expanded="0">
 <page content="org.coocox.builder.ui.views.ProjectView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
@@ -328,178 +343,168 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/controller.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/controller.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/interface/interface.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/logger/logger.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/logger/logger.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/read_pos/read_pos_upsampling.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/SPI/spi.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/ctrl_task.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/ctrl_task.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/read_pos/read_pos_upsampling.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/read_pwm/read_pwm.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/configs/project_settings.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/read_pwm/read_pwm.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/configs/project_settings.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/configs/project_settings.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/controller.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/read_pos/read_pos_upsampling.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/controller.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/read_pwm/read_pwm.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/SPI/spi.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/SPI/spi.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/logger/logger.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/interface/interface.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/uart/uart.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/ctrl_task.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/uart/uartprintf.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/logger/logger.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/controller.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/semester_project/libs/ctrl/controller.c"/>
 </editors>
-<item historyLabel="logger.h" index="3">
-<position info="not_deleted" x="601" y="0"/>
+<item historyLabel="project_settings.h" index="0">
+<position info="not_deleted" x="2320" y="0"/>
 </item>
-<item historyLabel="read_pos_upsampling.h" index="5">
-<position info="not_deleted" x="1070" y="0"/>
+<item historyLabel="ctrl_task.c" index="6">
+<position info="not_deleted" x="5539" y="0"/>
 </item>
-<item historyLabel="controller.h" index="0">
-<position info="not_deleted" x="1950" y="0"/>
-</item>
-<item historyLabel="read_pos_upsampling.c" index="9">
-<position info="not_deleted" x="3606" y="0"/>
-</item>
-<item historyLabel="logger.c" index="4">
-<position info="not_deleted" x="2195" y="0"/>
-</item>
-<item historyLabel="controller.c" index="1">
-<position info="not_deleted" x="710" y="0"/>
-</item>
-<item historyLabel="read_pwm.h" index="10">
-<position info="not_deleted" x="2086" y="0"/>
-</item>
-<item historyLabel="read_pwm.c" index="11">
-<position info="not_deleted" x="1473" y="17"/>
-</item>
-<item historyLabel="interface.c" index="2">
-<position/>
-</item>
-<item historyLabel="ctrl_task.h" index="8">
-<position info="not_deleted" x="1763" y="0"/>
-</item>
-<item historyLabel="controller.c" index="1">
-<position info="not_deleted" x="710" y="0"/>
-</item>
-<item historyLabel="spi.h" index="6">
-<position info="not_deleted" x="821" y="0"/>
-</item>
-<item historyLabel="read_pos_upsampling.c" index="9">
-<position info="not_deleted" x="3606" y="0"/>
-</item>
-<item historyLabel="ctrl_task.c" index="7">
-<position info="not_deleted" x="7114" y="0"/>
-</item>
-<item historyLabel="ctrl_task.h" index="8">
-<position info="not_deleted" x="1763" y="0"/>
-</item>
-<item historyLabel="interface.c" index="2">
-<position/>
-</item>
-<item historyLabel="read_pwm.c" index="11">
-<position info="not_deleted" x="1473" y="17"/>
-</item>
-<item historyLabel="read_pwm.h" index="10">
-<position info="not_deleted" x="2086" y="0"/>
-</item>
-<item historyLabel="project_settings.h" index="12">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="controller.c" index="1">
-<position info="not_deleted" x="710" y="0"/>
-</item>
-<item historyLabel="interface.c" index="2">
-<position info="not_deleted" x="6334" y="0"/>
-</item>
-<item historyLabel="ctrl_task.c" index="7">
+<item historyLabel="logger.c" index="8">
 <position info="not_deleted" x="2695" y="0"/>
 </item>
-<item historyLabel="ctrl_task.h" index="8">
-<position info="not_deleted" x="1763" y="0"/>
+<item historyLabel="project_settings.h" index="0">
+<position info="not_deleted" x="2448" y="0"/>
 </item>
-<item historyLabel="interface.c" index="2">
-<position info="not_deleted" x="6334" y="0"/>
+<item historyLabel="logger.c" index="8">
+<position info="not_deleted" x="2698" y="0"/>
 </item>
-<item historyLabel="read_pwm.c" index="11">
-<position info="not_deleted" x="1473" y="17"/>
+<item historyLabel="uartprintf.c" index="7">
+<position info="not_deleted" x="1172" y="9"/>
 </item>
-<item historyLabel="read_pwm.h" index="10">
-<position info="not_deleted" x="2086" y="0"/>
+<item historyLabel="logger.c" index="8">
+<position info="not_deleted" x="2161" y="544"/>
 </item>
-<item historyLabel="ctrl_task.h" index="8">
-<position info="not_deleted" x="1763" y="0"/>
+<item historyLabel="controller.h" index="9">
+<position info="not_deleted" x="2177" y="0"/>
 </item>
-<item historyLabel="ctrl_task.c" index="7">
-<position info="not_deleted" x="2690" y="0"/>
+<item historyLabel="project_settings.h" index="0">
+<position info="not_deleted" x="2448" y="0"/>
 </item>
-<item historyLabel="project_settings.h" index="12">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="read_pwm.c" index="1">
+<position info="not_deleted" x="623" y="0"/>
 </item>
-<item historyLabel="interface.c" index="2">
-<position info="not_deleted" x="6333" y="2"/>
+<item historyLabel="read_pos_upsampling.c" index="2">
+<position info="not_deleted" x="3583" y="0"/>
 </item>
-<item historyLabel="project_settings.h" index="13">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="main.c" index="10">
+<position info="not_deleted" x="4145" y="0"/>
 </item>
-<item historyLabel="controller.h" index="14">
-<position info="not_deleted" x="1965" y="0"/>
+<item historyLabel="uart.c" index="5">
+<position info="not_deleted" x="6328" y="0"/>
 </item>
-<item historyLabel="interface.c" index="2">
-<position info="not_deleted" x="6334" y="1"/>
+<item historyLabel="ctrl_task.c" index="6">
+<position info="not_deleted" x="5539" y="0"/>
 </item>
-<item historyLabel="read_pos_upsampling.c" index="15">
-<position info="not_deleted" x="3606" y="0"/>
+<item historyLabel="read_pwm.c" index="1">
+<position info="not_deleted" x="623" y="0"/>
 </item>
-<item historyLabel="controller.h" index="14">
-<position info="not_deleted" x="1432" y="0"/>
+<item historyLabel="project_settings.h" index="0">
+<position info="not_deleted" x="2448" y="0"/>
 </item>
-<item historyLabel="controller.c" index="16">
-<position info="not_deleted" x="710" y="0"/>
+<item historyLabel="controller.h" index="9">
+<position info="not_deleted" x="2217" y="0"/>
 </item>
-<item historyLabel="project_settings.h" index="13">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="project_settings.h" index="0">
+<position info="not_deleted" x="2448" y="0"/>
 </item>
-<item historyLabel="read_pwm.h" index="17">
-<position info="not_deleted" x="2086" y="0"/>
+<item historyLabel="read_pwm.c" index="1">
+<position info="not_deleted" x="623" y="0"/>
 </item>
-<item historyLabel="project_settings.h" index="13">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="ctrl_task.c" index="6">
+<position info="not_deleted" x="4936" y="0"/>
 </item>
-<item historyLabel="controller.c" index="16">
-<position info="not_deleted" x="710" y="0"/>
+<item historyLabel="controller.h" index="9">
+<position info="not_deleted" x="2281" y="0"/>
 </item>
-<item historyLabel="controller.h" index="14">
-<position info="not_deleted" x="1432" y="0"/>
+<item historyLabel="interface.h" index="4">
+<position info="not_deleted" x="465" y="0"/>
 </item>
-<item historyLabel="read_pos_upsampling.c" index="15">
-<position info="not_deleted" x="3606" y="0"/>
+<item historyLabel="project_settings.h" index="0">
+<position info="not_deleted" x="2448" y="0"/>
 </item>
-<item historyLabel="spi.h" index="18">
-<position info="not_deleted" x="821" y="0"/>
+<item historyLabel="read_pwm.c" index="1">
+<position info="not_deleted" x="623" y="0"/>
 </item>
-<item historyLabel="spi.c" index="19">
-<position info="not_deleted" x="5010" y="0"/>
+<item historyLabel="controller.c" index="11">
+<position info="not_deleted" x="3977" y="0"/>
 </item>
-<item historyLabel="controller.c" index="16">
-<position info="not_deleted" x="710" y="0"/>
+<item historyLabel="ctrl_task.c" index="6">
+<position info="not_deleted" x="4310" y="0"/>
 </item>
-<item historyLabel="interface.c" index="2">
-<position info="not_deleted" x="372" y="0"/>
+<item historyLabel="read_pwm.c" index="1">
+<position info="not_deleted" x="623" y="0"/>
 </item>
-<item historyLabel="interface.h" index="20">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="project_settings.h" index="0">
+<position info="not_deleted" x="2448" y="0"/>
 </item>
-<item historyLabel="controller.h" index="21">
-<position info="not_deleted" x="1189" y="124"/>
+<item historyLabel="controller.c" index="11">
+<position info="not_deleted" x="3977" y="0"/>
 </item>
-<item historyLabel="controller.h" index="21">
-<position info="not_deleted" x="2209" y="0"/>
+<item historyLabel="controller.h" index="9">
+<position info="not_deleted" x="2281" y="0"/>
 </item>
-<item active="true" historyLabel="controller.h" index="21">
-<position/>
+<item historyLabel="read_pos_upsampling.c" index="2">
+<position info="not_deleted" x="3583" y="0"/>
+</item>
+<item historyLabel="interface.h" index="4">
+<position info="not_deleted" x="465" y="0"/>
+</item>
+<item historyLabel="logger.h" index="3">
+<position info="not_deleted" x="880" y="0"/>
+</item>
+<item historyLabel="interface.h" index="4">
+<position info="not_deleted" x="465" y="0"/>
+</item>
+<item historyLabel="read_pos_upsampling.c" index="2">
+<position info="not_deleted" x="3583" y="0"/>
+</item>
+<item historyLabel="controller.h" index="9">
+<position info="not_deleted" x="2281" y="0"/>
+</item>
+<item historyLabel="controller.c" index="11">
+<position info="not_deleted" x="1630" y="35"/>
+</item>
+<item historyLabel="project_settings.h" index="0">
+<position info="not_deleted" x="2448" y="0"/>
+</item>
+<item historyLabel="read_pwm.c" index="1">
+<position info="not_deleted" x="623" y="0"/>
+</item>
+<item historyLabel="ctrl_task.c" index="6">
+<position info="not_deleted" x="4310" y="0"/>
+</item>
+<item historyLabel="read_pwm.c" index="1">
+<position info="not_deleted" x="623" y="0"/>
+</item>
+<item historyLabel="project_settings.h" index="0">
+<position info="not_deleted" x="2448" y="0"/>
+</item>
+<item historyLabel="controller.c" index="11">
+<position info="not_deleted" x="1479" y="0"/>
+</item>
+<item historyLabel="controller.h" index="9">
+<position info="not_deleted" x="2783" y="0"/>
+</item>
+<item historyLabel="controller.c" index="11">
+<position info="not_deleted" x="1479" y="0"/>
+</item>
+<item historyLabel="project_settings.h" index="0">
+<position info="not_deleted" x="2448" y="0"/>
+</item>
+<item historyLabel="read_pwm.c" index="1">
+<position info="not_deleted" x="623" y="0"/>
+</item>
+<item historyLabel="ctrl_task.c" index="6">
+<position info="not_deleted" x="4982" y="0"/>
+</item>
+<item historyLabel="controller.c" index="11">
+<position info="not_deleted" x="2245" y="19"/>
+</item>
+<item active="true" historyLabel="controller.h" index="9">
+<position info="not_deleted" x="2783" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -508,6 +513,21 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="logger.c" tooltip="semester_project/libs/logger/logger.c">
+<persistable path="/semester_project/libs/logger/logger.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="uartprintf.c" tooltip="semester_project/libs/uart/uartprintf.c">
+<persistable path="/semester_project/libs/uart/uartprintf.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="uartprintf.h" tooltip="semester_project/libs/uart/uartprintf.h">
+<persistable path="/semester_project/libs/uart/uartprintf.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="uart.c" tooltip="semester_project/libs/uart/uart.c">
+<persistable path="/semester_project/libs/uart/uart.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="logger.h" tooltip="semester_project/libs/logger/logger.h">
+<persistable path="/semester_project/libs/logger/logger.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="interface.h" tooltip="semester_project/libs/interface/interface.h">
 <persistable path="/semester_project/libs/interface/interface.h"/>
 </file>
@@ -529,29 +549,14 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="controller.c" tooltip="semester_project/libs/ctrl/controller.c">
 <persistable path="/semester_project/libs/ctrl/controller.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="logger.c" tooltip="semester_project/libs/logger/logger.c">
-<persistable path="/semester_project/libs/logger/logger.c"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="emp_type.h" tooltip="semester_project/libs/inc/emp_type.h">
 <persistable path="/semester_project/libs/inc/emp_type.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="glob_def.h" tooltip="semester_project/libs/inc/glob_def.h">
 <persistable path="/semester_project/libs/inc/glob_def.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="logger.h" tooltip="semester_project/libs/logger/logger.h">
-<persistable path="/semester_project/libs/logger/logger.h"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="project_settings.h" tooltip="semester_project/libs/configs/project_settings.h">
 <persistable path="/semester_project/libs/configs/project_settings.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="read_pwm.h" tooltip="semester_project/libs/read_pwm/read_pwm.h">
-<persistable path="/semester_project/libs/read_pwm/read_pwm.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="read_pwm.c" tooltip="semester_project/libs/read_pwm/read_pwm.c">
-<persistable path="/semester_project/libs/read_pwm/read_pwm.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="projdefs.h" tooltip="semester_project/libs/FRT_Library/FreeRTOS/Source/include/projdefs.h">
-<persistable path="/semester_project/libs/FRT_Library/FreeRTOS/Source/include/projdefs.h"/>
 </file>
 </mruList>
 </workbench>

@@ -41,11 +41,15 @@
 /*****************************   Variables   *******************************/
 
 /*****************************   Functions   *******************************/
-INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos)
+INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos, INT8U reset)
 {
   // Variables
   static FP32 previous_error = 0;
   static FP32 integral = 0;
+  if(reset)
+  {
+    integral = 0;
+  }
   FP32 derivative;
   FP32 error;
   FP32 return_value;
@@ -69,6 +73,14 @@ INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos)
   }
   error *= -1;
   integral += error * dt;
+  if(integral > INTEGRAL_SATURATION)
+  {
+    integral = INTEGRAL_SATURATION;
+  }
+  else if(integral < INTEGRAL_SATURATION * -1)
+  {
+    integral = INTEGRAL_SATURATION * -1;
+  }
   derivative = (error - previous_error)/dt;
   
   return_value = Kp*error + Ki*integral + Kd*derivative; 
@@ -83,11 +95,15 @@ INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos)
   
 }
 
-INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos)
+INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos, INT8U reset)
 {
   // Variables
   static FP32 previous_error = 0;
   static FP32 integral = 0;
+  if(reset)
+  {
+    integral = 0;
+  }
   FP32 derivative;
   FP32 error;
   FP32 return_value;
@@ -115,6 +131,15 @@ INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos)
     error *= -1;
 
   integral += error * dt;
+  if(integral > INTEGRAL_SATURATION)
+  {
+    integral = INTEGRAL_SATURATION;
+  }
+  else if(integral < INTEGRAL_SATURATION * -1)
+  {
+    integral = INTEGRAL_SATURATION * -1;
+  }
+
   derivative = (error - previous_error)/dt;
 
   return_value = Kp*error + Ki*integral + Kd*derivative;
