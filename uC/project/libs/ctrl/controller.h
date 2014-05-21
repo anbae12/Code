@@ -58,9 +58,9 @@
 //#define CONTROL_PAN_I  435.8195;      //1670.4;
 //#define CONTROL_PAN_D   0.24264;
 
-#define CONTROL_TILT_P  37.174
-#define CONTROL_TILT_I  33.361
-#define CONTROL_TILT_D  0.215658
+#define CONTROL_TILT_P 74.4933      //within 2 degrees...
+#define CONTROL_TILT_I 435.0662
+#define CONTROL_TILT_D 0.24896
 
 #define CONTROL_PAN_P  37.174
 #define CONTROL_PAN_I  33.361

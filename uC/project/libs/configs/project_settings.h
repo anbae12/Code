@@ -33,8 +33,10 @@
 #define PRINTABLE_UINT(any_uint)        (INT32U)(any_uint)
 
 //----------- Scheduler Timing ------------
-#define UART_SEND_TASK_DELAY_MS         5
-#define UART_RECEIVE_TASK_DELAY_MS      5
+#define UART_SEND_TASK_DELAY         (MILLI_SEC(5))
+#define UART_RECEIVE_TASK_DELAY      (MILLI_SEC(5))
+#define CTRL_TASK_CYCLE                (1)       //ctrl_task.c
+#define INTERFACE_TASK_CYCLE           (30)  //interface.c
 
 
 #define USERTASK_STACK_SIZE (configMINIMAL_STACK_SIZE)
@@ -43,14 +45,6 @@
 #define LOW_PRIO        1
 #define MED_PRIO        2
 #define HIGH_PRIO       3
-
-/* Task timings hvis de skal samles */
-/* ms er fjernet... */
-
-#define CTRL_TASK_CYCLE (1)       //ctrl_task.c
-#define READ_PWM_TASK_CYCLE (MILLI_SEC(30))   //read_pwm.c
-#define INTERFACE_TASK_CYCLE (15)  //interface.c
-#define LOG_TASK_CYCLE  (10)       //log_task.c
 
 //for at kun køre PWM og POS hvert x'nde gang
 #define CTRL_PER_PWM 10 //hvert 10'nde gang.

@@ -116,8 +116,8 @@ int main(void)
   return_val &= xTaskCreate( uart_send_task, "uart send", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
   return_val &= xTaskCreate( uart_receive_task, "uart receive", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
   return_val &= xTaskCreate( interface_task, "interface", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL );
-  return_val &= xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, MED_PRIO, NULL);
-  return_val &= xTaskCreate( logger_task, "logger", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+  return_val &= xTaskCreate( ctrl_task, "control task", USERTASK_STACK_SIZE, NULL, HIGH_PRIO, NULL);
+  return_val &= xTaskCreate( logger_task, "logger", USERTASK_STACK_SIZE, NULL, MED_PRIO, NULL);
 
   if( return_val != pdTRUE )
   {

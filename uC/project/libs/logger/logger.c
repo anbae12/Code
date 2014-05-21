@@ -9,8 +9,8 @@
 #include "logger.h"
 #include "SPI/spi.h"
 /********************************* Defines **********************************/
-#define         LOG_SIZE_MAX                    200
-#define         LOG_INPUT_QUEUE_SIZE            50
+#define         LOG_SIZE_MAX                    395
+#define         LOG_INPUT_QUEUE_SIZE            445
 
 /******************************** Constants *********************************/
 
@@ -80,14 +80,8 @@ void log_flush(BOOLEAN print)
   _MTX_GIVE(log_mutex);
 }
 
-//void log_entry_register(log_entry *the_entry)
-//{
-//  xQueueSend(log_input_queue,the_entry,0);
-//}
-
 void log_entry_register(pwm_duty_cycle_type pwm, motor_pos current, motor_pos target)
 {
-  //static log_file_type hans;
   log_entry temp_entry;
   temp_entry.current_posA = (INT16U) current.positionA;
   temp_entry.current_posB = (INT16U) current.positionB;
@@ -95,8 +89,9 @@ void log_entry_register(pwm_duty_cycle_type pwm, motor_pos current, motor_pos ta
   temp_entry.setpointB = (INT16U) target.positionB;
   temp_entry.pwmA = (INT16S) pwm.motorA;
   temp_entry.pwmB = (INT16S) pwm.motorB;
-  // xQueueSend(log_status_queue,&temp_entry,0);
-  xQueueSend(log_input_queue,&temp_entry,0);
+  if( !xQueueSend(log_input_queue,&temp_entry,0))
+    PRINTF("queue is full\n");
+
 }
 
 void display_log_format(void)

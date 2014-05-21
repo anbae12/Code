@@ -114,7 +114,6 @@ coordinate_type read_pos_kart(INT8U reset)
     }
   }
   coordinate = coor_list[array_index];
-
   output = coordinate;
 
   return output;

@@ -16,7 +16,7 @@
  *****************************************************************************/
 
 /***************************** Include files *******************************/
-
+#define READ_PWM_TASK_CYCLE 1
 #include "configs/project_settings.h"
 #include "read_pwm.h"
 #include "queue/queue_ini.h"

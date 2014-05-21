@@ -196,7 +196,7 @@ void uart_send_task(void *pvParameters)
       uart_char_put_blocking(send_char);
     }
 
-    _wait(MILLI_SEC(UART_SEND_TASK_DELAY_MS));
+    _wait(UART_SEND_TASK_DELAY);
   }
 }
 
@@ -230,7 +230,7 @@ void uart_receive_task(void *pvParameters)
       _QUEUE_PUT_BLOCKING(UART_RECEIVE_QUEUE,received_char);
     }
 
-    _wait(MILLI_SEC(UART_RECEIVE_TASK_DELAY_MS));
+    _wait(UART_RECEIVE_TASK_DELAY);
   }
 }
 
