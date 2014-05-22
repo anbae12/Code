@@ -29,7 +29,6 @@
 #define UI_CMD_STOP "stop"    //emergency stop
 #define UI_CMD_COORDINATE "C xxx.yyy.zzz"//Gå til koordinatsæt 
 #define UI_CMD_PWM "PA+99"//Set pwm
-#define UI_CMD_READ "read" //Læs sensorværdier. 
 #define UI_CMD_OPEN_LOOP "open"
 #define UI_CMD_ANGLE "A aaaa.bbbb" 
 #define COORDINATE_LEN 11
@@ -96,7 +95,6 @@ void interface_task(void *pvParameters)
   char mirror_string[UART_QUEUE_LEN] = {0};
 
   INT8U coord[COORDINATE_LEN] = {0};
-  INT8U read_log = TRUE;
   INT8U next_control_state;
   PRINTF("\n\n\nProgram started.\n");
   interface_display_commands();
@@ -120,14 +118,6 @@ void interface_task(void *pvParameters)
       {
         next_control_state = STOP_MOTORS_NOW;
         control_set_state(next_control_state, &dummy_ptr);
-      }
-      else if (!strcmp(UI_CMD_READ,mirror_string)) /*         <===   READ LOG  <===              */
-      {
-        read_log ^= TRUE;
-        if( read_log )
-        {
-          display_log_format();
-        }
       }
       else if (!strcmp(UI_CMD_OPEN_LOOP,mirror_string))
       {
@@ -193,7 +183,7 @@ void interface_task(void *pvParameters)
         interface_display_commands();
       }
     }
-    else if( read_log == TRUE )
+    else
     {
       log_flush(TRUE);
     }
@@ -207,7 +197,6 @@ void interface_display_commands()
  ****************************************************************************/
 {
   PRINTF(
-      "Enter <%s> to get a readable list\n"
       "Enter <%s> to start following the predefined parabola\n"
       "Enter <%s> for emergency stop\n"
       "Enter <%s> to test open loop\n"
@@ -215,7 +204,6 @@ void interface_display_commands()
       "Enter <%s> to go to a Cartesian coordinate\n"
       "Enter <%s> to go to a Spherical coordinate\n"
       "Enter <%s> to force a PWM on a single motor\n",
-      UI_CMD_READ,
       UI_CMD_START,
       UI_CMD_STOP,
       UI_CMD_OPEN_LOOP,
