@@ -27,13 +27,11 @@
 #define UI_CMD_RESET "reset"  //find reset position
 #define UI_CMD_START "start"  //Start tracking target
 #define UI_CMD_STOP "stop"    //emergency stop
-#define UI_CMD_COORDINATE "C xxx.yyy.zzz"//Gå til koordinatsæt 
+#define UI_CMD_COORDINATE "C +xx.+yy.+zz"//Gå til koordinatsæt 
 #define UI_CMD_PWM "PA+99"//Set pwm
 #define UI_CMD_OPEN_LOOP "open"
 #define UI_CMD_ANGLE "A aaaa.bbbb" 
 #define COORDINATE_LEN 11
-
-#define WHATtheFUCK_EVER        100
 
 
 
@@ -72,15 +70,27 @@ motor_pos input_position( INT8U coord[11])
 
 coordinate_type input_coordinate( INT8U coord[11])
 {
-  /* this assumes the format xxx.yyy.zzz */
+  /* this assumes the format +xx.+yy.+zz */
   coordinate_type coordinate;
-  INT16U temp;
-
-  temp = (coord[0] *100 )+ (coord[1] *10) + coord[2];
-  coordinate.x = (FP32) temp;
+  INT16S temp;
+  
+  temp = (coord[1] *10) + coord[2];
   temp = (coord[4] *100 )+ (coord[5] *10) + coord[6];
-  coordinate.y = (FP32) temp;
   temp = (coord[8] *100 )+ (coord[9] *10) + coord[10];
+  if(coord[0] == '-')
+  {
+    temp *= -1;
+  }
+  if(coord[4] == '-')
+  {
+    temp *= -1;
+  }
+  if(coord[8] == '-')
+  {
+    temp *= -1;
+  }
+  coordinate.x = (FP32) temp;
+  coordinate.y = (FP32) temp;
   coordinate.z = (FP32) temp;
 
   return coordinate;
