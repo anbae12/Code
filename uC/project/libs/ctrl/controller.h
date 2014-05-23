@@ -66,6 +66,9 @@
 #define CONTROL_PAN_I  16.83//33.361
 #define CONTROL_PAN_D  0//0.215658
 
+// Setup Pan derivative filter.
+#define PAN_DFILTER_TAPS    5
+
 #define INTEGRAL_SATURATION 2047
 
 
@@ -77,6 +80,10 @@
 
 INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos, INT8U reset);
 INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos, INT8U reset);
+
+INT16S pidf_controller_pan(motor_pos target_pos, motor_pos current_pos, INT8U reset);
+FP32 pan_derivative_filter(FP32 derivative);
+
 INT16S p_controller_safe(FP32 target_pos, FP32 current_pos);
 
 pwm_duty_cycle_type account_for_deadband(pwm_duty_cycle_type pwm);
