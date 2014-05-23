@@ -155,7 +155,8 @@ void ctrl_task(void *pvParameters)
     case SKEET_SHOOT_DEMO:
       target_pos_kart = read_pos_kart(reset);
       target_pos = coordinate_transform(target_pos_kart);
-      next_pwm.motorB = pid_controller_pan(target_pos, current_pos, reset);
+      next_pwm.motorB = pidf_controller_pan(target_pos, current_pos, reset);
+//      next_pwm.motorB = pid_controller_pan(target_pos, current_pos, reset);
       next_pwm.motorA = pid_controller_tilt(target_pos, current_pos, reset);
       next_pwm = account_for_deadband(next_pwm);
       reset = 0;
