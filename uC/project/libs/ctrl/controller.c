@@ -210,19 +210,19 @@ INT16S pidf_controller_pan(motor_pos target_pos, motor_pos current_pos, INT8U re
     error *= -1;
 
   integral += error * dt;
-  if(integral > INTEGRAL_SATURATION)
+  if(integral > INTEGRAL_SATURATION_PAN)
   {
-    integral = INTEGRAL_SATURATION;
+    integral = INTEGRAL_SATURATION_PAN;
   }
-  else if(integral < INTEGRAL_SATURATION * -1)
+  else if(integral < -INTEGRAL_SATURATION_PAN)
   {
-    integral = INTEGRAL_SATURATION * -1;
+    integral = -INTEGRAL_SATURATION_PAN;
   }
 
   derivative = (error - previous_error)/dt;
 
   // Filter the derivative
-  derivative =
+  derivative = pan_derivative_filter(derivative);
 
   return_value = Kp*error + Ki*integral + Kd*derivative;
 
