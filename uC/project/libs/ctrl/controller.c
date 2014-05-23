@@ -180,7 +180,7 @@ INT16S p_controller_safe(FP32 target_pos, FP32 current_pos)
   FP32 error;
   FP32 return_value;
 
-  FP32 Kp = 20;
+  FP32 Kp = 21;
 
   error = target_pos - current_pos;
 

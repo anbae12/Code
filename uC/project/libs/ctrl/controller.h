@@ -32,7 +32,7 @@
 
 
 /*****************************    Defines    *******************************/
-#define DEAD_BAND_TILT 270//245    //tested dead band for tilt (12 % * 2048 = 245)
+#define DEAD_BAND_TILT 300//245    //tested dead band for tilt (12 % * 2048 = 245)
 #define DEAD_BAND_PAN  240//204    //tested dead band pan ( 10 % * 2048 = 204)
 
 #define DEAD_BAND_TILT_MIN  20  //1 %
@@ -61,13 +61,13 @@
 //#define CONTROL_PAN_I  435.8195;      //1670.4;
 //#define CONTROL_PAN_D   0.24264;
 
-#define CONTROL_TILT_P 50//74.4933      //within 2 degrees...
-#define CONTROL_TILT_I 30//435.0662
+#define CONTROL_TILT_P 49//74.4933      //within 2 degrees...
+#define CONTROL_TILT_I 32.5//435.0662
 #define CONTROL_TILT_D 0//0.24896
 
-#define CONTROL_PAN_P  79//90//37.174
-#define CONTROL_PAN_I  135//155//33.361
-#define CONTROL_PAN_D  1//3.4//1.75//0.215658
+#define CONTROL_PAN_P  80//90//37.174
+#define CONTROL_PAN_I  160//155//33.361
+#define CONTROL_PAN_D  2//3.4//1.75//0.215658
 
 //#define INTEGRAL_SATURATION_TILT ((32767-(CONTROL_TILT_P*TICKS_PER_REVOLOTION/2))/CONTROL_TILT_I)
 //#define INTEGRAL_SATURATION_PAN  ((32767-(CONTROL_TILT_P*TICKS_PER_REVOLOTION/2))/CONTROL_PAN_I)
