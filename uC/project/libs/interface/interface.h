@@ -8,7 +8,7 @@
 #include "inc/emp_type.h"
 
 /********************************* Defines **********************************/
-#define RESET_POS_TILT 54 //start position is 18
+#define RESET_POS_TILT 18 //start position is 18
 #define RESET_POS_PAN 163
 /******************************** Constants *********************************/
 

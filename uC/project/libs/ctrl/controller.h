@@ -32,11 +32,14 @@
 
 
 /*****************************    Defines    *******************************/
-#define DEAD_BAND_TILT 245    //tested dead band for tilt (12 % * 2048 = 245)
-#define DEAD_BAND_PAN  204    //tested dead band pan ( 10 % * 2048 = 204)
+#define DEAD_BAND_TILT 270//245    //tested dead band for tilt (12 % * 2048 = 245)
+#define DEAD_BAND_PAN  240//204    //tested dead band pan ( 10 % * 2048 = 204)
 
 #define DEAD_BAND_TILT_MIN  20  //1 %
 #define DEAD_BAND_PAN_MIN   20  //1 %
+
+#define TICKS_PER_REVOLOTION 1080
+
 
 //Parameters for PID Controller with no d-filter
 //Set 1 (Mathematical model)
@@ -50,28 +53,26 @@
 //        Ki      0.00754696305814429                   *2048
 //        Kd      -0.0000212802788271494                *2048  //NEGATIVE!!!
 
-//#define CONTROL_TILT_P 74.4933      //within 2 degrees...
-//#define CONTROL_TILT_I 435.0662
-//#define CONTROL_TILT_D 0.24896
-//
-//#define CONTROL_PAN_P  74.8392
-//#define CONTROL_PAN_I  435.8195;      //1670.4;
-//#define CONTROL_PAN_D   0.24264;
 
-#define CONTROL_TILT_P 30//74.4933      //within 2 degrees...
+#define CONTROL_TILT_P 50//74.4933      //within 2 degrees...
 #define CONTROL_TILT_I 30//435.0662
 #define CONTROL_TILT_D 0//0.24896
-
-#define CONTROL_PAN_P  17//37.174
-#define CONTROL_PAN_I  16.83//33.361
-#define CONTROL_PAN_D  0//0.215658
 
 // Setup Pan derivative filter.
 #define PAN_DFILTER_TAPS    5
 
-#define INTEGRAL_SATURATION 2047
+#define CONTROL_PAN_P  79//90//37.174
+#define CONTROL_PAN_I  135//155//33.361
+#define CONTROL_PAN_D  1//3.4//1.75//0.215658
 
+//#define INTEGRAL_SATURATION_TILT ((32767-(CONTROL_TILT_P*TICKS_PER_REVOLOTION/2))/CONTROL_TILT_I)
+//#define INTEGRAL_SATURATION_PAN  ((32767-(CONTROL_TILT_P*TICKS_PER_REVOLOTION/2))/CONTROL_PAN_I)
+#define INTEGRAL_SATURATION_TILT 200
+#define INTEGRAL_SATURATION_PAN  200//200
+//#define INTEGRAL_SATURATION_TILT (2047/CONTROL_TILT_I)
+//#define INTEGRAL_SATURATION_PAN  (2047/CONTROL_PAN_I)
 
+#define MAX_PWM_SAFE 800
 /*****************************   Constants   *******************************/
 
 /*****************************   Variables   *******************************/
@@ -85,5 +86,4 @@ INT16S pidf_controller_pan(motor_pos target_pos, motor_pos current_pos, INT8U re
 FP32 pan_derivative_filter(FP32 derivative);
 
 INT16S p_controller_safe(FP32 target_pos, FP32 current_pos);
-
 pwm_duty_cycle_type account_for_deadband(pwm_duty_cycle_type pwm);

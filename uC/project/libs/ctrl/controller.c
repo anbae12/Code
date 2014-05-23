@@ -16,7 +16,6 @@
  * 140508  MSC   Created
  *
  ****************************************************************************/
-#define TICKS_PER_REVOLOTION 1080
 /***************************** Include files *******************************/
 #include "inc/lm3s6965.h"
 #include "inc/emp_type.h"
@@ -73,14 +72,17 @@ INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos, INT8U re
   }
   error *= -1;
   integral += error * dt;
-  if(integral > INTEGRAL_SATURATION)
+  if(integral > INTEGRAL_SATURATION_TILT)
   {
-    integral = INTEGRAL_SATURATION;
+    integral = INTEGRAL_SATURATION_TILT;
   }
-  else if(integral < INTEGRAL_SATURATION * -1)
+  else if(integral < -INTEGRAL_SATURATION_TILT)
   {
-    integral = INTEGRAL_SATURATION * -1;
+    integral = -INTEGRAL_SATURATION_TILT;
   }
+//  INT32S conv;
+//  conv = (INT32S) integral;
+//  PRINTF("INTEGRAL: %d\n",conv);
   derivative = (error - previous_error)/dt;
   
   return_value = Kp*error + Ki*integral + Kd*derivative; 
@@ -90,6 +92,18 @@ INT16S pid_controller_tilt(motor_pos target_pos, motor_pos current_pos, INT8U re
 //  INT32S conv;
 //  conv = (INT32S) error;
 //  PRINTF("error: %d\n", conv);
+  //to avoid overflow
+  if(return_value > 9999)
+  {
+    return_value = 9999;
+  }
+  else if(return_value < - 9999)
+  {
+    return_value = -9999;
+  }
+//    INT16S conv;
+//    conv = (INT16S) return_value;
+//    PRINTF("error: %d\n", conv);
 
   return (INT16S) return_value;
   
@@ -131,20 +145,31 @@ INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos, INT8U res
     error *= -1;
 
   integral += error * dt;
-  if(integral > INTEGRAL_SATURATION)
+  if(integral >= INTEGRAL_SATURATION_PAN)
   {
-    integral = INTEGRAL_SATURATION;
+    integral = INTEGRAL_SATURATION_PAN;
   }
-  else if(integral < INTEGRAL_SATURATION * -1)
+  else if(integral <= -INTEGRAL_SATURATION_PAN)
   {
-    integral = INTEGRAL_SATURATION * -1;
+    integral = -INTEGRAL_SATURATION_PAN;
   }
+
 
   derivative = (error - previous_error)/dt;
 
   return_value = Kp*error + Ki*integral + Kd*derivative;
 
   previous_error = error;
+
+  //to avoid overflow
+  if(return_value > 32767)
+  {
+    return_value = 32767;
+  }
+  else if(return_value < - 32767)
+  {
+    return_value = -32767;
+  }
 
   return (INT16S) return_value;
 }
@@ -241,7 +266,7 @@ INT16S p_controller_safe(FP32 target_pos, FP32 current_pos)
   FP32 error;
   FP32 return_value;
 
-  FP32 Kp = 10;
+  FP32 Kp = 20;
 
   error = target_pos - current_pos;
 
@@ -257,25 +282,32 @@ INT16S p_controller_safe(FP32 target_pos, FP32 current_pos)
 
   return_value = Kp*error;
 
-  if(return_value > 800)
-    return_value = 800; //This controller should be SAFE!
-  if(return_value < -800)
-    return_value = -800;
+  if(return_value > MAX_PWM_SAFE)
+    return_value = MAX_PWM_SAFE; //This controller should be SAFE!
+  if(return_value < -MAX_PWM_SAFE)
+    return_value = -MAX_PWM_SAFE;
 
   return (INT16S) return_value;
 }
 
 pwm_duty_cycle_type account_for_deadband(pwm_duty_cycle_type pwm)
 {
-  pwm_duty_cycle_type output;
-  if( (pwm.motorA < (INT16S)(DEAD_BAND_TILT)) && (pwm.motorA > (INT16S)(DEAD_BAND_TILT_MIN)))
+  pwm_duty_cycle_type output = pwm;
+  if( (pwm.motorA < DEAD_BAND_TILT) && (pwm.motorA > DEAD_BAND_TILT_MIN)) //<245 && >20
   {
     output.motorA = DEAD_BAND_TILT;
   }
-  if((pwm.motorB < (INT16S)(DEAD_BAND_PAN)) && (pwm.motorB > (INT16S)(DEAD_BAND_PAN_MIN)))
+  else if( (pwm.motorA > -DEAD_BAND_TILT) && (pwm.motorA < -DEAD_BAND_TILT_MIN))  //>-245 && <-20
+  {
+    output.motorA = -DEAD_BAND_TILT;
+  }
+  if((pwm.motorB < DEAD_BAND_PAN) && (pwm.motorB > DEAD_BAND_PAN_MIN)) //<204 && >20
   {
     output.motorB = DEAD_BAND_PAN;
   }
-  else output = pwm;
+  else if( (pwm.motorB > -DEAD_BAND_PAN) && (pwm.motorB < -DEAD_BAND_PAN_MIN)) //>-204 && <-20
+  {
+    output.motorB = -DEAD_BAND_PAN;
+  }
   return output;
 }
