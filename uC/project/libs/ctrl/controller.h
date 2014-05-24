@@ -54,13 +54,13 @@
 //        Kd      -0.0000212802788271494                *2048  //NEGATIVE!!!
 
 
-#define CONTROL_TILT_P 49
-#define CONTROL_TILT_I 32.5
+#define CONTROL_TILT_P 240//49
+#define CONTROL_TILT_I 85//32.5
 #define CONTROL_TILT_D 0
 
-#define CONTROL_PAN_P  80
-#define CONTROL_PAN_I  160
-#define CONTROL_PAN_D  3.55
+#define CONTROL_PAN_P  105//80
+#define CONTROL_PAN_I  110//160
+#define CONTROL_PAN_D  3.3//3.55
 
 // Setup Pan derivative filter.
 #define PAN_DFILTER_TAPS    5

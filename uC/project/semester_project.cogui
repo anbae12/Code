@@ -46,9 +46,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/read_pos/read_pos_upsampling.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3583" selectionTopPixel="1575"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="controller.h" partName="controller.h" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/ctrl/controller.h" title="controller.h" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/ctrl/controller.h" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="controller.h" partName="controller.h" path="C:/Users/Mikael/Desktop/Skole/4. sem/PRO/Code/uC/project/libs/ctrl/controller.h" title="controller.h" tooltip="C:/Users/Mikael/Desktop/Skole/4. sem/PRO/Code/uC/project/libs/ctrl/controller.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/ctrl/controller.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1904" selectionTopPixel="561"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1998" selectionTopPixel="832"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="emp_type.h" partName="emp_type.h" path="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/inc/emp_type.h" title="emp_type.h" tooltip="C:/Users/niko/Documents/GitHub/Code/uC/project/libs/inc/emp_type.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/semester_project/libs/inc/emp_type.h"/>
@@ -126,7 +126,7 @@
 <fastViewBars>
 <fastViewBar fastViewLocation="1024" id="org.eclipse.ui.internal.ViewStack@267e27" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="1">
 <fastViews>
-<view id="org.eclipse.ui.console.ConsoleView" ratio="0.346875"/>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.34656653"/>
 </fastViews>
 </fastViewBar>
 <fastViewBar fastViewLocation="16384" id="org.eclipse.ui.internal.ViewStack@72f580" orientation="256" selectedTabId="org.coocox.builder.ui.views.ProjectView" style="1">
@@ -460,47 +460,47 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="emp_type.h" tooltip="semester_project/libs/inc/emp_type.h">
-<persistable path="/semester_project/libs/inc/emp_type.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="spi.c" tooltip="semester_project/libs/SPI/spi.c">
-<persistable path="/semester_project/libs/SPI/spi.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="interface.h" tooltip="semester_project/libs/interface/interface.h">
-<persistable path="/semester_project/libs/interface/interface.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="logger.c" tooltip="semester_project/libs/logger/logger.c">
-<persistable path="/semester_project/libs/logger/logger.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="uartprintf.c" tooltip="semester_project/libs/uart/uartprintf.c">
-<persistable path="/semester_project/libs/uart/uartprintf.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="uartprintf.h" tooltip="semester_project/libs/uart/uartprintf.h">
-<persistable path="/semester_project/libs/uart/uartprintf.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="uart.c" tooltip="semester_project/libs/uart/uart.c">
-<persistable path="/semester_project/libs/uart/uart.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="logger.h" tooltip="semester_project/libs/logger/logger.h">
-<persistable path="/semester_project/libs/logger/logger.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="controller.h" tooltip="semester_project/libs/ctrl/controller.h">
-<persistable path="/semester_project/libs/ctrl/controller.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="spi.h" tooltip="semester_project/libs/SPI/spi.h">
-<persistable path="/semester_project/libs/SPI/spi.h"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="read_pos_upsampling.h" tooltip="semester_project/libs/read_pos/read_pos_upsampling.h">
 <persistable path="/semester_project/libs/read_pos/read_pos_upsampling.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="koordinattransformation.c" tooltip="semester_project/libs/koordinattransformation/koordinattransformation.c">
+<persistable path="/semester_project/libs/koordinattransformation/koordinattransformation.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="koordinattransformation.h" tooltip="semester_project/libs/koordinattransformation/koordinattransformation.h">
+<persistable path="/semester_project/libs/koordinattransformation/koordinattransformation.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="uartcnf.h" tooltip="semester_project/libs/configs/uartcnf.h">
+<persistable path="/semester_project/libs/configs/uartcnf.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="common.c" tooltip="semester_project/libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/common.c">
+<persistable path="/semester_project/libs/FRT_Library/FreeRTOS/Source/portable/GCC/ARM_CM3/common.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ctrl_task.h" tooltip="semester_project/libs/ctrl/ctrl_task.h">
+<persistable path="/semester_project/libs/ctrl/ctrl_task.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="read_pos.h" tooltip="semester_project/libs/read_pos/read_pos.h">
+<persistable path="/semester_project/libs/read_pos/read_pos.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="queue_ini.c" tooltip="semester_project/libs/queue/queue_ini.c">
+<persistable path="/semester_project/libs/queue/queue_ini.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="read_pos_upsampling.c" tooltip="semester_project/libs/read_pos/read_pos_upsampling.c">
 <persistable path="/semester_project/libs/read_pos/read_pos_upsampling.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="controller.c" tooltip="semester_project/libs/ctrl/controller.c">
-<persistable path="/semester_project/libs/ctrl/controller.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="logger.h" tooltip="semester_project/libs/logger/logger.h">
+<persistable path="/semester_project/libs/logger/logger.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="glob_def.h" tooltip="semester_project/libs/inc/glob_def.h">
-<persistable path="/semester_project/libs/inc/glob_def.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="project_settings.h" tooltip="semester_project/libs/configs/project_settings.h">
+<persistable path="/semester_project/libs/configs/project_settings.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="logger.c" tooltip="semester_project/libs/logger/logger.c">
+<persistable path="/semester_project/libs/logger/logger.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="log_task.c" tooltip="semester_project/libs/log/log_task.c">
+<persistable path="/semester_project/libs/log/log_task.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ctrl_task.c" tooltip="semester_project/libs/ctrl/ctrl_task.c">
+<persistable path="/semester_project/libs/ctrl/ctrl_task.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="project_settings.h" tooltip="semester_project/libs/configs/project_settings.h">
 <persistable path="/semester_project/libs/configs/project_settings.h"/>
