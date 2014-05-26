@@ -196,7 +196,7 @@ motor_pos coordinate_transform(coordinate_type coord)
 // This function transforms from kartesian to spherical coordinates.
 {
   motor_pos return_value;
-  return_value.positionA = (90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ) )*3; //phi
+  return_value.positionA = ( atan(coord.z/(sqrt(pow(coord.x,2) + pow(coord.y,2)))) * 180/PI )*3; //phi
   return_value.positionB = ( atan(coord.y/coord.x) * 180/PI )* 3; //theta
 
   if(return_value.positionA < 0)
