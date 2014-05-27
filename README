@@ -1,2 +1,4 @@
-Nikolaj kan committe...
-Nikolaj kan også committe fra windows
+Koden til Semesterprojekt robtek 4. semester Pan and Tilt system.
+Koden er skrevet til at kunne bygges fra CooCox CoIDE og Xilinx ISE.
+En computer tilsluttes et Stellaris LM3S6965 board med seriel kommunikation, baudrate 115200.
+Interfacet giver en liste over funktioner som kan styre systemet.

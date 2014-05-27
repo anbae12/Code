@@ -27,15 +27,12 @@
 #include "configs/project_settings.h"
 #include "SPI/spi.h"
 #include "queue/queue_ini.h"
-//#include "read_pos/read_pos.h"
 #include "read_pwm/read_pwm.h"
 #include "read_pos/read_pos_upsampling.h"
 #include "ctrl_task.h"
 #include <math.h>
 #include "controller.h"
 #include "logger/logger.h"
-
-//if we don't want read_pwm_task
 #include "read_pwm/matlab_pwm_liste.h"
 /*****************************    Defines    *******************************/
 #define PI 3.14159265359

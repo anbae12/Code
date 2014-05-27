@@ -58,7 +58,7 @@
 
 //debugging
 #define READ_PWM_DEBUG 0     //prints the PWM sent over SPI
-#define TARGET_PWM_DEBUG 0   //prints the pwm received from read_pwm_task
+#define TARGET_PWM_DEBUG 0   //prints the pwm received 
 #define READ_POS_DEBUG 0     //prints x y z coordinates
 #define CTRL_TARGET_DEBUG 0         //prints the converted theta and phi coordinate
 #define CTRL_CURRENT_DEBUG 0         //prints the current position in ticks

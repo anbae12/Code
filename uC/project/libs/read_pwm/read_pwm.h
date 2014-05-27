@@ -27,7 +27,6 @@ static const pwm_duty_cycle_type invalid_pwm = {.motorA = 1981, .motorB = 1981};
 extern pwm_duty_cycle_type interface_pwm;
 
 /*****************************   Functions   *******************************/
-extern void read_pwm_task(void *pvParameters);
 /*****************************************************************************
  * Input:       -
  * Output:      -
@@ -38,7 +37,6 @@ extern void read_pwm_task(void *pvParameters);
  *              In that case it should just wait. 
  *              If nothing has been taken in 15 seconds the list index is resat. 
  ****************************************************************************/
-extern void init_pwm_list( pwm_duty_cycle_type final_list[PWM_LIST_SIZE] );
 extern pwm_duty_cycle_type read_pwm_function( INT8U reset );
 
 /*****************************************************************************
