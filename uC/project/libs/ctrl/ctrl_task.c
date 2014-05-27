@@ -152,7 +152,8 @@ void ctrl_task(void *pvParameters)
     case SKEET_SHOOT_DEMO:
       target_pos_kart = read_pos_kart(reset);
       target_pos = coordinate_transform(target_pos_kart);
-      next_pwm.motorB = pid_controller_pan(target_pos, current_pos, reset);
+      next_pwm.motorB = pidf_controller_pan(target_pos, current_pos, reset);
+//      next_pwm.motorB = pid_controller_pan(target_pos, current_pos, reset);
       next_pwm.motorA = pid_controller_tilt(target_pos, current_pos, reset);
       next_pwm = account_for_deadband(next_pwm);
       reset = 0;
@@ -192,7 +193,7 @@ motor_pos coordinate_transform(coordinate_type coord)
 // This function transforms from kartesian to spherical coordinates.
 {
   motor_pos return_value;
-  return_value.positionA = (90- ( atan((sqrt(pow(coord.x,2) + pow(coord.y,2)))/coord.z) * 180/PI ) )*3; //phi
+  return_value.positionA = ( atan(coord.z/(sqrt(pow(coord.x,2) + pow(coord.y,2)))) * 180/PI )*3; //phi
   return_value.positionB = ( atan(coord.y/coord.x) * 180/PI )* 3; //theta
 
   if(return_value.positionA < 0)

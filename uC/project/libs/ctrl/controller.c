@@ -174,13 +174,99 @@ INT16S pid_controller_pan(motor_pos target_pos, motor_pos current_pos, INT8U res
   return (INT16S) return_value;
 }
 
+INT16S pidf_controller_pan(motor_pos target_pos, motor_pos current_pos, INT8U reset)
+{
+  // Variables
+  static FP32 previous_error = 0;
+  static FP32 integral = 0;
+  if(reset)
+  {
+    integral = 0;
+  }
+  FP32 derivative;
+  FP32 error;
+  FP32 return_value;
+
+  FP32 dt = 0.001666660;  // Insert sample period here
+  // Coefficients:
+  FP32 Kp = CONTROL_PAN_P;
+  FP32 Ki = CONTROL_PAN_I;
+  FP32 Kd = CONTROL_PAN_D;
+  INT8U state;
+  INT8U position_half;
+  INT8U current_half;
+
+
+  error = target_pos.positionB - current_pos.positionB;
+
+    if ( ( error < -(TICKS_PER_REVOLOTION/2) ) )
+    {
+      error += TICKS_PER_REVOLOTION;
+    }
+    else if(error > (TICKS_PER_REVOLOTION/2) )
+    {
+      error -= TICKS_PER_REVOLOTION;
+    }
+    error *= -1;
+
+  integral += error * dt;
+  if(integral > INTEGRAL_SATURATION_PAN)
+  {
+    integral = INTEGRAL_SATURATION_PAN;
+  }
+  else if(integral < -INTEGRAL_SATURATION_PAN)
+  {
+    integral = -INTEGRAL_SATURATION_PAN;
+  }
+
+  derivative = (error - previous_error)/dt;
+
+  // Filter the derivative
+  derivative = pan_derivative_filter(derivative);
+
+  return_value = Kp*error + Ki*integral + Kd*derivative;
+
+  previous_error = error;
+
+  return (INT16S) return_value;
+}
+
+FP32 pan_derivative_filter(FP32 derivative)
+// Implements a 4th order (5 taps), Kaiser window FIR.
+// Beta = 3.4, Fs = 600, Fc = 120.
+// Filter was designed using Matlab's fdatool
+{
+	static FP32 input[PAN_DFILTER_TAPS]; //input samples
+	const FP32 fir_coef[PAN_DFILTER_TAPS] = {
+			0.0163360130965946,
+			0.246703930668704,
+			0.473920112469402,
+			0.246703930668704,
+			0.0163360130965946};
+	INT8U n;
+	FP32 output = 0;
+	//shift the old samples
+	for(n=PAN_DFILTER_TAPS-1; n>0; n--)
+	 input[n] = input[n-1];
+
+	input[0] = derivative;
+
+	//Calculate the new output
+	for(n=0; n<PAN_DFILTER_TAPS; n++)
+	{
+		output += input[n] * fir_coef[n];
+	}
+	return output;
+}
+
+
 INT16S p_controller_safe(FP32 target_pos, FP32 current_pos)
 {
   // Variables
   FP32 error;
   FP32 return_value;
 
-  FP32 Kp = 20;
+  FP32 Kp = 21;
 
   error = target_pos - current_pos;
 
